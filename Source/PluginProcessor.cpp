@@ -129,17 +129,69 @@ bool PulpfictionAudioProcessor::isBusesLayoutSupported (const BusesLayout& layou
 }
 #endif
 
-void PulpfictionAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+void PulpfictionAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
-    auto totalNumInputChannels  = getTotalNumInputChannels();
+    auto totalNumInputChannels = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
     auto totalNumSamples = buffer.getNumSamples();
 
-    AudioSampleBuffer copy;
-    copy.makeCopyOf(buffer);
+    AudioSampleBuffer noise;
+    noise.makeCopyOf(buffer);
 
-    
+    for (int channel = 0; channel < totalNumInputChannels; channel++) {
+        float* noiseChannelData = noise.getWritePointer(channel);
+        float* ChannelData = buffer.getWritePointer(channel);
+
+        for (int sample = 0; sample < totalNumSamples; sample++) {
+            noiseChannelData[sample] = (random.nextFloat() * 2.0f - 1.0f);
+        }
+
+        std::vector<int> transientIndices = detectTransients(ChannelData, totalNumSamples);
+
+        for (int sample = 0; sample < totalNumSamples; sample++) {
+            for (auto& transientIndex : transientIndices) {
+                if (sample == transientIndex) {
+                    buffer.addFrom(channel, sample, noise, channel, 0, 2205, 1);
+                }
+            }
+        }
+    }
+
+
+}
+
+std::vector<int> PulpfictionAudioProcessor::detectTransients(const float* buffer, const int numSamples) {
+    std::vector<int> transientIndices;
+
+    const int blockSize = 512;
+    const float threshold = 0.5f;
+
+    float previousAmplitude = 0.0f;
+
+    for (int i = 0; i < numSamples; i += blockSize)
+    {
+        float blockAmplitude = 0.0f;
+
+        // Calculate the energy/amplitude envelope of the block
+        for (int j = i; j < i + blockSize && j < numSamples; ++j)
+        {
+            float sample = buffer[j];
+            blockAmplitude += sample * sample;
+        }
+
+        blockAmplitude = std::sqrt(blockAmplitude);
+
+        // Check for transient by comparing with the previous block's amplitude
+        if (blockAmplitude > threshold * previousAmplitude)
+        {
+            transientIndices.push_back(i);
+        }
+
+        previousAmplitude = blockAmplitude;
+    }
+
+    return transientIndices;
 }
 
 //==============================================================================
