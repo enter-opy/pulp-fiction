@@ -59,6 +59,7 @@ public:
     std::vector<int> detectTransients(const float*, const int);
 
 private:
+    std::vector<int> transientIndices;
     Random random;
 
     //==============================================================================

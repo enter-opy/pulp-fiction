@@ -136,23 +136,17 @@ void PulpfictionAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, j
     auto totalNumOutputChannels = getTotalNumOutputChannels();
     auto totalNumSamples = buffer.getNumSamples();
 
-    AudioSampleBuffer noise;
-    noise.makeCopyOf(buffer);
-
     for (int channel = 0; channel < totalNumInputChannels; channel++) {
-        float* noiseChannelData = noise.getWritePointer(channel);
-        float* ChannelData = buffer.getWritePointer(channel);
+        float* channelData = buffer.getWritePointer(channel);
 
-        for (int sample = 0; sample < totalNumSamples; sample++) {
-            noiseChannelData[sample] = (random.nextFloat() * 2.0f - 1.0f);
-        }
-
-        std::vector<int> transientIndices = detectTransients(ChannelData, totalNumSamples);
+        transientIndices = detectTransients(channelData, totalNumSamples);
 
         for (int sample = 0; sample < totalNumSamples; sample++) {
             for (auto& transientIndex : transientIndices) {
                 if (sample == transientIndex) {
-                    buffer.addFrom(channel, sample, noise, channel, 0, 2205, 1);
+                    for (int i = sample; i < sample + 4410; i++) {
+                        channelData[i] = (random.nextFloat() * 2.0 - 1.0) * 0.5;
+                    }
                 }
             }
         }
@@ -161,34 +155,39 @@ void PulpfictionAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, j
 
 }
 
-std::vector<int> PulpfictionAudioProcessor::detectTransients(const float* buffer, const int numSamples) {
+std::vector<int> PulpfictionAudioProcessor::detectTransients(const float* channelData, const int totalNumSamples) {
     std::vector<int> transientIndices;
 
-    const int blockSize = 512;
-    const float threshold = 0.5f;
+    int windowSize = 512;
+    float threshold = 0.5;
+    float decayThreshold = threshold * 0.5;
+    int transientDuration;
+    int minTransientDuration = 10;
+    bool isTransient = false;
+    int transientStartIndex = -1;
 
-    float previousAmplitude = 0.0f;
-
-    for (int i = 0; i < numSamples; i += blockSize)
+    for (int sample = 0; sample < totalNumSamples; sample += 1)
     {
-        float blockAmplitude = 0.0f;
+        float currentSample = abs(channelData[sample]);
 
-        // Calculate the energy/amplitude envelope of the block
-        for (int j = i; j < i + blockSize && j < numSamples; ++j)
-        {
-            float sample = buffer[j];
-            blockAmplitude += sample * sample;
+        if (isTransient) {
+            if (currentSample < decayThreshold) {
+                isTransient = false;
+                
+                transientDuration = sample - transientStartIndex;
+                if (transientDuration >= minTransientDuration) {
+                    transientIndices.push_back(transientStartIndex);
+                }
+                
+            }
         }
 
-        blockAmplitude = std::sqrt(blockAmplitude);
-
-        // Check for transient by comparing with the previous block's amplitude
-        if (blockAmplitude > threshold * previousAmplitude)
-        {
-            transientIndices.push_back(i);
+        if (currentSample > threshold) {
+            if (!isTransient) {
+                isTransient = true;
+                transientStartIndex = sample;
+            }
         }
-
-        previousAmplitude = blockAmplitude;
     }
 
     return transientIndices;
