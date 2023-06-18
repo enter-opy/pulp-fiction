@@ -62,6 +62,13 @@ private:
     std::vector<int> transientIndices;
     Random random;
 
+    AudioFormatManager formatManager;
+    AudioFormatReader* formatReader{ nullptr };
+
+    AudioSampleBuffer sampleBuffer;
+
+    int _numSamples;
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PulpfictionAudioProcessor)
 };

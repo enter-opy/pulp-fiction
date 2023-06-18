@@ -22,6 +22,7 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
                        )
 #endif
 {
+    formatManager.registerBasicFormats();
 }
 
 PulpfictionAudioProcessor::~PulpfictionAudioProcessor()
@@ -93,8 +94,25 @@ void PulpfictionAudioProcessor::changeProgramName (int index, const juce::String
 //==============================================================================
 void PulpfictionAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    // Use this method as the place to do any pre-playback
-    // initialisation that you need..
+    File file = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("Samples/water-splash.wav");
+
+    if (file.existsAsFile())
+    {
+        formatReader = formatManager.createReaderFor(file);
+
+        if (formatReader != nullptr)
+        {
+            const int numChannels = formatReader->numChannels;
+            const int numSamples = formatReader->lengthInSamples;
+
+            _numSamples = numSamples;
+
+            sampleBuffer.setSize(numChannels, numSamples);
+            formatReader->read(&sampleBuffer, 0, numSamples, 0, true, true);
+
+            delete formatReader;
+        }
+    }
 }
 
 void PulpfictionAudioProcessor::releaseResources()
@@ -144,15 +162,11 @@ void PulpfictionAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, j
         for (int sample = 0; sample < totalNumSamples; sample++) {
             for (auto& transientIndex : transientIndices) {
                 if (sample == transientIndex) {
-                    for (int i = sample; i < sample + 4410; i++) {
-                        channelData[i] = (random.nextFloat() * 2.0 - 1.0) * 0.5;
-                    }
+                    buffer.addFrom(channel, sample, sampleBuffer, 0, _numSamples, 0.5);
                 }
             }
         }
     }
-
-
 }
 
 std::vector<int> PulpfictionAudioProcessor::detectTransients(const float* channelData, const int totalNumSamples) {
