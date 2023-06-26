@@ -62,9 +62,6 @@ private:
     std::vector<int> transientIndices;
     Random random;
 
-    AudioFormatManager formatManager;
-    AudioFormatReader* formatReader{ nullptr };
-
     AudioSampleBuffer sampleBuffer;
 
     int _numSamples;

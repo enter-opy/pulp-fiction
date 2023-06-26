@@ -22,7 +22,6 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
                        )
 #endif
 {
-    formatManager.registerBasicFormats();
 }
 
 PulpfictionAudioProcessor::~PulpfictionAudioProcessor()
@@ -94,24 +93,21 @@ void PulpfictionAudioProcessor::changeProgramName (int index, const juce::String
 //==============================================================================
 void PulpfictionAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    File file = File::getSpecialLocation(File::currentExecutableFile).getSiblingFile("Samples/water-splash.wav");
+    MemoryInputStream inputStream(BinaryData::watersplash_wav, BinaryData::watersplash_wavSize, false);
 
-    if (file.existsAsFile())
-    {
-        formatReader = formatManager.createReaderFor(file);
+    AudioFormatManager formatManager;
+    formatManager.registerBasicFormats();
 
-        if (formatReader != nullptr)
-        {
-            const int numChannels = formatReader->numChannels;
-            const int numSamples = formatReader->lengthInSamples;
+    std::unique_ptr<juce::AudioFormatReader> reader(formatManager.createReaderFor(&inputStream));
 
-            _numSamples = numSamples;
+    if (reader != nullptr) {
+        const int numChannels = reader->numChannels;
+        const int numSamples = reader->lengthInSamples;
 
-            sampleBuffer.setSize(numChannels, numSamples);
-            formatReader->read(&sampleBuffer, 0, numSamples, 0, true, true);
+        _numSamples = numSamples;
 
-            delete formatReader;
-        }
+        sampleBuffer.setSize(numChannels, numSamples);
+        reader->read(&sampleBuffer, 0, numSamples, 0, true, true);
     }
 }
 

@@ -5,6 +5,10 @@
               companyName="vivek vijayan">
   <MAINGROUP id="HSYtm7" name="Pulp fiction">
     <GROUP id="{33BEB045-9D52-CF76-4E1B-62A71FD9ABE2}" name="Source">
+      <GROUP id="{692EBF63-4DA4-5B3A-8123-9920EF0FABD6}" name="Samples">
+        <FILE id="EV5hQB" name="water-splash.wav" compile="0" resource="1"
+              file="Source/Samples/water-splash.wav"/>
+      </GROUP>
       <FILE id="bM94hC" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="aJ99cQ" name="PluginProcessor.h" compile="0" resource="0"
