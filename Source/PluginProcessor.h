@@ -56,15 +56,14 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
 
-    std::vector<int> detectTransients(const float*, const int);
+    std::vector<int> detectTransients(const float*, const float*, const int);
 
 private:
     std::vector<int> transientIndices;
-    Random random;
 
     AudioSampleBuffer sampleBuffer;
 
-    int _numSamples;
+    int sampleLength, numSamplesRemaining;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PulpfictionAudioProcessor)

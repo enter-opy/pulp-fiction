@@ -22,6 +22,7 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
                        )
 #endif
 {
+    
 }
 
 PulpfictionAudioProcessor::~PulpfictionAudioProcessor()
@@ -95,19 +96,16 @@ void PulpfictionAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 {
     MemoryInputStream inputStream(BinaryData::watersplash_wav, BinaryData::watersplash_wavSize, false);
 
-    AudioFormatManager formatManager;
-    formatManager.registerBasicFormats();
+    WavAudioFormat wavFormat;
 
-    std::unique_ptr<juce::AudioFormatReader> reader(formatManager.createReaderFor(&inputStream));
+    AudioFormatReader* reader(wavFormat.createReaderFor(&inputStream, false));
 
-    if (reader != nullptr) {
-        const int numChannels = reader->numChannels;
-        const int numSamples = reader->lengthInSamples;
+    if (reader != nullptr)
+    {
+        sampleBuffer.setSize(reader->numChannels, reader->lengthInSamples);
+        reader->read(&sampleBuffer, 0, reader->lengthInSamples, 0, true, true);
 
-        _numSamples = numSamples;
-
-        sampleBuffer.setSize(numChannels, numSamples);
-        reader->read(&sampleBuffer, 0, numSamples, 0, true, true);
+        sampleLength = reader->lengthInSamples;
     }
 }
 
@@ -150,22 +148,37 @@ void PulpfictionAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, j
     auto totalNumOutputChannels = getTotalNumOutputChannels();
     auto totalNumSamples = buffer.getNumSamples();
 
-    for (int channel = 0; channel < totalNumInputChannels; channel++) {
-        float* channelData = buffer.getWritePointer(channel);
+    float* leftChannelData = buffer.getWritePointer(0);
+    float* rightChannelData = buffer.getWritePointer(1);
 
-        transientIndices = detectTransients(channelData, totalNumSamples);
+    if (numSamplesRemaining >= totalNumSamples) {
+        buffer.addFrom(0, 0, sampleBuffer, 0, sampleLength - numSamplesRemaining, totalNumSamples, 1);
+        buffer.addFrom(1, 0, sampleBuffer, 1, sampleLength - numSamplesRemaining, totalNumSamples, 1);
 
-        for (int sample = 0; sample < totalNumSamples; sample++) {
-            for (auto& transientIndex : transientIndices) {
-                if (sample == transientIndex) {
-                    buffer.addFrom(channel, sample, sampleBuffer, 0, _numSamples, 0.5);
-                }
+        numSamplesRemaining -= totalNumSamples;
+    }
+    else if (numSamplesRemaining > 0) {
+        buffer.addFrom(0, 0, sampleBuffer, 0, sampleLength - numSamplesRemaining, numSamplesRemaining, 1);
+        buffer.addFrom(1, 0, sampleBuffer, 1, sampleLength - numSamplesRemaining, numSamplesRemaining, 1);
+
+        numSamplesRemaining = 0;
+    }
+    else {
+        numSamplesRemaining = sampleLength;
+    }
+
+    transientIndices = detectTransients(leftChannelData, rightChannelData, totalNumSamples);
+
+    for (int sample = 0; sample < totalNumSamples; sample++) {
+        for (auto& transientIndex : transientIndices) {
+            if (sample == transientIndex) {
+
             }
         }
     }
 }
 
-std::vector<int> PulpfictionAudioProcessor::detectTransients(const float* channelData, const int totalNumSamples) {
+std::vector<int> PulpfictionAudioProcessor::detectTransients(const float* leftChannelData, const float* rightChannelData, const int totalNumSamples) {
     std::vector<int> transientIndices;
 
     int windowSize = 512;
@@ -178,7 +191,7 @@ std::vector<int> PulpfictionAudioProcessor::detectTransients(const float* channe
 
     for (int sample = 0; sample < totalNumSamples; sample += 1)
     {
-        float currentSample = abs(channelData[sample]);
+        float currentSample = std::max(abs(leftChannelData[sample]), abs(rightChannelData[sample]));
 
         if (isTransient) {
             if (currentSample < decayThreshold) {
@@ -187,8 +200,7 @@ std::vector<int> PulpfictionAudioProcessor::detectTransients(const float* channe
                 transientDuration = sample - transientStartIndex;
                 if (transientDuration >= minTransientDuration) {
                     transientIndices.push_back(transientStartIndex);
-                }
-                
+                } 
             }
         }
 
