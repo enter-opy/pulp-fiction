@@ -70,6 +70,21 @@ private:
     Slider vibratoFourDepthSlider;
     Slider vibratoFourRateSlider;
 
+    Slider chorusOneMixSlider;
+    Slider chorusTwoMixSlider;
+    Slider chorusThreeMixSlider;
+    Slider chorusFourMixSlider;
+
+    Slider delayOneMixSlider;
+    Slider delayTwoMixSlider;
+    Slider delayThreeMixSlider;
+    Slider delayFourMixSlider;
+
+    Slider flangerOneMixSlider;
+    Slider flangerTwoMixSlider;
+    Slider flangerThreeMixSlider;
+    Slider flangerFourMixSlider;
+
     std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotOneValue;
     std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotTwoValue;
     std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotThreeValue;
@@ -110,6 +125,21 @@ private:
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoThreeRateValue;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoFourDepthValue;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoFourRateValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusOneMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusTwoMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusThreeMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusFourMixValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayOneMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayTwoMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayThreeMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayFourMixValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerOneMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerTwoMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerThreeMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerFourMixValue;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PulpfictionAudioProcessorEditor)
 };

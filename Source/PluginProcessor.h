@@ -154,18 +154,6 @@
 #define FMIX4_ID "flangermix4"
 #define FMIX4_NAME "Mix"
 
-#define VMIX1_ID "vibratomix1"
-#define VMIX1_NAME "Mix"
-
-#define VMIX2_ID "vibratomix2"
-#define VMIX2_NAME "Mix"
-
-#define VMIX3_ID "vibratomix3"
-#define VMIX3_NAME "Mix"
-
-#define VMIX4_ID "vibratomix4"
-#define VMIX4_NAME "Mix"
-
 //==============================================================================
 /**
 */
@@ -367,11 +355,6 @@ private:
     float flangerTwoMix;
     float flangerThreeMix;
     float flangerFourMix;
-
-    float vibratoOneMix;
-    float vibratoTwoMix;
-    float vibratoThreeMix;
-    float vibratoFourMix;
 
     AudioPlayHead* playHead;
     AudioPlayHead::CurrentPositionInfo currentPositionInfo;

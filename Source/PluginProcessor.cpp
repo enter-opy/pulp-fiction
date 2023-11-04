@@ -55,13 +55,13 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
             std::make_unique<AudioParameterFloat>(FRATE4_ID, FRATE4_NAME, 1.0, 10.0, 1.0),
 
             std::make_unique<AudioParameterFloat>(VDEPTH1_ID, VDEPTH1_NAME, 0.0, 10.0, 1.0),
-            std::make_unique<AudioParameterFloat>(VRATE1_ID, VRATE1_NAME, 1.0, 10.0, 1.0),
+            std::make_unique<AudioParameterFloat>(VRATE1_ID, VRATE1_NAME, 0.1, 10.0, 0.1),
             std::make_unique<AudioParameterFloat>(VDEPTH2_ID, VDEPTH2_NAME, 0.0, 10.0, 1.0),
-            std::make_unique<AudioParameterFloat>(VRATE2_ID, VRATE2_NAME, 1.0, 10.0, 1.0),
+            std::make_unique<AudioParameterFloat>(VRATE2_ID, VRATE2_NAME, 0.1, 10.0, 0.1),
             std::make_unique<AudioParameterFloat>(VDEPTH3_ID, VDEPTH3_NAME, 0.0, 10.0, 1.0),
-            std::make_unique<AudioParameterFloat>(VRATE3_ID, VRATE3_NAME, 1.0, 10.0, 1.0),
+            std::make_unique<AudioParameterFloat>(VRATE3_ID, VRATE3_NAME, 0.1, 10.0, 0.1),
             std::make_unique<AudioParameterFloat>(VDEPTH4_ID, VDEPTH4_NAME, 0.0, 10.0, 1.0),
-            std::make_unique<AudioParameterFloat>(VRATE4_ID, VRATE4_NAME, 1.0, 10.0, 1.0),
+            std::make_unique<AudioParameterFloat>(VRATE4_ID, VRATE4_NAME, 0.1, 10.0, 0.1),
 
             std::make_unique<AudioParameterFloat>(CMIX1_ID, CMIX1_NAME, 0.0, 100.0, 100.0),
             std::make_unique<AudioParameterFloat>(CMIX2_ID, CMIX2_NAME, 0.0, 100.0, 100.0),
@@ -76,12 +76,7 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
             std::make_unique<AudioParameterFloat>(FMIX1_ID, FMIX1_NAME, 0.0, 100.0, 100.0),
             std::make_unique<AudioParameterFloat>(FMIX2_ID, FMIX2_NAME, 0.0, 100.0, 100.0),
             std::make_unique<AudioParameterFloat>(FMIX3_ID, FMIX3_NAME, 0.0, 100.0, 100.0),
-            std::make_unique<AudioParameterFloat>(FMIX4_ID, FMIX4_NAME, 0.0, 100.0, 100.0),
-
-            std::make_unique<AudioParameterFloat>(VMIX1_ID, VMIX1_NAME, 0.0, 100.0, 100.0),
-            std::make_unique<AudioParameterFloat>(VMIX2_ID, VMIX2_NAME, 0.0, 100.0, 100.0),
-            std::make_unique<AudioParameterFloat>(VMIX3_ID, VMIX3_NAME, 0.0, 100.0, 100.0),
-            std::make_unique<AudioParameterFloat>(VMIX4_ID, VMIX4_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(FMIX4_ID, FMIX4_NAME, 0.0, 100.0, 100.0)
         }
     ),
     slotOne(1),
@@ -117,13 +112,13 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
     flangerFourRate(1.0),
 
     vibratoOneDepth(1.0),
-    vibratoOneRate(1.0),
+    vibratoOneRate(0.1),
     vibratoTwoDepth(1.0),
-    vibratoTwoRate(1.0),
+    vibratoTwoRate(0.1),
     vibratoThreeDepth(1.0),
-    vibratoThreeRate(1.0),
+    vibratoThreeRate(0.1),
     vibratoFourDepth(1.0),
-    vibratoFourRate(1.0),
+    vibratoFourRate(0.1),
 
     chorusOneMix(100.0),
     chorusTwoMix(100.0),
@@ -138,12 +133,7 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
     flangerOneMix(100.0),
     flangerTwoMix(100.0),
     flangerThreeMix(100.0),
-    flangerFourMix(100.0),
-
-    vibratoOneMix(100.0),
-    vibratoTwoMix(100.0),
-    vibratoThreeMix(100.0),
-    vibratoFourMix(100.0)
+    flangerFourMix(100.0)
 #endif
 {
     treeState.state = ValueTree("savedParams");
@@ -248,31 +238,31 @@ void PulpfictionAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
 
     cpw1v1[0] = 500;
     cpw1v1[1] = 500;
-    cpw1v2[0] = 1000;
-    cpw1v2[1] = 1000;
-    cpw1v3[0] = 1500;
-    cpw1v3[1] = 1500;
+    cpw1v2[0] = 500;
+    cpw1v2[1] = 500;
+    cpw1v3[0] = 500;
+    cpw1v3[1] = 500;
 
     cpw2v1[0] = 500;
     cpw2v1[1] = 500;
-    cpw2v2[0] = 1000;
-    cpw2v2[1] = 1000;
-    cpw2v3[0] = 1500;
-    cpw2v3[1] = 1500;
+    cpw2v2[0] = 500;
+    cpw2v2[1] = 500;
+    cpw2v3[0] = 500;
+    cpw2v3[1] = 500;
 
     cpw3v1[0] = 500;
     cpw3v1[1] = 500;
-    cpw3v2[0] = 1000;
-    cpw3v2[1] = 1000;
-    cpw3v3[0] = 1500;
-    cpw3v3[1] = 1500;
+    cpw3v2[0] = 500;
+    cpw3v2[1] = 500;
+    cpw3v3[0] = 500;
+    cpw3v3[1] = 500;
 
     cpw4v1[0] = 500;
     cpw4v1[1] = 500;
-    cpw4v2[0] = 1000;
-    cpw4v2[1] = 1000;
-    cpw4v3[0] = 1500;
-    cpw4v3[1] = 1500;
+    cpw4v2[0] = 500;
+    cpw4v2[1] = 500;
+    cpw4v3[0] = 500;
+    cpw4v3[1] = 500;
 
     cph1[0] = 0.0;
     cph1[1] = 0.25;
@@ -543,19 +533,6 @@ float PulpfictionAudioProcessor::getValue(char* token) {
         return flangerFourMix;
     }
 
-    else if (!strcmp(token, "V1M")) {
-        return vibratoOneMix;
-    }
-    else if (!strcmp(token, "V2M")) {
-        return vibratoTwoMix;
-    }
-    else if (!strcmp(token, "V3M")) {
-        return vibratoThreeMix;
-    }
-    else if (!strcmp(token, "V4M")) {
-        return vibratoFourMix;
-    }
-
     else if (!strcmp(token, "S1")) {
         return slotOne;
     }
@@ -668,16 +645,20 @@ void PulpfictionAudioProcessor::chorusOne(juce::AudioBuffer<float>& buffer) {
 
     float depth = *treeState.getRawParameterValue(CDEPTH1_ID);
     int voices = (int)*treeState.getRawParameterValue(CVOICES1_ID);
-    int mix = *treeState.getRawParameterValue(CVOICES1_ID);
 
     chorusOneDepth = depth;
     chorusOneVoices = (float)voices;
-    chorusOneMix = mix;
 
     depth /= 1000.0;
 
+    float mix = *treeState.getRawParameterValue(CMIX1_ID);
+
+    chorusOneMix = mix;
+
     float wetMix = mix / 100.0;
     float dryMix = 1 - wetMix;
+
+    DBG(voices);
 
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         float* channelData = buffer.getWritePointer(channel);
@@ -692,11 +673,20 @@ void PulpfictionAudioProcessor::chorusOne(juce::AudioBuffer<float>& buffer) {
             float interpolatedSample2 = 0.0;
             float interpolatedSample3 = 0.0;
 
-            float currentDelay = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * cph1[channel]));
+            float phase1 = cph1[channel];
+            float phase2 = cph1[channel] + 0.18;
+            float phase3 = cph1[channel] + 0.33;
 
-            float cpr1 = fmodf((float)cpw1v1[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice1 - 3.0, (float)chorusBufferLengthVoice1);
-            float cpr2 = fmodf((float)cpw1v3[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice2 - 3.0, (float)chorusBufferLengthVoice2);
-            float cpr3 = fmodf((float)cpw1v3[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice3 - 3.0, (float)chorusBufferLengthVoice3);
+            if (phase2 >= 1.0) phase2 -= 1.0;
+            if (phase3 >= 1.0) phase3 -= 1.0;
+
+            float currentDelay1 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase1));
+            float currentDelay2 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase2));
+            float currentDelay3 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase3));
+
+            float cpr1 = fmodf((float)cpw1v1[channel] - currentDelay1 * sampleRate + (float)chorusBufferLengthVoice1 - 3.0, (float)chorusBufferLengthVoice1);
+            float cpr2 = fmodf((float)cpw1v3[channel] - currentDelay2 * sampleRate + (float)chorusBufferLengthVoice2 - 3.0, (float)chorusBufferLengthVoice2);
+            float cpr3 = fmodf((float)cpw1v3[channel] - currentDelay3 * sampleRate + (float)chorusBufferLengthVoice3 - 3.0, (float)chorusBufferLengthVoice3);
 
             float fraction;
             int previousSample, nextSample;
@@ -760,6 +750,13 @@ void PulpfictionAudioProcessor::chorusTwo(juce::AudioBuffer<float>& buffer) {
 
     depth /= 1000.0;
 
+    float mix = *treeState.getRawParameterValue(CMIX2_ID);
+
+    chorusTwoMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         float* channelData = buffer.getWritePointer(channel);
         float* chorusVoice1Data = chorusBufferTwoVoice1.getWritePointer(channel);
@@ -773,11 +770,20 @@ void PulpfictionAudioProcessor::chorusTwo(juce::AudioBuffer<float>& buffer) {
             float interpolatedSample2 = 0.0;
             float interpolatedSample3 = 0.0;
 
-            float currentDelay = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * cph2[channel]));
+            float phase1 = cph2[channel];
+            float phase2 = cph2[channel] + 0.18;
+            float phase3 = cph2[channel] + 0.33;
 
-            float cpr1 = fmodf((float)cpw2v1[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice1 - 3.0, (float)chorusBufferLengthVoice1);
-            float cpr2 = fmodf((float)cpw2v3[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice2 - 3.0, (float)chorusBufferLengthVoice2);
-            float cpr3 = fmodf((float)cpw2v3[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice3 - 3.0, (float)chorusBufferLengthVoice3);
+            if (phase2 >= 1.0) phase2 -= 1.0;
+            if (phase3 >= 1.0) phase3 -= 1.0;
+
+            float currentDelay1 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase1));
+            float currentDelay2 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase2));
+            float currentDelay3 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase3));
+
+            float cpr1 = fmodf((float)cpw2v1[channel] - currentDelay1 * sampleRate + (float)chorusBufferLengthVoice1 - 3.0, (float)chorusBufferLengthVoice1);
+            float cpr2 = fmodf((float)cpw2v3[channel] - currentDelay2 * sampleRate + (float)chorusBufferLengthVoice2 - 3.0, (float)chorusBufferLengthVoice2);
+            float cpr3 = fmodf((float)cpw2v3[channel] - currentDelay3 * sampleRate + (float)chorusBufferLengthVoice3 - 3.0, (float)chorusBufferLengthVoice3);
 
             float fraction;
             int previousSample, nextSample;
@@ -805,15 +811,15 @@ void PulpfictionAudioProcessor::chorusTwo(juce::AudioBuffer<float>& buffer) {
             if (++cpw2v2[channel] >= chorusBufferLengthVoice2) cpw2v2[channel] = 0;
             if (++cpw2v3[channel] >= chorusBufferLengthVoice3) cpw2v3[channel] = 0;
 
-            channelData[sample] = in + interpolatedSample1;
+            channelData[sample] = dryMix * in + wetMix * interpolatedSample1;
 
             if (voices == 2) {
-                channelData[sample] += interpolatedSample2;
+                channelData[sample] += wetMix * interpolatedSample2;
             }
 
             if (voices == 3) {
-                channelData[sample] += interpolatedSample2;
-                channelData[sample] += interpolatedSample3;
+                channelData[sample] += wetMix * interpolatedSample2;
+                channelData[sample] += wetMix * interpolatedSample3;
             }
 
             cph2[channel] += 0.5 / sampleRate;
@@ -841,6 +847,13 @@ void PulpfictionAudioProcessor::chorusThree(juce::AudioBuffer<float>& buffer) {
 
     depth /= 1000.0;
 
+    float mix = *treeState.getRawParameterValue(CMIX3_ID);
+
+    chorusThreeMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         float* channelData = buffer.getWritePointer(channel);
         float* chorusVoice1Data = chorusBufferThreeVoice1.getWritePointer(channel);
@@ -854,11 +867,20 @@ void PulpfictionAudioProcessor::chorusThree(juce::AudioBuffer<float>& buffer) {
             float interpolatedSample2 = 0.0;
             float interpolatedSample3 = 0.0;
 
-            float currentDelay = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * cph3[channel]));
+            float phase1 = cph3[channel];
+            float phase2 = cph3[channel] + 0.18;
+            float phase3 = cph3[channel] + 0.33;
 
-            float cpr1 = fmodf((float)cpw3v1[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice1 - 3.0, (float)chorusBufferLengthVoice1);
-            float cpr2 = fmodf((float)cpw3v3[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice2 - 3.0, (float)chorusBufferLengthVoice2);
-            float cpr3 = fmodf((float)cpw3v3[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice3 - 3.0, (float)chorusBufferLengthVoice3);
+            if (phase2 >= 1.0) phase2 -= 1.0;
+            if (phase3 >= 1.0) phase3 -= 1.0;
+
+            float currentDelay1 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase1));
+            float currentDelay2 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase2));
+            float currentDelay3 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase3));
+
+            float cpr1 = fmodf((float)cpw3v1[channel] - currentDelay1 * sampleRate + (float)chorusBufferLengthVoice1 - 3.0, (float)chorusBufferLengthVoice1);
+            float cpr2 = fmodf((float)cpw3v3[channel] - currentDelay2 * sampleRate + (float)chorusBufferLengthVoice2 - 3.0, (float)chorusBufferLengthVoice2);
+            float cpr3 = fmodf((float)cpw3v3[channel] - currentDelay3 * sampleRate + (float)chorusBufferLengthVoice3 - 3.0, (float)chorusBufferLengthVoice3);
 
             float fraction;
             int previousSample, nextSample;
@@ -886,15 +908,15 @@ void PulpfictionAudioProcessor::chorusThree(juce::AudioBuffer<float>& buffer) {
             if (++cpw3v2[channel] >= chorusBufferLengthVoice2) cpw3v2[channel] = 0;
             if (++cpw3v3[channel] >= chorusBufferLengthVoice3) cpw3v3[channel] = 0;
 
-            channelData[sample] = in + interpolatedSample1;
+            channelData[sample] = dryMix * in + wetMix * interpolatedSample1;
 
             if (voices == 2) {
-                channelData[sample] += interpolatedSample2;
+                channelData[sample] += wetMix * interpolatedSample2;
             }
 
             if (voices == 3) {
-                channelData[sample] += interpolatedSample2;
-                channelData[sample] += interpolatedSample3;
+                channelData[sample] += wetMix * interpolatedSample2;
+                channelData[sample] += wetMix * interpolatedSample3;
             }
 
             cph3[channel] += 0.5 / sampleRate;
@@ -922,6 +944,13 @@ void PulpfictionAudioProcessor::chorusFour(juce::AudioBuffer<float>& buffer) {
 
     depth /= 1000.0;
 
+    float mix = *treeState.getRawParameterValue(CMIX4_ID);
+
+    chorusFourMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         float* channelData = buffer.getWritePointer(channel);
         float* chorusVoice1Data = chorusBufferFourVoice1.getWritePointer(channel);
@@ -935,11 +964,20 @@ void PulpfictionAudioProcessor::chorusFour(juce::AudioBuffer<float>& buffer) {
             float interpolatedSample2 = 0.0;
             float interpolatedSample3 = 0.0;
 
-            float currentDelay = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * cph4[channel]));
+            float phase1 = cph4[channel];
+            float phase2 = cph4[channel] + 0.18;
+            float phase3 = cph4[channel] + 0.33;
 
-            float cpr1 = fmodf((float)cpw4v1[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice1 - 3.0, (float)chorusBufferLengthVoice1);
-            float cpr2 = fmodf((float)cpw4v3[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice2 - 3.0, (float)chorusBufferLengthVoice2);
-            float cpr3 = fmodf((float)cpw4v3[channel] - currentDelay * sampleRate + (float)chorusBufferLengthVoice3 - 3.0, (float)chorusBufferLengthVoice3);
+            if (phase2 >= 1.0) phase2 -= 1.0;
+            if (phase3 >= 1.0) phase3 -= 1.0;
+
+            float currentDelay1 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase1));
+            float currentDelay2 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase2));
+            float currentDelay3 = depth * (0.5 + 0.5 * sinf(2.0 * float_Pi * phase3));
+
+            float cpr1 = fmodf((float)cpw4v1[channel] - currentDelay1 * sampleRate + (float)chorusBufferLengthVoice1 - 3.0, (float)chorusBufferLengthVoice1);
+            float cpr2 = fmodf((float)cpw4v3[channel] - currentDelay2 * sampleRate + (float)chorusBufferLengthVoice2 - 3.0, (float)chorusBufferLengthVoice2);
+            float cpr3 = fmodf((float)cpw4v3[channel] - currentDelay3 * sampleRate + (float)chorusBufferLengthVoice3 - 3.0, (float)chorusBufferLengthVoice3);
 
             float fraction;
             int previousSample, nextSample;
@@ -967,15 +1005,15 @@ void PulpfictionAudioProcessor::chorusFour(juce::AudioBuffer<float>& buffer) {
             if (++cpw4v2[channel] >= chorusBufferLengthVoice2) cpw4v2[channel] = 0;
             if (++cpw4v3[channel] >= chorusBufferLengthVoice3) cpw4v3[channel] = 0;
 
-            channelData[sample] = in + interpolatedSample1;
+            channelData[sample] = dryMix * in + wetMix * interpolatedSample1;
 
             if (voices == 2) {
-                channelData[sample] += interpolatedSample2;
+                channelData[sample] += wetMix * interpolatedSample2;
             }
 
             if (voices == 3) {
-                channelData[sample] += interpolatedSample2;
-                channelData[sample] += interpolatedSample3;
+                channelData[sample] += wetMix * interpolatedSample2;
+                channelData[sample] += wetMix * interpolatedSample3;
             }
 
             cph4[channel] += 0.5 / sampleRate;
@@ -990,9 +1028,6 @@ void PulpfictionAudioProcessor::delayOne(juce::AudioBuffer<float>& buffer) {
     auto totalNumOutputChannels = getTotalNumOutputChannels();
     const int totalNumSamples = buffer.getNumSamples();
     const int delayBufferLength = delayBufferOne.getNumSamples();
-
-    float dryMix = 0.5;
-    float wetMix = 0.5;
 
     float time = *treeState.getRawParameterValue(TIME1_ID);
     float feedback = *treeState.getRawParameterValue(FEEDBACK1_ID);
@@ -1014,6 +1049,13 @@ void PulpfictionAudioProcessor::delayOne(juce::AudioBuffer<float>& buffer) {
 
     dpw1[0] %= delayBufferLength;
     dpw1[1] %= delayBufferLength;
+
+    float mix = *treeState.getRawParameterValue(DMIX1_ID);
+
+    delayOneMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
 
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
@@ -1041,9 +1083,6 @@ void PulpfictionAudioProcessor::delayTwo(juce::AudioBuffer<float>& buffer) {
     const int totalNumSamples = buffer.getNumSamples();
     const int delayBufferLength = delayBufferTwo.getNumSamples();
 
-    float dryMix = 0.5;
-    float wetMix = 0.5;
-
     float time = *treeState.getRawParameterValue(TIME2_ID);
     float feedback = *treeState.getRawParameterValue(FEEDBACK2_ID);
 
@@ -1064,6 +1103,13 @@ void PulpfictionAudioProcessor::delayTwo(juce::AudioBuffer<float>& buffer) {
 
     dpw2[0] %= delayBufferLength;
     dpw2[1] %= delayBufferLength;
+
+    float mix = *treeState.getRawParameterValue(DMIX2_ID);
+
+    delayTwoMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
 
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
@@ -1091,9 +1137,6 @@ void PulpfictionAudioProcessor::delayThree(juce::AudioBuffer<float>& buffer) {
     const int totalNumSamples = buffer.getNumSamples();
     const int delayBufferLength = delayBufferThree.getNumSamples();
 
-    float dryMix = 0.5;
-    float wetMix = 0.5;
-
     float time = *treeState.getRawParameterValue(TIME3_ID);
     float feedback = *treeState.getRawParameterValue(FEEDBACK3_ID);
 
@@ -1114,6 +1157,13 @@ void PulpfictionAudioProcessor::delayThree(juce::AudioBuffer<float>& buffer) {
 
     dpw3[0] %= delayBufferLength;
     dpw3[1] %= delayBufferLength;
+
+    float mix = *treeState.getRawParameterValue(DMIX3_ID);
+
+    delayThreeMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
 
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
@@ -1141,9 +1191,6 @@ void PulpfictionAudioProcessor::delayFour(juce::AudioBuffer<float>& buffer) {
     const int totalNumSamples = buffer.getNumSamples();
     const int delayBufferLength = delayBufferFour.getNumSamples();
 
-    float dryMix = 0.5;
-    float wetMix = 0.5;
-
     float time = *treeState.getRawParameterValue(TIME4_ID);
     float feedback = *treeState.getRawParameterValue(FEEDBACK4_ID);
 
@@ -1164,6 +1211,13 @@ void PulpfictionAudioProcessor::delayFour(juce::AudioBuffer<float>& buffer) {
 
     dpw4[0] %= delayBufferLength;
     dpw4[1] %= delayBufferLength;
+
+    float mix = *treeState.getRawParameterValue(DMIX4_ID);
+
+    delayFourMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
 
     for (int channel = 0; channel < totalNumInputChannels; ++channel)
     {
@@ -1201,6 +1255,13 @@ void PulpfictionAudioProcessor::flangerOne(juce::AudioBuffer<float>& buffer) {
 
     depth /= 1000.0;
 
+    float mix = *treeState.getRawParameterValue(FMIX1_ID);
+
+    flangerOneMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         float* channelData = buffer.getWritePointer(channel);
         float* flangerData = flangerBufferOne.getWritePointer(channel);
@@ -1222,7 +1283,7 @@ void PulpfictionAudioProcessor::flangerOne(juce::AudioBuffer<float>& buffer) {
 
             if (++fpw1[channel] >= flangerBufferLength) fpw1[channel] = 0;
 
-            channelData[sample] = in + interpolatedSample;
+            channelData[sample] = dryMix * in + wetMix * interpolatedSample;
 
             fph1[channel] += rate / sampleRate;
 
@@ -1247,6 +1308,13 @@ void PulpfictionAudioProcessor::flangerTwo(juce::AudioBuffer<float>& buffer) {
 
     depth /= 1000.0;
 
+    float mix = *treeState.getRawParameterValue(FMIX2_ID);
+
+    flangerTwoMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         float* channelData = buffer.getWritePointer(channel);
         float* flangerData = flangerBufferTwo.getWritePointer(channel);
@@ -1268,7 +1336,7 @@ void PulpfictionAudioProcessor::flangerTwo(juce::AudioBuffer<float>& buffer) {
 
             if (++fpw2[channel] >= flangerBufferLength) fpw2[channel] = 0;
 
-            channelData[sample] = in + interpolatedSample;
+            channelData[sample] = dryMix * in + wetMix * interpolatedSample;
 
             fph2[channel] += rate / sampleRate;
 
@@ -1293,6 +1361,13 @@ void PulpfictionAudioProcessor::flangerThree(juce::AudioBuffer<float>& buffer) {
 
     depth /= 1000.0;
 
+    float mix = *treeState.getRawParameterValue(FMIX3_ID);
+
+    flangerThreeMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         float* channelData = buffer.getWritePointer(channel);
         float* flangerData = flangerBufferThree.getWritePointer(channel);
@@ -1314,7 +1389,7 @@ void PulpfictionAudioProcessor::flangerThree(juce::AudioBuffer<float>& buffer) {
 
             if (++fpw3[channel] >= flangerBufferLength) fpw3[channel] = 0;
 
-            channelData[sample] = in + interpolatedSample;
+            channelData[sample] = dryMix * in + wetMix * interpolatedSample;
 
             fph3[channel] += rate / sampleRate;
 
@@ -1339,6 +1414,13 @@ void PulpfictionAudioProcessor::flangerFour(juce::AudioBuffer<float>& buffer) {
 
     depth /= 1000.0;
 
+    float mix = *treeState.getRawParameterValue(FMIX4_ID);
+
+    flangerFourMix = mix;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
+
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         float* channelData = buffer.getWritePointer(channel);
         float* flangerData = flangerBufferFour.getWritePointer(channel);
@@ -1360,7 +1442,7 @@ void PulpfictionAudioProcessor::flangerFour(juce::AudioBuffer<float>& buffer) {
 
             if (++fpw4[channel] >= flangerBufferLength) fpw4[channel] = 0;
 
-            channelData[sample] = in + interpolatedSample;
+            channelData[sample] = dryMix * in + wetMix * interpolatedSample;
 
             fph4[channel] += rate / sampleRate;
 

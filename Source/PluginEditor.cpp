@@ -13,7 +13,7 @@
 PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    setSize(730, 600);
+    setSize(730, 300);
 
     slotOneValue = std::make_unique<AudioProcessorValueTreeState::ComboBoxAttachment>(audioProcessor.treeState, SLOTONE_ID, slotOneComboBox);
     slotTwoValue = std::make_unique<AudioProcessorValueTreeState::ComboBoxAttachment>(audioProcessor.treeState, SLOTTWO_ID, slotTwoComboBox);
@@ -55,6 +55,21 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     vibratoThreeRateValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, VRATE3_ID, vibratoThreeRateSlider);
     vibratoFourDepthValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, VDEPTH4_ID, vibratoFourDepthSlider);
     vibratoFourRateValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, VRATE4_ID, vibratoFourRateSlider);
+
+    chorusOneMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, CMIX1_ID, chorusOneMixSlider);
+    chorusTwoMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, CMIX2_ID, chorusTwoMixSlider);
+    chorusThreeMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, CMIX3_ID, chorusThreeMixSlider);
+    chorusFourMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, CMIX4_ID, chorusFourMixSlider);
+
+    delayOneMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, DMIX1_ID, delayOneMixSlider);
+    delayTwoMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, DMIX2_ID, delayTwoMixSlider);
+    delayThreeMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, DMIX3_ID, delayThreeMixSlider);
+    delayFourMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, DMIX4_ID, delayFourMixSlider);
+
+    flangerOneMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, FMIX1_ID, flangerOneMixSlider);
+    flangerTwoMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, FMIX2_ID, flangerTwoMixSlider);
+    flangerThreeMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, FMIX3_ID, flangerThreeMixSlider);
+    flangerFourMixValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, FMIX4_ID, flangerFourMixSlider);
 
     chorusOneDepthSlider.setSliderStyle(Slider::RotaryVerticalDrag);
     chorusOneDepthSlider.setRange(20.0, 30.0, 0.01);
@@ -207,7 +222,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     addAndMakeVisible(&vibratoOneDepthSlider);
 
     vibratoOneRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
-    vibratoOneRateSlider.setRange(1.0, 10.0, 0.01);
+    vibratoOneRateSlider.setRange(0.01, 10.0, 0.001);
     vibratoOneRateSlider.setValue(audioProcessor.getValue("V1R"));
     vibratoOneRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     addAndMakeVisible(&vibratoOneRateSlider);
@@ -219,7 +234,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     addAndMakeVisible(&vibratoTwoDepthSlider);
 
     vibratoTwoRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
-    vibratoTwoRateSlider.setRange(1.0, 10.0, 0.01);
+    vibratoTwoRateSlider.setRange(0.01, 10.0, 0.001);
     vibratoTwoRateSlider.setValue(audioProcessor.getValue("V2R"));
     vibratoTwoRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     addAndMakeVisible(&vibratoTwoRateSlider);
@@ -231,7 +246,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     addAndMakeVisible(&vibratoThreeDepthSlider);
 
     vibratoThreeRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
-    vibratoThreeRateSlider.setRange(1.0, 10.0, 0.01);
+    vibratoThreeRateSlider.setRange(0.01, 10.0, 0.001);
     vibratoThreeRateSlider.setValue(audioProcessor.getValue("V3R"));
     vibratoThreeRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     addAndMakeVisible(&vibratoThreeRateSlider);
@@ -243,10 +258,82 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     addAndMakeVisible(&vibratoFourDepthSlider);
 
     vibratoFourRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
-    vibratoFourRateSlider.setRange(1.0, 10.0, 0.01);
+    vibratoFourRateSlider.setRange(0.01, 10.0, 0.001);
     vibratoFourRateSlider.setValue(audioProcessor.getValue("V4R"));
     vibratoFourRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     addAndMakeVisible(&vibratoFourRateSlider);
+
+    chorusOneMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    chorusOneMixSlider.setRange(0.0, 100.0, 0.1);
+    chorusOneMixSlider.setValue(audioProcessor.getValue("C1M"));
+    chorusOneMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&chorusOneMixSlider);
+
+    chorusTwoMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    chorusTwoMixSlider.setRange(0.0, 100.0, 0.1);
+    chorusTwoMixSlider.setValue(audioProcessor.getValue("C2M"));
+    chorusTwoMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&chorusTwoMixSlider);
+
+    chorusThreeMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    chorusThreeMixSlider.setRange(0.0, 100.0, 0.1);
+    chorusThreeMixSlider.setValue(audioProcessor.getValue("C3M"));
+    chorusThreeMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&chorusThreeMixSlider);
+
+    chorusFourMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    chorusFourMixSlider.setRange(0.0, 100.0, 0.1);
+    chorusFourMixSlider.setValue(audioProcessor.getValue("C4M"));
+    chorusFourMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&chorusFourMixSlider);
+
+    delayOneMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    delayOneMixSlider.setRange(0.0, 100.0, 0.1);
+    delayOneMixSlider.setValue(audioProcessor.getValue("D1M"));
+    delayOneMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&delayOneMixSlider);
+
+    delayTwoMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    delayTwoMixSlider.setRange(0.0, 100.0, 0.1);
+    delayTwoMixSlider.setValue(audioProcessor.getValue("D2M"));
+    delayTwoMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&delayTwoMixSlider);
+
+    delayThreeMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    delayThreeMixSlider.setRange(0.0, 100.0, 0.1);
+    delayThreeMixSlider.setValue(audioProcessor.getValue("D3M"));
+    delayThreeMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&delayThreeMixSlider);
+
+    delayFourMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    delayFourMixSlider.setRange(0.0, 100.0, 0.1);
+    delayFourMixSlider.setValue(audioProcessor.getValue("D4M"));
+    delayFourMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&delayFourMixSlider);
+
+    flangerOneMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    flangerOneMixSlider.setRange(0.0, 100.0, 0.1);
+    flangerOneMixSlider.setValue(audioProcessor.getValue("F1M"));
+    flangerOneMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&flangerOneMixSlider);
+
+    flangerTwoMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    flangerTwoMixSlider.setRange(0.0, 100.0, 0.1);
+    flangerTwoMixSlider.setValue(audioProcessor.getValue("F2M"));
+    flangerTwoMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&flangerTwoMixSlider);
+
+    flangerThreeMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    flangerThreeMixSlider.setRange(0.0, 100.0, 0.1);
+    flangerThreeMixSlider.setValue(audioProcessor.getValue("F3M"));
+    flangerThreeMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&flangerThreeMixSlider);
+
+    flangerFourMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    flangerFourMixSlider.setRange(0.0, 100.0, 0.1);
+    flangerFourMixSlider.setValue(audioProcessor.getValue("F4M"));
+    flangerFourMixSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    addAndMakeVisible(&flangerFourMixSlider);
 
     slotOneComboBox.addItem("None", 1);
     slotOneComboBox.addItem("Chorus", 2);
@@ -336,6 +423,21 @@ void PulpfictionAudioProcessorEditor::resized()
     vibratoThreeRateSlider.setBounds(460, 40, 80, 80);
     vibratoFourDepthSlider.setBounds(550, 40, 80, 80);
     vibratoFourRateSlider.setBounds(640, 40, 80, 80);
+
+    chorusOneMixSlider.setBounds(10, 150, 120, 120);
+    chorusTwoMixSlider.setBounds(190, 150, 120, 120);
+    chorusThreeMixSlider.setBounds(370, 150, 120, 120);
+    chorusFourMixSlider.setBounds(550, 150, 120, 120);
+
+    delayOneMixSlider.setBounds(10, 150, 120, 120);
+    delayTwoMixSlider.setBounds(190, 150, 120, 120);
+    delayThreeMixSlider.setBounds(370, 150, 120, 120);
+    delayFourMixSlider.setBounds(550, 150, 120, 120);
+
+    flangerOneMixSlider.setBounds(10, 150, 120, 120);
+    flangerTwoMixSlider.setBounds(190, 150, 120, 120);
+    flangerThreeMixSlider.setBounds(370, 150, 120, 120);
+    flangerFourMixSlider.setBounds(550, 150, 120, 120);
 }
 
 void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
@@ -362,6 +464,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoOneRateSlider.setEnabled(false);
             vibratoOneRateSlider.setVisible(false);
 
+            chorusOneMixSlider.setEnabled(false);
+            chorusOneMixSlider.setVisible(false);
+            delayOneMixSlider.setEnabled(false);
+            delayOneMixSlider.setVisible(false);
+            flangerOneMixSlider.setEnabled(false);
+            flangerOneMixSlider.setVisible(false);
+
             break;
 
         case 2:
@@ -384,6 +493,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoOneDepthSlider.setVisible(false);
             vibratoOneRateSlider.setEnabled(false);
             vibratoOneRateSlider.setVisible(false);
+
+            chorusOneMixSlider.setEnabled(true);
+            chorusOneMixSlider.setVisible(true);
+            delayOneMixSlider.setEnabled(false);
+            delayOneMixSlider.setVisible(false);
+            flangerOneMixSlider.setEnabled(false);
+            flangerOneMixSlider.setVisible(false);
 
             break;
 
@@ -408,6 +524,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoOneRateSlider.setEnabled(false);
             vibratoOneRateSlider.setVisible(false);
 
+            chorusOneMixSlider.setEnabled(false);
+            chorusOneMixSlider.setVisible(false);
+            delayOneMixSlider.setEnabled(true);
+            delayOneMixSlider.setVisible(true);
+            flangerOneMixSlider.setEnabled(false);
+            flangerOneMixSlider.setVisible(false);
+
             break;
 
         case 4:
@@ -431,6 +554,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoOneRateSlider.setEnabled(false);
             vibratoOneRateSlider.setVisible(false);
 
+            chorusOneMixSlider.setEnabled(false);
+            chorusOneMixSlider.setVisible(false);
+            delayOneMixSlider.setEnabled(false);
+            delayOneMixSlider.setVisible(false);
+            flangerOneMixSlider.setEnabled(true);
+            flangerOneMixSlider.setVisible(true);
+
             break;
 
         case 5:
@@ -453,6 +583,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoOneDepthSlider.setVisible(true);
             vibratoOneRateSlider.setEnabled(true);
             vibratoOneRateSlider.setVisible(true);
+
+            chorusOneMixSlider.setEnabled(false);
+            chorusOneMixSlider.setVisible(false);
+            delayOneMixSlider.setEnabled(false);
+            delayOneMixSlider.setVisible(false);
+            flangerOneMixSlider.setEnabled(false);
+            flangerOneMixSlider.setVisible(false);
 
             break;
 
@@ -482,6 +619,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoTwoDepthSlider.setVisible(false);
             vibratoTwoRateSlider.setEnabled(false);
             vibratoTwoRateSlider.setVisible(false);
+            
+            chorusTwoMixSlider.setEnabled(false);
+            chorusTwoMixSlider.setVisible(false);
+            delayTwoMixSlider.setEnabled(false);
+            delayTwoMixSlider.setVisible(false);
+            flangerTwoMixSlider.setEnabled(false);
+            flangerTwoMixSlider.setVisible(false);
 
             break;
 
@@ -506,6 +650,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoTwoRateSlider.setEnabled(false);
             vibratoTwoRateSlider.setVisible(false);
 
+            chorusTwoMixSlider.setEnabled(true);
+            chorusTwoMixSlider.setVisible(true);
+            delayTwoMixSlider.setEnabled(false);
+            delayTwoMixSlider.setVisible(false);
+            flangerTwoMixSlider.setEnabled(false);
+            flangerTwoMixSlider.setVisible(false);
+
             break;
 
         case 3:
@@ -528,6 +679,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoTwoDepthSlider.setVisible(false);
             vibratoTwoRateSlider.setEnabled(false);
             vibratoTwoRateSlider.setVisible(false);
+
+            chorusTwoMixSlider.setEnabled(false);
+            chorusTwoMixSlider.setVisible(false);
+            delayTwoMixSlider.setEnabled(true);
+            delayTwoMixSlider.setVisible(true);
+            flangerTwoMixSlider.setEnabled(false);
+            flangerTwoMixSlider.setVisible(false);
 
             break;
 
@@ -552,6 +710,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoTwoRateSlider.setEnabled(false);
             vibratoTwoRateSlider.setVisible(false);
 
+            chorusTwoMixSlider.setEnabled(false);
+            chorusTwoMixSlider.setVisible(false);
+            delayTwoMixSlider.setEnabled(false);
+            delayTwoMixSlider.setVisible(false);
+            flangerTwoMixSlider.setEnabled(true);
+            flangerTwoMixSlider.setVisible(true);
+
             break;
 
         case 5:
@@ -574,6 +739,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoTwoDepthSlider.setVisible(true);
             vibratoTwoRateSlider.setEnabled(true);
             vibratoTwoRateSlider.setVisible(true);
+
+            chorusTwoMixSlider.setEnabled(false);
+            chorusTwoMixSlider.setVisible(false);
+            delayTwoMixSlider.setEnabled(false);
+            delayTwoMixSlider.setVisible(false);
+            flangerTwoMixSlider.setEnabled(false);
+            flangerTwoMixSlider.setVisible(false);
 
             break;
 
@@ -604,6 +776,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoThreeRateSlider.setEnabled(false);
             vibratoThreeRateSlider.setVisible(false);
 
+            chorusThreeMixSlider.setEnabled(false);
+            chorusThreeMixSlider.setVisible(false);
+            delayThreeMixSlider.setEnabled(false);
+            delayThreeMixSlider.setVisible(false);
+            flangerThreeMixSlider.setEnabled(false);
+            flangerThreeMixSlider.setVisible(false);
+
             break;
 
         case 2:
@@ -626,6 +805,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoThreeDepthSlider.setVisible(false);
             vibratoThreeRateSlider.setEnabled(false);
             vibratoThreeRateSlider.setVisible(false);
+
+            chorusThreeMixSlider.setEnabled(true);
+            chorusThreeMixSlider.setVisible(true);
+            delayThreeMixSlider.setEnabled(false);
+            delayThreeMixSlider.setVisible(false);
+            flangerThreeMixSlider.setEnabled(false);
+            flangerThreeMixSlider.setVisible(false);
 
             break;
 
@@ -650,6 +836,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoThreeRateSlider.setEnabled(false);
             vibratoThreeRateSlider.setVisible(false);
 
+            chorusThreeMixSlider.setEnabled(false);
+            chorusThreeMixSlider.setVisible(false);
+            delayThreeMixSlider.setEnabled(true);
+            delayThreeMixSlider.setVisible(true);
+            flangerThreeMixSlider.setEnabled(false);
+            flangerThreeMixSlider.setVisible(false);
+
             break;
 
         case 4:
@@ -673,6 +866,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoThreeRateSlider.setEnabled(false);
             vibratoThreeRateSlider.setVisible(false);
 
+            chorusThreeMixSlider.setEnabled(false);
+            chorusThreeMixSlider.setVisible(false);
+            delayThreeMixSlider.setEnabled(false);
+            delayThreeMixSlider.setVisible(false);
+            flangerThreeMixSlider.setEnabled(true);
+            flangerThreeMixSlider.setVisible(true);
+
             break;
 
         case 5:
@@ -695,6 +895,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoThreeDepthSlider.setVisible(true);
             vibratoThreeRateSlider.setEnabled(true);
             vibratoThreeRateSlider.setVisible(true);
+
+            chorusThreeMixSlider.setEnabled(false);
+            chorusThreeMixSlider.setVisible(false);
+            delayThreeMixSlider.setEnabled(false);
+            delayThreeMixSlider.setVisible(false);
+            flangerThreeMixSlider.setEnabled(false);
+            flangerThreeMixSlider.setVisible(false);
 
             break;
 
@@ -725,6 +932,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoFourRateSlider.setEnabled(false);
             vibratoFourRateSlider.setVisible(false);
 
+            chorusFourMixSlider.setEnabled(false);
+            chorusFourMixSlider.setVisible(false);
+            delayFourMixSlider.setEnabled(false);
+            delayFourMixSlider.setVisible(false);
+            flangerFourMixSlider.setEnabled(false);
+            flangerFourMixSlider.setVisible(false);
+
             break;
 
         case 2:
@@ -747,6 +961,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoFourDepthSlider.setVisible(false);
             vibratoFourRateSlider.setEnabled(false);
             vibratoFourRateSlider.setVisible(false);
+
+            chorusFourMixSlider.setEnabled(true);
+            chorusFourMixSlider.setVisible(true);
+            delayFourMixSlider.setEnabled(false);
+            delayFourMixSlider.setVisible(false);
+            flangerFourMixSlider.setEnabled(false);
+            flangerFourMixSlider.setVisible(false);
 
             break;
 
@@ -771,6 +992,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoFourRateSlider.setEnabled(false);
             vibratoFourRateSlider.setVisible(false);
 
+            chorusFourMixSlider.setEnabled(false);
+            chorusFourMixSlider.setVisible(false);
+            delayFourMixSlider.setEnabled(true);
+            delayFourMixSlider.setVisible(true);
+            flangerFourMixSlider.setEnabled(false);
+            flangerFourMixSlider.setVisible(false);
+
             break;
 
         case 4:
@@ -794,6 +1022,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoFourRateSlider.setEnabled(false);
             vibratoFourRateSlider.setVisible(false);
 
+            chorusFourMixSlider.setEnabled(false);
+            chorusFourMixSlider.setVisible(false);
+            delayFourMixSlider.setEnabled(false);
+            delayFourMixSlider.setVisible(false);
+            flangerFourMixSlider.setEnabled(true);
+            flangerFourMixSlider.setVisible(true);
+
             break;
 
         case 5:
@@ -816,6 +1051,13 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             vibratoFourDepthSlider.setVisible(true);
             vibratoFourRateSlider.setEnabled(true);
             vibratoFourRateSlider.setVisible(true);
+
+            chorusFourMixSlider.setEnabled(false);
+            chorusFourMixSlider.setVisible(false);
+            delayFourMixSlider.setEnabled(false);
+            delayFourMixSlider.setVisible(false);
+            flangerFourMixSlider.setEnabled(false);
+            flangerFourMixSlider.setVisible(false);
 
             break;
 
