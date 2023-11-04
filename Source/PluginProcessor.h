@@ -118,6 +118,54 @@
 #define VRATE4_ID "vibratorate4"
 #define VRATE4_NAME "Rate"
 
+#define CMIX1_ID "chorusmix1"
+#define CMIX1_NAME "Mix"
+
+#define CMIX2_ID "chorusmix2"
+#define CMIX2_NAME "Mix"
+
+#define CMIX3_ID "chorusmix3"
+#define CMIX3_NAME "Mix"
+
+#define CMIX4_ID "chorusmix4"
+#define CMIX4_NAME "Mix"
+
+#define DMIX1_ID "delaymix1"
+#define DMIX1_NAME "Mix"
+
+#define DMIX2_ID "delaymix2"
+#define DMIX2_NAME "Mix"
+
+#define DMIX3_ID "delaymix3"
+#define DMIX3_NAME "Mix"
+
+#define DMIX4_ID "delaymix4"
+#define DMIX4_NAME "Mix"
+
+#define FMIX1_ID "flangermix1"
+#define FMIX1_NAME "Mix"
+
+#define FMIX2_ID "flangermix2"
+#define FMIX2_NAME "Mix"
+
+#define FMIX3_ID "flangermix3"
+#define FMIX3_NAME "Mix"
+
+#define FMIX4_ID "flangermix4"
+#define FMIX4_NAME "Mix"
+
+#define VMIX1_ID "vibratomix1"
+#define VMIX1_NAME "Mix"
+
+#define VMIX2_ID "vibratomix2"
+#define VMIX2_NAME "Mix"
+
+#define VMIX3_ID "vibratomix3"
+#define VMIX3_NAME "Mix"
+
+#define VMIX4_ID "vibratomix4"
+#define VMIX4_NAME "Mix"
+
 //==============================================================================
 /**
 */
@@ -304,6 +352,26 @@ private:
     float vibratoThreeRate;
     float vibratoFourDepth;
     float vibratoFourRate;
+
+    float chorusOneMix;
+    float chorusTwoMix;
+    float chorusThreeMix;
+    float chorusFourMix;
+
+    float delayOneMix;
+    float delayTwoMix;
+    float delayThreeMix;
+    float delayFourMix;
+
+    float flangerOneMix;
+    float flangerTwoMix;
+    float flangerThreeMix;
+    float flangerFourMix;
+
+    float vibratoOneMix;
+    float vibratoTwoMix;
+    float vibratoThreeMix;
+    float vibratoFourMix;
 
     AudioPlayHead* playHead;
     AudioPlayHead::CurrentPositionInfo currentPositionInfo;

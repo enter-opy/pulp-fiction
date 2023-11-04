@@ -61,7 +61,27 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
             std::make_unique<AudioParameterFloat>(VDEPTH3_ID, VDEPTH3_NAME, 0.0, 10.0, 1.0),
             std::make_unique<AudioParameterFloat>(VRATE3_ID, VRATE3_NAME, 1.0, 10.0, 1.0),
             std::make_unique<AudioParameterFloat>(VDEPTH4_ID, VDEPTH4_NAME, 0.0, 10.0, 1.0),
-            std::make_unique<AudioParameterFloat>(VRATE4_ID, VRATE4_NAME, 1.0, 10.0, 1.0)
+            std::make_unique<AudioParameterFloat>(VRATE4_ID, VRATE4_NAME, 1.0, 10.0, 1.0),
+
+            std::make_unique<AudioParameterFloat>(CMIX1_ID, CMIX1_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(CMIX2_ID, CMIX2_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(CMIX3_ID, CMIX3_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(CMIX4_ID, CMIX4_NAME, 0.0, 100.0, 100.0),
+
+            std::make_unique<AudioParameterFloat>(DMIX1_ID, DMIX1_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(DMIX2_ID, DMIX2_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(DMIX3_ID, DMIX3_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(DMIX4_ID, DMIX4_NAME, 0.0, 100.0, 100.0),
+
+            std::make_unique<AudioParameterFloat>(FMIX1_ID, FMIX1_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(FMIX2_ID, FMIX2_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(FMIX3_ID, FMIX3_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(FMIX4_ID, FMIX4_NAME, 0.0, 100.0, 100.0),
+
+            std::make_unique<AudioParameterFloat>(VMIX1_ID, VMIX1_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(VMIX2_ID, VMIX2_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(VMIX3_ID, VMIX3_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(VMIX4_ID, VMIX4_NAME, 0.0, 100.0, 100.0),
         }
     ),
     slotOne(1),
@@ -103,7 +123,27 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
     vibratoThreeDepth(1.0),
     vibratoThreeRate(1.0),
     vibratoFourDepth(1.0),
-    vibratoFourRate(1.0)
+    vibratoFourRate(1.0),
+
+    chorusOneMix(100.0),
+    chorusTwoMix(100.0),
+    chorusThreeMix(100.0),
+    chorusFourMix(100.0),
+
+    delayOneMix(100.0),
+    delayTwoMix(100.0),
+    delayThreeMix(100.0),
+    delayFourMix(100.0),
+
+    flangerOneMix(100.0),
+    flangerTwoMix(100.0),
+    flangerThreeMix(100.0),
+    flangerFourMix(100.0),
+
+    vibratoOneMix(100.0),
+    vibratoTwoMix(100.0),
+    vibratoThreeMix(100.0),
+    vibratoFourMix(100.0)
 #endif
 {
     treeState.state = ValueTree("savedParams");
@@ -464,6 +504,58 @@ float PulpfictionAudioProcessor::getValue(char* token) {
         return vibratoFourRate;
     }
 
+    else if (!strcmp(token, "C1M")) {
+        return chorusOneMix;
+    }
+    else if (!strcmp(token, "C2M")) {
+        return chorusTwoMix;
+    }
+    else if (!strcmp(token, "C3M")) {
+        return chorusThreeMix;
+    }
+    else if (!strcmp(token, "C4M")) {
+        return chorusFourMix;
+    }
+
+    else if (!strcmp(token, "D1M")) {
+        return delayOneMix;
+    }
+    else if (!strcmp(token, "D2M")) {
+        return delayTwoMix;
+    }
+    else if (!strcmp(token, "D3M")) {
+        return delayThreeMix;
+    }
+    else if (!strcmp(token, "D4M")) {
+        return delayFourMix;
+    }
+
+    else if (!strcmp(token, "F1M")) {
+        return flangerOneMix;
+    }
+    else if (!strcmp(token, "F2M")) {
+        return flangerTwoMix;
+    }
+    else if (!strcmp(token, "F3M")) {
+        return flangerThreeMix;
+    }
+    else if (!strcmp(token, "F4M")) {
+        return flangerFourMix;
+    }
+
+    else if (!strcmp(token, "V1M")) {
+        return vibratoOneMix;
+    }
+    else if (!strcmp(token, "V2M")) {
+        return vibratoTwoMix;
+    }
+    else if (!strcmp(token, "V3M")) {
+        return vibratoThreeMix;
+    }
+    else if (!strcmp(token, "V4M")) {
+        return vibratoFourMix;
+    }
+
     else if (!strcmp(token, "S1")) {
         return slotOne;
     }
@@ -576,11 +668,16 @@ void PulpfictionAudioProcessor::chorusOne(juce::AudioBuffer<float>& buffer) {
 
     float depth = *treeState.getRawParameterValue(CDEPTH1_ID);
     int voices = (int)*treeState.getRawParameterValue(CVOICES1_ID);
+    int mix = *treeState.getRawParameterValue(CVOICES1_ID);
 
     chorusOneDepth = depth;
     chorusOneVoices = (float)voices;
+    chorusOneMix = mix;
 
     depth /= 1000.0;
+
+    float wetMix = mix / 100.0;
+    float dryMix = 1 - wetMix;
 
     for (int channel = 0; channel < totalNumInputChannels; ++channel) {
         float* channelData = buffer.getWritePointer(channel);
@@ -627,15 +724,15 @@ void PulpfictionAudioProcessor::chorusOne(juce::AudioBuffer<float>& buffer) {
             if (++cpw1v2[channel] >= chorusBufferLengthVoice2) cpw1v2[channel] = 0;
             if (++cpw1v3[channel] >= chorusBufferLengthVoice3) cpw1v3[channel] = 0;
 
-            channelData[sample] = in + interpolatedSample1;
+            channelData[sample] = dryMix * in + wetMix * interpolatedSample1;
 
             if (voices == 2) {
-                channelData[sample] += interpolatedSample2;
+                channelData[sample] += wetMix * interpolatedSample2;
             }
 
             if (voices == 3) {
-                channelData[sample] += interpolatedSample2;
-                channelData[sample] += interpolatedSample3;
+                channelData[sample] += wetMix * interpolatedSample2;
+                channelData[sample] += wetMix * interpolatedSample3;
             }
 
             cph1[channel] += 0.5 / sampleRate;
