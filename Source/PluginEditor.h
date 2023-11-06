@@ -17,7 +17,7 @@
 
 class SliderLookAndFeel : public LookAndFeel_V4 {
 public:
-    void drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos, float rotatoryStartAngle, float rotatoryEndAngle, juce::Slider& slider) override {
+    void drawRotarySlider(Graphics& g, int x, int y, int width, int height, float sliderPos, float rotatoryStartAngle, float rotatoryEndAngle, Slider& slider) override {
         float diameter = jmin(width - 4, height - 4);
         float radius = diameter / 2;
         float centerX = x + width / 2;
@@ -32,6 +32,31 @@ public:
 
         g.setColour(Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.2));
         g.fillEllipse(area);
+    }
+};
+
+class ComboBoxLookAndFeel : public LookAndFeel_V4 {
+public:
+    void drawComboBox(Graphics& g, int width, int height, bool isButtonDown, int buttonX, int buttonY, int buttonW, int buttonH, ComboBox& comboBox) override {
+        String text = comboBox.getText();
+
+        g.setFont(getComboBoxFont(comboBox));
+
+        Rectangle<int> textBounds = comboBox.getLocalBounds().reduced(4);
+
+        g.setColour(Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+        g.drawText(text, textBounds, Justification::centred, true);
+    }
+
+    void positionComboBoxText(ComboBox&, Label& labelToPosition) override {
+
+    }
+
+    Font getComboBoxFont(juce::ComboBox& comboBox) override
+    {
+        Typeface::Ptr customFont = juce::Typeface::createSystemTypefaceFor(BinaryData::MuseoModernoSemiBold_ttf, BinaryData::MuseoModernoSemiBold_ttfSize);
+        
+        return Font(customFont).withHeight(16);
     }
 };
 
@@ -219,6 +244,16 @@ private:
     SliderLookAndFeel flangerThreeMixSliderLookAndFeel;
     SliderLookAndFeel flangerFourMixSliderLookAndFeel;
 
+    ComboBoxLookAndFeel slotOneComboBoxLookAndFeel;
+    ComboBoxLookAndFeel slotTwoComboBoxLookAndFeel;
+    ComboBoxLookAndFeel slotThreeComboBoxLookAndFeel;
+    ComboBoxLookAndFeel slotFourComboBoxLookAndFeel;
+
+    Rectangle<float> comboBoxOneRectangle;
+    Rectangle<float> comboBoxTwoRectangle;
+    Rectangle<float> comboBoxThreeRectangle;
+    Rectangle<float> comboBoxFourRectangle;
+
     Label chorusOneDepthIndicator;
     Label chorusOneVoicesIndicator;
     Label chorusOneMixIndicator;
@@ -338,6 +373,8 @@ private:
 
     Label vibratoFourDepthLabel;
     Label vibratoFourRateLabel;
+
+    Typeface::Ptr customFont = juce::Typeface::createSystemTypefaceFor(BinaryData::MuseoModernoSemiBold_ttf, BinaryData::MuseoModernoSemiBold_ttfSize);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PulpfictionAudioProcessorEditor)
 };

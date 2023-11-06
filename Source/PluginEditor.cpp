@@ -83,6 +83,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     chorusOneVoicesSlider.setRange(1.0, 3.0, 1.0);
     chorusOneVoicesSlider.setValue(audioProcessor.getValue("C1V"));
     chorusOneVoicesSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    chorusOneVoicesSlider.setMouseDragSensitivity(50.0);
     chorusOneVoicesSlider.setLookAndFeel(&chorusOneVoicesSliderLookAndFeel);
     chorusOneVoicesSlider.addListener(this);
     addAndMakeVisible(&chorusOneVoicesSlider);
@@ -99,6 +100,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     chorusTwoVoicesSlider.setRange(1.0, 3.0, 1.0);
     chorusTwoVoicesSlider.setValue(audioProcessor.getValue("C2V"));
     chorusTwoVoicesSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    chorusTwoVoicesSlider.setMouseDragSensitivity(50.0);
     chorusTwoVoicesSlider.setLookAndFeel(&chorusTwoVoicesSliderLookAndFeel);
     chorusTwoVoicesSlider.addListener(this);
     addAndMakeVisible(&chorusTwoVoicesSlider);
@@ -115,6 +117,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     chorusThreeVoicesSlider.setRange(1.0, 3.0, 1.0);
     chorusThreeVoicesSlider.setValue(audioProcessor.getValue("C3V"));
     chorusThreeVoicesSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    chorusThreeVoicesSlider.setMouseDragSensitivity(50.0);
     chorusThreeVoicesSlider.setLookAndFeel(&chorusThreeVoicesSliderLookAndFeel);
     chorusThreeVoicesSlider.addListener(this);
     addAndMakeVisible(&chorusThreeVoicesSlider);
@@ -131,6 +134,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     chorusFourVoicesSlider.setRange(1.0, 3.0, 1.0);
     chorusFourVoicesSlider.setValue(audioProcessor.getValue("C4V"));
     chorusFourVoicesSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    chorusFourVoicesSlider.setMouseDragSensitivity(50.0);
     chorusFourVoicesSlider.setLookAndFeel(&chorusFourVoicesSliderLookAndFeel);
     chorusFourVoicesSlider.addListener(this);
     addAndMakeVisible(&chorusFourVoicesSlider);
@@ -423,16 +427,17 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerFourMixSlider.addListener(this);
     addAndMakeVisible(&flangerFourMixSlider);
 
-    slotOneComboBox.addItem("None", 1);
-    slotOneComboBox.addItem("Chorus", 2);
-    slotOneComboBox.addItem("Delay", 3);
-    slotOneComboBox.addItem("Flanger", 4);
-    slotOneComboBox.addItem("Vibrato", 5);
+    slotOneComboBox.addItem("EMPTY", 1);
+    slotOneComboBox.addItem("CHORUS", 2);
+    slotOneComboBox.addItem("DELAY", 3);
+    slotOneComboBox.addItem("FLANGER", 4);
+    slotOneComboBox.addItem("VIBRATO", 5);
     slotOneComboBox.setSelectedId(audioProcessor.getValue("S1"));
+    slotOneComboBox.setLookAndFeel(&slotOneComboBoxLookAndFeel);
     slotOneComboBox.addListener(this);
     addAndMakeVisible(&slotOneComboBox);
 
-    slotTwoComboBox.addItem("None", 1);
+    slotTwoComboBox.addItem("Empty", 1);
     slotTwoComboBox.addItem("Chorus", 2);
     slotTwoComboBox.addItem("Delay", 3);
     slotTwoComboBox.addItem("Flanger", 4);
@@ -441,7 +446,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     slotTwoComboBox.addListener(this);
     addAndMakeVisible(&slotTwoComboBox);
 
-    slotThreeComboBox.addItem("None", 1);
+    slotThreeComboBox.addItem("Empty", 1);
     slotThreeComboBox.addItem("Chorus", 2);
     slotThreeComboBox.addItem("Delay", 3);
     slotThreeComboBox.addItem("Flanger", 4);
@@ -450,7 +455,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     slotThreeComboBox.addListener(this);
     addAndMakeVisible(&slotThreeComboBox);
 
-    slotFourComboBox.addItem("None", 1);
+    slotFourComboBox.addItem("Empty", 1);
     slotFourComboBox.addItem("Chorus", 2);
     slotFourComboBox.addItem("Delay", 3);
     slotFourComboBox.addItem("Flanger", 4);
@@ -618,6 +623,36 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     vibratoOneRateLabel.setText("RATE", dontSendNotification);
     vibratoOneRateLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&vibratoOneRateLabel);
+
+    chorusOneDepthIndicator.setFont(Font(customFont).withHeight(20));
+    chorusOneVoicesIndicator.setFont(Font(customFont).withHeight(20));
+    chorusOneMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    delayOneTimeIndicator.setFont(Font(customFont).withHeight(20));
+    delayOneFeedbackIndicator.setFont(Font(customFont).withHeight(20));
+    delayOneMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    flangerOneDepthIndicator.setFont(Font(customFont).withHeight(20));
+    flangerOneRateIndicator.setFont(Font(customFont).withHeight(20));
+    flangerOneMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    vibratoOneDepthIndicator.setFont(Font(customFont).withHeight(20));
+    vibratoOneRateIndicator.setFont(Font(customFont).withHeight(20));
+
+    chorusOneDepthLabel.setFont(Font(customFont).withHeight(18));
+    chorusOneVoicesLabel.setFont(Font(customFont).withHeight(18));
+    chorusOneMixLabel.setFont(Font(customFont).withHeight(24));
+
+    delayOneTimeLabel.setFont(Font(customFont).withHeight(18));
+    delayOneFeedbackLabel.setFont(Font(customFont).withHeight(19));
+    delayOneMixLabel.setFont(Font(customFont).withHeight(24));
+
+    flangerOneDepthLabel.setFont(Font(customFont).withHeight(18));
+    flangerOneRateLabel.setFont(Font(customFont).withHeight(18));
+    flangerOneMixLabel.setFont(Font(customFont).withHeight(24));
+
+    vibratoOneDepthLabel.setFont(Font(customFont).withHeight(18));
+    vibratoOneRateLabel.setFont(Font(customFont).withHeight(18));
 }
 
 PulpfictionAudioProcessorEditor::~PulpfictionAudioProcessorEditor()
@@ -625,37 +660,76 @@ PulpfictionAudioProcessorEditor::~PulpfictionAudioProcessorEditor()
 }
 
 //==============================================================================
-void PulpfictionAudioProcessorEditor::paint (juce::Graphics& g)
+void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
 {
     ColourGradient fillGradient(Colour::fromRGB(0xE5, 0xF0, 0xF0), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0xE0, 0xE5, 0xE5), slotOneRectangle.getCentreX(), getBottom(), false);
     g.setGradientFill(fillGradient);
     g.fillAll();
 
     DropShadow slotShadow(Colour::fromFloatRGBA(0.0, 0.0, 0.0, 0.25), 10, Point<int>(5, 5));
-    if (slotOneComboBox.getSelectedId() != 1) slotShadow.drawForRectangle(g, slotOneRectangle.toNearestInt());
-    if (slotTwoComboBox.getSelectedId() != 1) slotShadow.drawForRectangle(g, slotTwoRectangle.toNearestInt());
-    if (slotThreeComboBox.getSelectedId() != 1) slotShadow.drawForRectangle(g, slotThreeRectangle.toNearestInt());
-    if (slotFourComboBox.getSelectedId() != 1) slotShadow.drawForRectangle(g, slotFourRectangle.toNearestInt());
+    DropShadow comboBoxShadow(Colour::fromFloatRGBA(0.0, 0.0, 0.0, 0.25), 10, Point<int>(5, 5));
+
+    comboBoxShadow.drawForRectangle(g, comboBoxOneRectangle.toNearestInt());
+    comboBoxShadow.drawForRectangle(g, comboBoxTwoRectangle.toNearestInt());
+    comboBoxShadow.drawForRectangle(g, comboBoxThreeRectangle.toNearestInt());
+    comboBoxShadow.drawForRectangle(g, comboBoxFourRectangle.toNearestInt());
+
+    if (slotOneComboBox.getSelectedId() != 1) {
+        slotShadow.drawForRectangle(g, slotOneRectangle.toNearestInt());
+    }
+    else {
+        ColourGradient slotOneGradient(Colour::fromRGB(0x4C, 0x4C, 0x6C), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0x4D, 0x4D, 0x6D), slotOneRectangle.getCentreX(), getBottom(), false);
+        g.setGradientFill(slotOneGradient);
+        g.fillRoundedRectangle(comboBoxOneRectangle, 5);
+    }
+    if (slotTwoComboBox.getSelectedId() != 1) {
+        slotShadow.drawForRectangle(g, slotTwoRectangle.toNearestInt());
+    }
+    else {
+        ColourGradient slotTwoGradient(Colour::fromRGB(0x0C, 0x0C, 0x0C), slotTwoRectangle.getCentreX(), 0, Colour::fromRGB(0x0D, 0x0D, 0x0D), slotTwoRectangle.getCentreX(), getBottom(), false);
+        g.setGradientFill(slotTwoGradient);
+        g.fillRoundedRectangle(comboBoxTwoRectangle, 5);
+    }
+    if (slotThreeComboBox.getSelectedId() != 1) {
+        slotShadow.drawForRectangle(g, slotThreeRectangle.toNearestInt());
+    }
+    else {
+        ColourGradient slotThreeGradient(Colour::fromRGB(0x0C, 0x0C, 0x0C), slotThreeRectangle.getCentreX(), 0, Colour::fromRGB(0x0D, 0x0D, 0x0D), slotThreeRectangle.getCentreX(), getBottom(), false);
+        g.setGradientFill(slotThreeGradient);
+        g.fillRoundedRectangle(comboBoxThreeRectangle, 5);
+    }
+    if (slotFourComboBox.getSelectedId() != 1) {
+        slotShadow.drawForRectangle(g, slotFourRectangle.toNearestInt());
+    }
+    else {
+        ColourGradient slotFourGradient(Colour::fromRGB(0x0C, 0x0C, 0x0C), slotFourRectangle.getCentreX(), 0, Colour::fromRGB(0x0D, 0x0D, 0x0D), slotFourRectangle.getCentreX(), getBottom(), false);
+        g.setGradientFill(slotFourGradient);
+        g.fillRoundedRectangle(comboBoxFourRectangle, 5);
+    }
     
     if (slotOneComboBox.getSelectedId() == 2) {
         ColourGradient slotOneGradient(Colour::fromRGB(0x30, 0xA0, 0xFF), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0xFF, 0x30, 0x70), slotOneRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotOneGradient);
         g.fillRoundedRectangle(slotOneRectangle, 5);
+        g.fillRoundedRectangle(comboBoxOneRectangle, 2);
     }
     else if (slotOneComboBox.getSelectedId() == 3) {
         ColourGradient slotOneGradient(Colour::fromRGB(0x05, 0xD5, 0x10), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xB0, 0xFF), slotOneRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotOneGradient);
         g.fillRoundedRectangle(slotOneRectangle, 5);
+        g.fillRoundedRectangle(comboBoxOneRectangle, 2);
     }
     else if (slotOneComboBox.getSelectedId() == 4) {
         ColourGradient slotOneGradient(Colour::fromRGB(0xFF, 0x00, 0xD5), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0xFF, 0x95, 0x20), slotOneRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotOneGradient);
         g.fillRoundedRectangle(slotOneRectangle, 5);
+        g.fillRoundedRectangle(comboBoxOneRectangle, 2);
     }
     else if (slotOneComboBox.getSelectedId() == 5) {
         ColourGradient slotOneGradient(Colour::fromRGB(0x00, 0x40, 0x90), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xFF, 0xFF), slotOneRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotOneGradient);
         g.fillRoundedRectangle(slotOneRectangle, 5);
+        g.fillRoundedRectangle(comboBoxOneRectangle, 2);
     }
 
     if (slotTwoComboBox.getSelectedId() == 2) {
@@ -728,6 +802,11 @@ void PulpfictionAudioProcessorEditor::resized()
     slotTwoComboBox.setBounds(250, 20, 150, 20);
     slotThreeComboBox.setBounds(450, 20, 150, 20);
     slotFourComboBox.setBounds(650, 20, 150, 20);
+
+    comboBoxOneRectangle.setBounds(slotOneComboBox.getX(), slotOneComboBox.getY(), slotOneComboBox.getWidth(), slotOneComboBox.getHeight());
+    comboBoxTwoRectangle.setBounds(slotTwoComboBox.getX(), slotTwoComboBox.getY(), slotTwoComboBox.getWidth(), slotTwoComboBox.getHeight());
+    comboBoxThreeRectangle.setBounds(slotThreeComboBox.getX(), slotThreeComboBox.getY(), slotThreeComboBox.getWidth(), slotThreeComboBox.getHeight());
+    comboBoxFourRectangle.setBounds(slotFourComboBox.getX(), slotFourComboBox.getY(), slotFourComboBox.getWidth(), slotFourComboBox.getHeight());
 
     chorusOneDepthSlider.setBounds(50, 100, 70, 70);
     chorusOneVoicesSlider.setBounds(130, 100, 70, 70);
