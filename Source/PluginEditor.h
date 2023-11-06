@@ -374,6 +374,8 @@ private:
     Label vibratoFourDepthLabel;
     Label vibratoFourRateLabel;
 
+    String timeinBars;
+
     Typeface::Ptr customFont = juce::Typeface::createSystemTypefaceFor(BinaryData::MuseoModernoSemiBold_ttf, BinaryData::MuseoModernoSemiBold_ttfSize);
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PulpfictionAudioProcessorEditor)

@@ -427,11 +427,11 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerFourMixSlider.addListener(this);
     addAndMakeVisible(&flangerFourMixSlider);
 
-    slotOneComboBox.addItem("EMPTY", 1);
-    slotOneComboBox.addItem("CHORUS", 2);
-    slotOneComboBox.addItem("DELAY", 3);
-    slotOneComboBox.addItem("FLANGER", 4);
-    slotOneComboBox.addItem("VIBRATO", 5);
+    slotOneComboBox.addItem("Empty", 1);
+    slotOneComboBox.addItem("Chorus", 2);
+    slotOneComboBox.addItem("Delay", 3);
+    slotOneComboBox.addItem("Flanger", 4);
+    slotOneComboBox.addItem("Vibrato", 5);
     slotOneComboBox.setSelectedId(audioProcessor.getValue("S1"));
     slotOneComboBox.setLookAndFeel(&slotOneComboBoxLookAndFeel);
     slotOneComboBox.addListener(this);
@@ -443,6 +443,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     slotTwoComboBox.addItem("Flanger", 4);
     slotTwoComboBox.addItem("Vibrato", 5);
     slotTwoComboBox.setSelectedId(audioProcessor.getValue("S2"));
+    slotTwoComboBox.setLookAndFeel(&slotTwoComboBoxLookAndFeel);
     slotTwoComboBox.addListener(this);
     addAndMakeVisible(&slotTwoComboBox);
 
@@ -452,6 +453,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     slotThreeComboBox.addItem("Flanger", 4);
     slotThreeComboBox.addItem("Vibrato", 5);
     slotThreeComboBox.setSelectedId(audioProcessor.getValue("S3"));
+    slotThreeComboBox.setLookAndFeel(&slotThreeComboBoxLookAndFeel);
     slotThreeComboBox.addListener(this);
     addAndMakeVisible(&slotThreeComboBox);
 
@@ -461,6 +463,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     slotFourComboBox.addItem("Flanger", 4);
     slotFourComboBox.addItem("Vibrato", 5);
     slotFourComboBox.setSelectedId(audioProcessor.getValue("S4"));
+    slotFourComboBox.setLookAndFeel(&slotFourComboBoxLookAndFeel);
     slotFourComboBox.addListener(this);
     addAndMakeVisible(&slotFourComboBox);
 
@@ -484,35 +487,35 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
 
     delayOneTimeIndicator.setJustificationType(Justification::centred);
     delayOneTimeIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    String timeinBars;
+    String timeOneinBars;
     if (delayOneTimeSlider.getValue() == 0.0) {
-        timeinBars = "1/32";
+        timeOneinBars = "1/32";
     }
     else if (delayOneTimeSlider.getValue() == 12.5) {
-        timeinBars = "1/16";
+        timeOneinBars = "1/16";
     }
     else if (delayOneTimeSlider.getValue() == 25.0) {
-        timeinBars = "1/8";
+        timeOneinBars = "1/8";
     }
     else if (delayOneTimeSlider.getValue() == 37.5) {
-        timeinBars = "1/4";
+        timeOneinBars = "1/4";
     }
     else if (delayOneTimeSlider.getValue() == 50.0) {
-        timeinBars = "1/2";
+        timeOneinBars = "1/2";
     }
     else if (delayOneTimeSlider.getValue() == 62.5) {
-        timeinBars = "1";
+        timeOneinBars = "1";
     }
     else if (delayOneTimeSlider.getValue() == 75.0) {
-        timeinBars = "2";
+        timeOneinBars = "2";
     }
     else if (delayOneTimeSlider.getValue() == 87.5) {
-        timeinBars = "4";
+        timeOneinBars = "4";
     }
     else if (delayOneTimeSlider.getValue() == 100.0) {
-        timeinBars = "8";
+        timeOneinBars = "8";
     }
-    delayOneTimeIndicator.setText(timeinBars, dontSendNotification);
+    delayOneTimeIndicator.setText(timeOneinBars, dontSendNotification);
     delayOneTimeIndicator.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&delayOneTimeIndicator);
 
@@ -558,71 +561,231 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     vibratoOneRateIndicator.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&vibratoOneRateIndicator);
 
+    chorusTwoDepthIndicator.setJustificationType(Justification::centred);
+    chorusTwoDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusTwoDepthIndicator.setText(String(chorusTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    chorusTwoDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusTwoDepthIndicator);
+
+    chorusTwoVoicesIndicator.setJustificationType(Justification::centred);
+    chorusTwoVoicesIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusTwoVoicesIndicator.setText(String(chorusTwoVoicesSlider.getValue()), dontSendNotification);
+    chorusTwoVoicesIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusTwoVoicesIndicator);
+
+    chorusTwoMixIndicator.setJustificationType(Justification::centred);
+    chorusTwoMixIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusTwoMixIndicator.setText(String(chorusTwoMixSlider.getValue()) + " %", dontSendNotification);
+    chorusTwoMixIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusTwoMixIndicator);
+
+    delayTwoTimeIndicator.setJustificationType(Justification::centred);
+    delayTwoTimeIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    String timeTwoinBars;
+    if (delayTwoTimeSlider.getValue() == 0.0) {
+        timeTwoinBars = "1/32";
+    }
+    else if (delayTwoTimeSlider.getValue() == 12.5) {
+        timeTwoinBars = "1/16";
+    }
+    else if (delayTwoTimeSlider.getValue() == 25.0) {
+        timeTwoinBars = "1/8";
+    }
+    else if (delayTwoTimeSlider.getValue() == 37.5) {
+        timeTwoinBars = "1/4";
+    }
+    else if (delayTwoTimeSlider.getValue() == 50.0) {
+        timeTwoinBars = "1/2";
+    }
+    else if (delayTwoTimeSlider.getValue() == 62.5) {
+        timeTwoinBars = "1";
+    }
+    else if (delayTwoTimeSlider.getValue() == 75.0) {
+        timeTwoinBars = "2";
+    }
+    else if (delayTwoTimeSlider.getValue() == 87.5) {
+        timeTwoinBars = "4";
+    }
+    else if (delayTwoTimeSlider.getValue() == 100.0) {
+        timeTwoinBars = "8";
+    }
+    delayTwoTimeIndicator.setText(timeTwoinBars, dontSendNotification);
+    delayTwoTimeIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayTwoTimeIndicator);
+
+    delayTwoFeedbackIndicator.setJustificationType(Justification::centred);
+    delayTwoFeedbackIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayTwoFeedbackIndicator.setText(String(delayTwoFeedbackSlider.getValue()) + " %", dontSendNotification);
+    delayTwoFeedbackIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayTwoFeedbackIndicator);
+
+    delayTwoMixIndicator.setJustificationType(Justification::centred);
+    delayTwoMixIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayTwoMixIndicator.setText(String(delayTwoMixSlider.getValue()) + " %", dontSendNotification);
+    delayTwoMixIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayTwoMixIndicator);
+
+    flangerTwoDepthIndicator.setJustificationType(Justification::centred);
+    flangerTwoDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerTwoDepthIndicator.setText(String(flangerTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    flangerTwoDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerTwoDepthIndicator);
+
+    flangerTwoRateIndicator.setJustificationType(Justification::centred);
+    flangerTwoRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerTwoRateIndicator.setText(String(flangerTwoRateSlider.getValue()) + " Hz", dontSendNotification);
+    flangerTwoRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerTwoRateIndicator);
+
+    flangerTwoMixIndicator.setJustificationType(Justification::centred);
+    flangerTwoMixIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerTwoMixIndicator.setText(String(flangerTwoMixSlider.getValue()) + " %", dontSendNotification);
+    flangerTwoMixIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerTwoMixIndicator);
+
+    vibratoTwoDepthIndicator.setJustificationType(Justification::centred);
+    vibratoTwoDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoTwoDepthIndicator.setText(String(vibratoTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    vibratoTwoDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoTwoDepthIndicator);
+
+    vibratoTwoRateIndicator.setJustificationType(Justification::centred);
+    vibratoTwoRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoTwoRateIndicator.setText(String(vibratoTwoRateSlider.getValue()) + " Hz", dontSendNotification);
+    vibratoTwoRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoTwoRateIndicator);
+
     chorusOneDepthLabel.setJustificationType(Justification::centred);
     chorusOneDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    chorusOneDepthLabel.setText("DEPTH", dontSendNotification);
+    chorusOneDepthLabel.setText("Depth", dontSendNotification);
     chorusOneDepthLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&chorusOneDepthLabel);
 
     chorusOneVoicesLabel.setJustificationType(Justification::centred);
     chorusOneVoicesLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    chorusOneVoicesLabel.setText("VOICES", dontSendNotification);
+    chorusOneVoicesLabel.setText("Voices", dontSendNotification);
     chorusOneVoicesLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&chorusOneVoicesLabel);
 
     chorusOneMixLabel.setJustificationType(Justification::centred);
     chorusOneMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    chorusOneMixLabel.setText("MIX", dontSendNotification);
+    chorusOneMixLabel.setText("Mix", dontSendNotification);
     chorusOneMixLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&chorusOneMixLabel);
 
     delayOneTimeLabel.setJustificationType(Justification::centred);
     delayOneTimeLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    delayOneTimeLabel.setText("TIME", dontSendNotification);
+    delayOneTimeLabel.setText("Time", dontSendNotification);
     delayOneTimeLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&delayOneTimeLabel);
 
     delayOneFeedbackLabel.setJustificationType(Justification::centred);
     delayOneFeedbackLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    delayOneFeedbackLabel.setText("FEEDBACK", dontSendNotification);
+    delayOneFeedbackLabel.setText("Feedback", dontSendNotification);
     delayOneFeedbackLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&delayOneFeedbackLabel);
 
     delayOneMixLabel.setJustificationType(Justification::centred);
     delayOneMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    delayOneMixLabel.setText("MIX", dontSendNotification);
+    delayOneMixLabel.setText("Mix", dontSendNotification);
     delayOneMixLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&delayOneMixLabel);
 
     flangerOneDepthLabel.setJustificationType(Justification::centred);
     flangerOneDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    flangerOneDepthLabel.setText("DEPTH", dontSendNotification);
+    flangerOneDepthLabel.setText("Depth", dontSendNotification);
     flangerOneDepthLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerOneDepthLabel);
 
     flangerOneRateLabel.setJustificationType(Justification::centred);
     flangerOneRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    flangerOneRateLabel.setText("RATE", dontSendNotification);
+    flangerOneRateLabel.setText("Rate", dontSendNotification);
     flangerOneRateLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerOneRateLabel);
 
     flangerOneMixLabel.setJustificationType(Justification::centred);
     flangerOneMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    flangerOneMixLabel.setText("MIX", dontSendNotification);
+    flangerOneMixLabel.setText("Mix", dontSendNotification);
     flangerOneMixLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerOneMixLabel);
 
     vibratoOneDepthLabel.setJustificationType(Justification::centred);
     vibratoOneDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    vibratoOneDepthLabel.setText("DEPTH", dontSendNotification);
+    vibratoOneDepthLabel.setText("Depth", dontSendNotification);
     vibratoOneDepthLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&vibratoOneDepthLabel);
 
     vibratoOneRateLabel.setJustificationType(Justification::centred);
     vibratoOneRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
-    vibratoOneRateLabel.setText("RATE", dontSendNotification);
+    vibratoOneRateLabel.setText("Rate", dontSendNotification);
     vibratoOneRateLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&vibratoOneRateLabel);
+
+    chorusTwoDepthLabel.setJustificationType(Justification::centred);
+    chorusTwoDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusTwoDepthLabel.setText("Depth", dontSendNotification);
+    chorusTwoDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusTwoDepthLabel);
+
+    chorusTwoVoicesLabel.setJustificationType(Justification::centred);
+    chorusTwoVoicesLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusTwoVoicesLabel.setText("Voices", dontSendNotification);
+    chorusTwoVoicesLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusTwoVoicesLabel);
+
+    chorusTwoMixLabel.setJustificationType(Justification::centred);
+    chorusTwoMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusTwoMixLabel.setText("Mix", dontSendNotification);
+    chorusTwoMixLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusTwoMixLabel);
+
+    delayTwoTimeLabel.setJustificationType(Justification::centred);
+    delayTwoTimeLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayTwoTimeLabel.setText("Time", dontSendNotification);
+    delayTwoTimeLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayTwoTimeLabel);
+
+    delayTwoFeedbackLabel.setJustificationType(Justification::centred);
+    delayTwoFeedbackLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayTwoFeedbackLabel.setText("Feedback", dontSendNotification);
+    delayTwoFeedbackLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayTwoFeedbackLabel);
+
+    delayTwoMixLabel.setJustificationType(Justification::centred);
+    delayTwoMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayTwoMixLabel.setText("Mix", dontSendNotification);
+    delayTwoMixLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayTwoMixLabel);
+
+    flangerTwoDepthLabel.setJustificationType(Justification::centred);
+    flangerTwoDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerTwoDepthLabel.setText("Depth", dontSendNotification);
+    flangerTwoDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerTwoDepthLabel);
+
+    flangerTwoRateLabel.setJustificationType(Justification::centred);
+    flangerTwoRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerTwoRateLabel.setText("Rate", dontSendNotification);
+    flangerTwoRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerTwoRateLabel);
+
+    flangerTwoMixLabel.setJustificationType(Justification::centred);
+    flangerTwoMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerTwoMixLabel.setText("Mix", dontSendNotification);
+    flangerTwoMixLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerTwoMixLabel);
+
+    vibratoTwoDepthLabel.setJustificationType(Justification::centred);
+    vibratoTwoDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoTwoDepthLabel.setText("Depth", dontSendNotification);
+    vibratoTwoDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoTwoDepthLabel);
+
+    vibratoTwoRateLabel.setJustificationType(Justification::centred);
+    vibratoTwoRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoTwoRateLabel.setText("Rate", dontSendNotification);
+    vibratoTwoRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoTwoRateLabel);
 
     chorusOneDepthIndicator.setFont(Font(customFont).withHeight(20));
     chorusOneVoicesIndicator.setFont(Font(customFont).withHeight(20));
@@ -639,6 +802,21 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     vibratoOneDepthIndicator.setFont(Font(customFont).withHeight(20));
     vibratoOneRateIndicator.setFont(Font(customFont).withHeight(20));
 
+    chorusTwoDepthIndicator.setFont(Font(customFont).withHeight(20));
+    chorusTwoVoicesIndicator.setFont(Font(customFont).withHeight(20));
+    chorusTwoMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    delayTwoTimeIndicator.setFont(Font(customFont).withHeight(20));
+    delayTwoFeedbackIndicator.setFont(Font(customFont).withHeight(20));
+    delayTwoMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    flangerTwoDepthIndicator.setFont(Font(customFont).withHeight(20));
+    flangerTwoRateIndicator.setFont(Font(customFont).withHeight(20));
+    flangerTwoMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    vibratoTwoDepthIndicator.setFont(Font(customFont).withHeight(20));
+    vibratoTwoRateIndicator.setFont(Font(customFont).withHeight(20));
+
     chorusOneDepthLabel.setFont(Font(customFont).withHeight(18));
     chorusOneVoicesLabel.setFont(Font(customFont).withHeight(18));
     chorusOneMixLabel.setFont(Font(customFont).withHeight(24));
@@ -653,6 +831,21 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
 
     vibratoOneDepthLabel.setFont(Font(customFont).withHeight(18));
     vibratoOneRateLabel.setFont(Font(customFont).withHeight(18));
+
+    chorusTwoDepthLabel.setFont(Font(customFont).withHeight(18));
+    chorusTwoVoicesLabel.setFont(Font(customFont).withHeight(18));
+    chorusTwoMixLabel.setFont(Font(customFont).withHeight(24));
+
+    delayTwoTimeLabel.setFont(Font(customFont).withHeight(18));
+    delayTwoFeedbackLabel.setFont(Font(customFont).withHeight(19));
+    delayTwoMixLabel.setFont(Font(customFont).withHeight(24));
+
+    flangerTwoDepthLabel.setFont(Font(customFont).withHeight(18));
+    flangerTwoRateLabel.setFont(Font(customFont).withHeight(18));
+    flangerTwoMixLabel.setFont(Font(customFont).withHeight(24));
+
+    vibratoTwoDepthLabel.setFont(Font(customFont).withHeight(18));
+    vibratoTwoRateLabel.setFont(Font(customFont).withHeight(18));
 }
 
 PulpfictionAudioProcessorEditor::~PulpfictionAudioProcessorEditor()
@@ -678,7 +871,7 @@ void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
         slotShadow.drawForRectangle(g, slotOneRectangle.toNearestInt());
     }
     else {
-        ColourGradient slotOneGradient(Colour::fromRGB(0x4C, 0x4C, 0x6C), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0x4D, 0x4D, 0x6D), slotOneRectangle.getCentreX(), getBottom(), false);
+        ColourGradient slotOneGradient(Colour::fromRGB(0x0C, 0x0C, 0x0C), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0x0D, 0x0D, 0x0D), slotOneRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotOneGradient);
         g.fillRoundedRectangle(comboBoxOneRectangle, 5);
     }
@@ -736,72 +929,84 @@ void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
         ColourGradient slotTwoGradient(Colour::fromRGB(0x30, 0xA0, 0xFF), slotTwoRectangle.getCentreX(), 0, Colour::fromRGB(0xFF, 0x30, 0x70), slotTwoRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotTwoGradient);
         g.fillRoundedRectangle(slotTwoRectangle, 5);
+        g.fillRoundedRectangle(comboBoxTwoRectangle, 2);
     }
     else if (slotTwoComboBox.getSelectedId() == 3) {
         ColourGradient slotTwoGradient(Colour::fromRGB(0x05, 0xD5, 0x10), slotTwoRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xB0, 0xFF), slotTwoRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotTwoGradient);
         g.fillRoundedRectangle(slotTwoRectangle, 5);
+        g.fillRoundedRectangle(comboBoxTwoRectangle, 2);
     }
     else if (slotTwoComboBox.getSelectedId() == 4) {
         ColourGradient slotTwoGradient(Colour::fromRGB(0xFF, 0x00, 0xD5), slotTwoRectangle.getCentreX(), 0, Colour::fromRGB(0xFF, 0x95, 0x20), slotTwoRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotTwoGradient);
         g.fillRoundedRectangle(slotTwoRectangle, 5);
+        g.fillRoundedRectangle(comboBoxTwoRectangle, 2);
     }
     else if (slotTwoComboBox.getSelectedId() == 5) {
         ColourGradient slotTwoGradient(Colour::fromRGB(0x00, 0x40, 0x90), slotTwoRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xFF, 0xFF), slotTwoRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotTwoGradient);
         g.fillRoundedRectangle(slotTwoRectangle, 5);
+        g.fillRoundedRectangle(comboBoxTwoRectangle, 2);
     }
 
     if (slotThreeComboBox.getSelectedId() == 2) {
         ColourGradient slotThreeGradient(Colour::fromRGB(0x30, 0xA0, 0xFF), slotThreeRectangle.getCentreX(), 0, Colour::fromRGB(0xFF, 0x30, 0x70), slotThreeRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotThreeGradient);
         g.fillRoundedRectangle(slotThreeRectangle, 5);
+        g.fillRoundedRectangle(comboBoxThreeRectangle, 2);
     }
     else if (slotThreeComboBox.getSelectedId() == 3) {
         ColourGradient slotThreeGradient(Colour::fromRGB(0x05, 0xD5, 0x10), slotThreeRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xB0, 0xFF), slotThreeRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotThreeGradient);
         g.fillRoundedRectangle(slotThreeRectangle, 5);
+        g.fillRoundedRectangle(comboBoxThreeRectangle, 2);
     }
     else if (slotThreeComboBox.getSelectedId() == 4) {
         ColourGradient slotThreeGradient(Colour::fromRGB(0xFF, 0x00, 0xD5), slotThreeRectangle.getCentreX(), 0, Colour::fromRGB(0xFF, 0x95, 0x20), slotThreeRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotThreeGradient);
         g.fillRoundedRectangle(slotThreeRectangle, 5);
+        g.fillRoundedRectangle(comboBoxThreeRectangle, 2);
     }
     else if (slotThreeComboBox.getSelectedId() == 5) {
         ColourGradient slotThreeGradient(Colour::fromRGB(0x00, 0x40, 0x90), slotThreeRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xFF, 0xFF), slotThreeRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotThreeGradient);
         g.fillRoundedRectangle(slotThreeRectangle, 5);
+        g.fillRoundedRectangle(comboBoxThreeRectangle, 2);
     }
 
     if (slotFourComboBox.getSelectedId() == 2) {
         ColourGradient slotFourGradient(Colour::fromRGB(0x30, 0xA0, 0xFF), slotFourRectangle.getCentreX(), 0, Colour::fromRGB(0xFF, 0x30, 0x70), slotFourRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotFourGradient);
         g.fillRoundedRectangle(slotFourRectangle, 5);
+        g.fillRoundedRectangle(comboBoxFourRectangle, 2);
     }
     else if (slotFourComboBox.getSelectedId() == 3) {
         ColourGradient slotFourGradient(Colour::fromRGB(0x05, 0xD5, 0x10), slotFourRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xB0, 0xFF), slotFourRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotFourGradient);
         g.fillRoundedRectangle(slotFourRectangle, 5);
+        g.fillRoundedRectangle(comboBoxFourRectangle, 2);
     }
     else if (slotFourComboBox.getSelectedId() == 4) {
         ColourGradient slotFourGradient(Colour::fromRGB(0xFF, 0x00, 0xD5), slotFourRectangle.getCentreX(), 0, Colour::fromRGB(0xFF, 0x95, 0x20), slotFourRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotFourGradient);
         g.fillRoundedRectangle(slotFourRectangle, 5);
+        g.fillRoundedRectangle(comboBoxFourRectangle, 2);
     }
     else if (slotFourComboBox.getSelectedId() == 5) {
         ColourGradient slotFourGradient(Colour::fromRGB(0x00, 0x40, 0x90), slotFourRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xFF, 0xFF), slotFourRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotFourGradient);
         g.fillRoundedRectangle(slotFourRectangle, 5);
+        g.fillRoundedRectangle(comboBoxFourRectangle, 2);
     }
 }
 
 void PulpfictionAudioProcessorEditor::resized()
 {
-    slotOneComboBox.setBounds(50, 20, 150, 20);
-    slotTwoComboBox.setBounds(250, 20, 150, 20);
-    slotThreeComboBox.setBounds(450, 20, 150, 20);
-    slotFourComboBox.setBounds(650, 20, 150, 20);
+    slotOneComboBox.setBounds(50, 40, 150, 25);
+    slotTwoComboBox.setBounds(250, 40, 150, 25);
+    slotThreeComboBox.setBounds(450, 40, 150, 25);
+    slotFourComboBox.setBounds(650, 40, 150, 25);
 
     comboBoxOneRectangle.setBounds(slotOneComboBox.getX(), slotOneComboBox.getY(), slotOneComboBox.getWidth(), slotOneComboBox.getHeight());
     comboBoxTwoRectangle.setBounds(slotTwoComboBox.getX(), slotTwoComboBox.getY(), slotTwoComboBox.getWidth(), slotTwoComboBox.getHeight());
@@ -879,6 +1084,21 @@ void PulpfictionAudioProcessorEditor::resized()
     vibratoOneDepthIndicator.setBounds(35, 125, 100, 20);
     vibratoOneRateIndicator.setBounds(115, 225, 100, 20);
 
+    chorusTwoDepthIndicator.setBounds(235, 125, 100, 20);
+    chorusTwoVoicesIndicator.setBounds(315, 125, 100, 20);
+    chorusTwoMixIndicator.setBounds(250, 240, 100, 20);
+
+    delayTwoTimeIndicator.setBounds(235, 125, 100, 20);
+    delayTwoFeedbackIndicator.setBounds(315, 125, 100, 20);
+    delayTwoMixIndicator.setBounds(250, 240, 100, 20);
+
+    flangerTwoDepthIndicator.setBounds(235, 125, 100, 20);
+    flangerTwoRateIndicator.setBounds(315, 125, 100, 20);
+    flangerTwoMixIndicator.setBounds(250, 240, 100, 20);
+
+    vibratoTwoDepthIndicator.setBounds(235, 125, 100, 20);
+    vibratoTwoRateIndicator.setBounds(315, 225, 100, 20);
+
     chorusOneDepthLabel.setBounds(35, 175, 100, 20);
     chorusOneVoicesLabel.setBounds(115, 175, 100, 20);
     chorusOneMixLabel.setBounds(50, 305, 100, 20);
@@ -893,6 +1113,21 @@ void PulpfictionAudioProcessorEditor::resized()
 
     vibratoOneDepthLabel.setBounds(35, 175, 100, 20);
     vibratoOneRateLabel.setBounds(115, 275, 100, 20);
+
+    chorusTwoDepthLabel.setBounds(235, 175, 100, 20);
+    chorusTwoVoicesLabel.setBounds(315, 175, 100, 20);
+    chorusTwoMixLabel.setBounds(250, 305, 100, 20);
+
+    delayTwoTimeLabel.setBounds(235, 175, 100, 20);
+    delayTwoFeedbackLabel.setBounds(315, 175, 100, 20);
+    delayTwoMixLabel.setBounds(250, 305, 100, 20);
+
+    flangerTwoDepthLabel.setBounds(235, 175, 100, 20);
+    flangerTwoRateLabel.setBounds(315, 175, 100, 20);
+    flangerTwoMixLabel.setBounds(250, 305, 100, 20);
+
+    vibratoTwoDepthLabel.setBounds(235, 175, 100, 20);
+    vibratoTwoRateLabel.setBounds(315, 275, 100, 20);
 }
 
 void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
@@ -1232,6 +1467,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoMixSlider.setEnabled(false);
             flangerTwoMixSlider.setVisible(false);
 
+            chorusTwoDepthIndicator.setVisible(false);
+            chorusTwoVoicesIndicator.setVisible(false);
+            chorusTwoMixIndicator.setVisible(false);
+
+            delayTwoTimeIndicator.setVisible(false);
+            delayTwoFeedbackIndicator.setVisible(false);
+            delayTwoMixIndicator.setVisible(false);
+
+            flangerTwoDepthIndicator.setVisible(false);
+            flangerTwoRateIndicator.setVisible(false);
+            flangerTwoMixIndicator.setVisible(false);
+
+            vibratoTwoDepthIndicator.setVisible(false);
+            vibratoTwoRateIndicator.setVisible(false);
+
+            chorusTwoDepthLabel.setVisible(false);
+            chorusTwoVoicesLabel.setVisible(false);
+            chorusTwoMixLabel.setVisible(false);
+
+            delayTwoTimeLabel.setVisible(false);
+            delayTwoFeedbackLabel.setVisible(false);
+            delayTwoMixLabel.setVisible(false);
+
+            flangerTwoDepthLabel.setVisible(false);
+            flangerTwoRateLabel.setVisible(false);
+            flangerTwoMixLabel.setVisible(false);
+
+            vibratoTwoDepthLabel.setVisible(false);
+            vibratoTwoRateLabel.setVisible(false);
+
             break;
 
         case 2:
@@ -1261,6 +1526,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             delayTwoMixSlider.setVisible(false);
             flangerTwoMixSlider.setEnabled(false);
             flangerTwoMixSlider.setVisible(false);
+
+            chorusTwoDepthIndicator.setVisible(true);
+            chorusTwoVoicesIndicator.setVisible(true);
+            chorusTwoMixIndicator.setVisible(true);
+
+            delayTwoTimeIndicator.setVisible(false);
+            delayTwoFeedbackIndicator.setVisible(false);
+            delayTwoMixIndicator.setVisible(false);
+
+            flangerTwoDepthIndicator.setVisible(false);
+            flangerTwoRateIndicator.setVisible(false);
+            flangerTwoMixIndicator.setVisible(false);
+
+            vibratoTwoDepthIndicator.setVisible(false);
+            vibratoTwoRateIndicator.setVisible(false);
+
+            chorusTwoDepthLabel.setVisible(true);
+            chorusTwoVoicesLabel.setVisible(true);
+            chorusTwoMixLabel.setVisible(true);
+
+            delayTwoTimeLabel.setVisible(false);
+            delayTwoFeedbackLabel.setVisible(false);
+            delayTwoMixLabel.setVisible(false);
+
+            flangerTwoDepthLabel.setVisible(false);
+            flangerTwoRateLabel.setVisible(false);
+            flangerTwoMixLabel.setVisible(false);
+
+            vibratoTwoDepthLabel.setVisible(false);
+            vibratoTwoRateLabel.setVisible(false);
 
             break;
 
@@ -1292,6 +1587,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoMixSlider.setEnabled(false);
             flangerTwoMixSlider.setVisible(false);
 
+            chorusTwoDepthIndicator.setVisible(false);
+            chorusTwoVoicesIndicator.setVisible(false);
+            chorusTwoMixIndicator.setVisible(false);
+
+            delayTwoTimeIndicator.setVisible(true);
+            delayTwoFeedbackIndicator.setVisible(true);
+            delayTwoMixIndicator.setVisible(true);
+
+            flangerTwoDepthIndicator.setVisible(false);
+            flangerTwoRateIndicator.setVisible(false);
+            flangerTwoMixIndicator.setVisible(false);
+
+            vibratoTwoDepthIndicator.setVisible(false);
+            vibratoTwoRateIndicator.setVisible(false);
+
+            chorusTwoDepthLabel.setVisible(false);
+            chorusTwoVoicesLabel.setVisible(false);
+            chorusTwoMixLabel.setVisible(false);
+
+            delayTwoTimeLabel.setVisible(true);
+            delayTwoFeedbackLabel.setVisible(true);
+            delayTwoMixLabel.setVisible(true);
+
+            flangerTwoDepthLabel.setVisible(false);
+            flangerTwoRateLabel.setVisible(false);
+            flangerTwoMixLabel.setVisible(false);
+
+            vibratoTwoDepthLabel.setVisible(false);
+            vibratoTwoRateLabel.setVisible(false);
+
             break;
 
         case 4:
@@ -1322,6 +1647,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoMixSlider.setEnabled(true);
             flangerTwoMixSlider.setVisible(true);
 
+            chorusTwoDepthIndicator.setVisible(false);
+            chorusTwoVoicesIndicator.setVisible(false);
+            chorusTwoMixIndicator.setVisible(false);
+
+            delayTwoTimeIndicator.setVisible(false);
+            delayTwoFeedbackIndicator.setVisible(false);
+            delayTwoMixIndicator.setVisible(false);
+
+            flangerTwoDepthIndicator.setVisible(true);
+            flangerTwoRateIndicator.setVisible(true);
+            flangerTwoMixIndicator.setVisible(true);
+
+            vibratoTwoDepthIndicator.setVisible(false);
+            vibratoTwoRateIndicator.setVisible(false);
+
+            chorusTwoDepthLabel.setVisible(false);
+            chorusTwoVoicesLabel.setVisible(false);
+            chorusTwoMixLabel.setVisible(false);
+
+            delayTwoTimeLabel.setVisible(false);
+            delayTwoFeedbackLabel.setVisible(false);
+            delayTwoMixLabel.setVisible(false);
+
+            flangerTwoDepthLabel.setVisible(true);
+            flangerTwoRateLabel.setVisible(true);
+            flangerTwoMixLabel.setVisible(true);
+
+            vibratoTwoDepthLabel.setVisible(false);
+            vibratoTwoRateLabel.setVisible(false);
+
             break;
 
         case 5:
@@ -1351,6 +1706,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             delayTwoMixSlider.setVisible(false);
             flangerTwoMixSlider.setEnabled(false);
             flangerTwoMixSlider.setVisible(false);
+
+            chorusTwoDepthIndicator.setVisible(false);
+            chorusTwoVoicesIndicator.setVisible(false);
+            chorusTwoMixIndicator.setVisible(false);
+
+            delayTwoTimeIndicator.setVisible(false);
+            delayTwoFeedbackIndicator.setVisible(false);
+            delayTwoMixIndicator.setVisible(false);
+
+            flangerTwoDepthIndicator.setVisible(false);
+            flangerTwoRateIndicator.setVisible(false);
+            flangerTwoMixIndicator.setVisible(false);
+
+            vibratoTwoDepthIndicator.setVisible(true);
+            vibratoTwoRateIndicator.setVisible(true);
+
+            chorusTwoDepthLabel.setVisible(false);
+            chorusTwoVoicesLabel.setVisible(false);
+            chorusTwoMixLabel.setVisible(false);
+
+            delayTwoTimeLabel.setVisible(false);
+            delayTwoFeedbackLabel.setVisible(false);
+            delayTwoMixLabel.setVisible(false);
+
+            flangerTwoDepthLabel.setVisible(false);
+            flangerTwoRateLabel.setVisible(false);
+            flangerTwoMixLabel.setVisible(false);
+
+            vibratoTwoDepthLabel.setVisible(true);
+            vibratoTwoRateLabel.setVisible(true);
 
             break;
 
@@ -1739,5 +2124,72 @@ void PulpfictionAudioProcessorEditor::sliderValueChanged(Slider* slider) {
     }
     else if (slider == &vibratoOneRateSlider) {
         vibratoOneRateIndicator.setText(String(vibratoOneRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+
+    else if (slider == &chorusTwoDepthSlider) {
+        chorusTwoDepthIndicator.setText(String(chorusTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &chorusTwoVoicesSlider) {
+        chorusTwoVoicesIndicator.setText(String(chorusTwoVoicesSlider.getValue()), dontSendNotification);
+    }
+    else if (slider == &chorusTwoMixSlider) {
+        chorusTwoMixIndicator.setText(String(chorusTwoMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &delayTwoTimeSlider) {
+        String timeinBars;
+
+        if (delayTwoTimeSlider.getValue() == 0.0) {
+            timeinBars = "1/32";
+        }
+        else if (delayTwoTimeSlider.getValue() == 12.5) {
+            timeinBars = "1/16";
+        }
+        else if (delayTwoTimeSlider.getValue() == 25.0) {
+            timeinBars = "1/8";
+        }
+        else if (delayTwoTimeSlider.getValue() == 37.5) {
+            timeinBars = "1/4";
+        }
+        else if (delayTwoTimeSlider.getValue() == 50.0) {
+            timeinBars = "1/2";
+        }
+        else if (delayTwoTimeSlider.getValue() == 62.5) {
+            timeinBars = "1";
+        }
+        else if (delayTwoTimeSlider.getValue() == 75.0) {
+            timeinBars = "2";
+        }
+        else if (delayTwoTimeSlider.getValue() == 87.5) {
+            timeinBars = "4";
+        }
+        else if (delayTwoTimeSlider.getValue() == 100.0) {
+            timeinBars = "8";
+        }
+
+        delayTwoTimeIndicator.setText(timeinBars, dontSendNotification);
+    }
+    else if (slider == &delayTwoFeedbackSlider) {
+        delayTwoFeedbackIndicator.setText(String(delayTwoFeedbackSlider.getValue()) + " %", dontSendNotification);
+    }
+    else if (slider == &delayTwoMixSlider) {
+        delayTwoMixIndicator.setText(String(delayTwoMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &flangerTwoDepthSlider) {
+        flangerTwoDepthIndicator.setText(String(flangerTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &flangerTwoRateSlider) {
+        flangerTwoRateIndicator.setText(String(flangerTwoRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+    else if (slider == &flangerTwoMixSlider) {
+        flangerTwoMixIndicator.setText(String(flangerTwoMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &vibratoTwoDepthSlider) {
+        vibratoTwoDepthIndicator.setText(String(vibratoTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &vibratoTwoRateSlider) {
+        vibratoTwoRateIndicator.setText(String(vibratoTwoRateSlider.getValue()) + " Hz", dontSendNotification);
     }
 }
