@@ -1042,7 +1042,7 @@ void PulpfictionAudioProcessor::delayOne(juce::AudioBuffer<float>& buffer) {
 
     float samplesPerBar = getSampleRate() * 60 * 4 / tempo;
 
-    float timeInNotes = pow(2, (time / 12.5) - 6);
+    float timeInNotes = pow(2, (time / 12.5) - 5);
 
     dpw1[0] = dpr1[0] + (int)(samplesPerBar * timeInNotes);
     dpw1[1] = dpr1[1] + (int)(samplesPerBar * timeInNotes);
@@ -1096,7 +1096,7 @@ void PulpfictionAudioProcessor::delayTwo(juce::AudioBuffer<float>& buffer) {
 
     float samplesPerBar = getSampleRate() * 60 * 4 / tempo;
 
-    float timeInNotes = pow(2, (time / 12.5) - 6);
+    float timeInNotes = pow(2, (time / 12.5) - 5);
 
     dpw2[0] = dpr2[0] + (int)(samplesPerBar * timeInNotes);
     dpw2[1] = dpr2[1] + (int)(samplesPerBar * timeInNotes);
@@ -1150,7 +1150,7 @@ void PulpfictionAudioProcessor::delayThree(juce::AudioBuffer<float>& buffer) {
 
     float samplesPerBar = getSampleRate() * 60 * 4 / tempo;
 
-    float timeInNotes = pow(2, (time / 12.5) - 6);
+    float timeInNotes = pow(2, (time / 12.5) - 5);
 
     dpw3[0] = dpr3[0] + (int)(samplesPerBar * timeInNotes);
     dpw3[1] = dpr3[1] + (int)(samplesPerBar * timeInNotes);
@@ -1204,7 +1204,7 @@ void PulpfictionAudioProcessor::delayFour(juce::AudioBuffer<float>& buffer) {
 
     float samplesPerBar = getSampleRate() * 60 * 4 / tempo;
 
-    float timeInNotes = pow(2, (time / 12.5) - 6);
+    float timeInNotes = pow(2, (time / 12.5) - 5);
 
     dpw4[0] = dpr4[0] + (int)(samplesPerBar * timeInNotes);
     dpw4[1] = dpr4[1] + (int)(samplesPerBar * timeInNotes);
