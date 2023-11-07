@@ -1,15 +1,17 @@
-<h1>Sound of Music</h2>
+<h1>Pulp Fiction</h2>
 
-<h3>Pulp fiction is a multi-FX rack plugin featuring various audio effects</h3>
+<h3>
+</h3>
 
 <img src="Screenshot.png" width="850">
 
 <br>
 
 <p>
-    Pulp fiction is a multi-FX rack plugin with 4 slots. For each slot you can choose one of the audio effect from the drop-down menu.
+    Pulp Fiction is a multi-FX rack plugin with four slots, allowing users to choose audio effects for each slot from a drop-down menu.
 </p>
 <br>
+<h2><u>References</u></h2>
 <ul type="none">
     <li>
         <a href="https://www.izotope.com/en/learn/understanding-chorus-flangers-and-phasers-in-audio-production.html">Chorus</a>
