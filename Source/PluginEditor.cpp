@@ -655,6 +655,194 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     vibratoTwoRateIndicator.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&vibratoTwoRateIndicator);
 
+    chorusThreeDepthIndicator.setJustificationType(Justification::centred);
+    chorusThreeDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusThreeDepthIndicator.setText(String(chorusThreeDepthSlider.getValue()) + " ms", dontSendNotification);
+    chorusThreeDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusThreeDepthIndicator);
+
+    chorusThreeVoicesIndicator.setJustificationType(Justification::centred);
+    chorusThreeVoicesIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusThreeVoicesIndicator.setText(String(chorusOneVoicesSlider.getValue()), dontSendNotification);
+    chorusThreeVoicesIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusThreeVoicesIndicator);
+
+    chorusThreeMixIndicator.setJustificationType(Justification::centred);
+    chorusThreeMixIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusThreeMixIndicator.setText(String(chorusThreeMixSlider.getValue()) + " %", dontSendNotification);
+    chorusThreeMixIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusThreeMixIndicator);
+
+    delayThreeTimeIndicator.setJustificationType(Justification::centred);
+    delayThreeTimeIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    String timeThreeinBars;
+    if (delayThreeTimeSlider.getValue() == 0.0) {
+        timeThreeinBars = "1/32";
+    }
+    else if (delayThreeTimeSlider.getValue() == 12.5) {
+        timeThreeinBars = "1/16";
+    }
+    else if (delayThreeTimeSlider.getValue() == 25.0) {
+        timeThreeinBars = "1/8";
+    }
+    else if (delayThreeTimeSlider.getValue() == 37.5) {
+        timeThreeinBars = "1/4";
+    }
+    else if (delayThreeTimeSlider.getValue() == 50.0) {
+        timeThreeinBars = "1/2";
+    }
+    else if (delayThreeTimeSlider.getValue() == 62.5) {
+        timeThreeinBars = "1";
+    }
+    else if (delayThreeTimeSlider.getValue() == 75.0) {
+        timeThreeinBars = "2";
+    }
+    else if (delayThreeTimeSlider.getValue() == 87.5) {
+        timeThreeinBars = "4";
+    }
+    else if (delayThreeTimeSlider.getValue() == 100.0) {
+        timeThreeinBars = "8";
+    }
+    delayThreeTimeIndicator.setText(timeThreeinBars, dontSendNotification);
+    delayThreeTimeIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayThreeTimeIndicator);
+
+    delayThreeFeedbackIndicator.setJustificationType(Justification::centred);
+    delayThreeFeedbackIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayThreeFeedbackIndicator.setText(String(delayThreeFeedbackSlider.getValue()) + " %", dontSendNotification);
+    delayThreeFeedbackIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayThreeFeedbackIndicator);
+
+    delayThreeMixIndicator.setJustificationType(Justification::centred);
+    delayThreeMixIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayThreeMixIndicator.setText(String(delayThreeMixSlider.getValue()) + " %", dontSendNotification);
+    delayThreeMixIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayThreeMixIndicator);
+
+    flangerThreeDepthIndicator.setJustificationType(Justification::centred);
+    flangerThreeDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerThreeDepthIndicator.setText(String(flangerThreeDepthSlider.getValue()) + " ms", dontSendNotification);
+    flangerThreeDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerThreeDepthIndicator);
+
+    flangerThreeRateIndicator.setJustificationType(Justification::centred);
+    flangerThreeRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerThreeRateIndicator.setText(String(flangerThreeRateSlider.getValue()) + " Hz", dontSendNotification);
+    flangerThreeRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerThreeRateIndicator);
+
+    flangerThreeMixIndicator.setJustificationType(Justification::centred);
+    flangerThreeMixIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerThreeMixIndicator.setText(String(flangerThreeMixSlider.getValue()) + " %", dontSendNotification);
+    flangerThreeMixIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerThreeMixIndicator);
+
+    vibratoThreeDepthIndicator.setJustificationType(Justification::centred);
+    vibratoThreeDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoThreeDepthIndicator.setText(String(vibratoThreeDepthSlider.getValue()) + " ms", dontSendNotification);
+    vibratoThreeDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoThreeDepthIndicator);
+
+    vibratoThreeRateIndicator.setJustificationType(Justification::centred);
+    vibratoThreeRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoThreeRateIndicator.setText(String(vibratoThreeRateSlider.getValue()) + " Hz", dontSendNotification);
+    vibratoThreeRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoThreeRateIndicator);
+
+    chorusFourDepthIndicator.setJustificationType(Justification::centred);
+    chorusFourDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusFourDepthIndicator.setText(String(chorusFourDepthSlider.getValue()) + " ms", dontSendNotification);
+    chorusFourDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusFourDepthIndicator);
+
+    chorusFourVoicesIndicator.setJustificationType(Justification::centred);
+    chorusFourVoicesIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusFourVoicesIndicator.setText(String(chorusFourVoicesSlider.getValue()), dontSendNotification);
+    chorusFourVoicesIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusFourVoicesIndicator);
+
+    chorusFourMixIndicator.setJustificationType(Justification::centred);
+    chorusFourMixIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusFourMixIndicator.setText(String(chorusFourMixSlider.getValue()) + " %", dontSendNotification);
+    chorusFourMixIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusFourMixIndicator);
+
+    delayFourTimeIndicator.setJustificationType(Justification::centred);
+    delayFourTimeIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    String timeFourinBars;
+    if (delayFourTimeSlider.getValue() == 0.0) {
+        timeFourinBars = "1/32";
+    }
+    else if (delayFourTimeSlider.getValue() == 12.5) {
+        timeFourinBars = "1/16";
+    }
+    else if (delayFourTimeSlider.getValue() == 25.0) {
+        timeFourinBars = "1/8";
+    }
+    else if (delayFourTimeSlider.getValue() == 37.5) {
+        timeFourinBars = "1/4";
+    }
+    else if (delayFourTimeSlider.getValue() == 50.0) {
+        timeFourinBars = "1/2";
+    }
+    else if (delayFourTimeSlider.getValue() == 62.5) {
+        timeFourinBars = "1";
+    }
+    else if (delayFourTimeSlider.getValue() == 75.0) {
+        timeFourinBars = "2";
+    }
+    else if (delayFourTimeSlider.getValue() == 87.5) {
+        timeFourinBars = "4";
+    }
+    else if (delayFourTimeSlider.getValue() == 100.0) {
+        timeFourinBars = "8";
+    }
+    delayFourTimeIndicator.setText(timeFourinBars, dontSendNotification);
+    delayFourTimeIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayFourTimeIndicator);
+
+    delayFourFeedbackIndicator.setJustificationType(Justification::centred);
+    delayFourFeedbackIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayFourFeedbackIndicator.setText(String(delayFourFeedbackSlider.getValue()) + " %", dontSendNotification);
+    delayFourFeedbackIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayFourFeedbackIndicator);
+
+    delayFourMixIndicator.setJustificationType(Justification::centred);
+    delayFourMixIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayFourMixIndicator.setText(String(delayFourMixSlider.getValue()) + " %", dontSendNotification);
+    delayFourMixIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayFourMixIndicator);
+
+    flangerFourDepthIndicator.setJustificationType(Justification::centred);
+    flangerFourDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerFourDepthIndicator.setText(String(flangerFourDepthSlider.getValue()) + " ms", dontSendNotification);
+    flangerFourDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerFourDepthIndicator);
+
+    flangerFourRateIndicator.setJustificationType(Justification::centred);
+    flangerFourRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerFourRateIndicator.setText(String(flangerFourRateSlider.getValue()) + " Hz", dontSendNotification);
+    flangerFourRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerTwoRateIndicator);
+
+    flangerFourMixIndicator.setJustificationType(Justification::centred);
+    flangerFourMixIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerFourMixIndicator.setText(String(flangerFourMixSlider.getValue()) + " %", dontSendNotification);
+    flangerFourMixIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerFourMixIndicator);
+
+    vibratoFourDepthIndicator.setJustificationType(Justification::centred);
+    vibratoFourDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoFourDepthIndicator.setText(String(vibratoFourDepthSlider.getValue()) + " ms", dontSendNotification);
+    vibratoFourDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoFourDepthIndicator);
+
+    vibratoFourRateIndicator.setJustificationType(Justification::centred);
+    vibratoFourRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoFourRateIndicator.setText(String(vibratoFourRateSlider.getValue()) + " Hz", dontSendNotification);
+    vibratoFourRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoFourRateIndicator);
+
     chorusOneDepthLabel.setJustificationType(Justification::centred);
     chorusOneDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
     chorusOneDepthLabel.setText("Depth", dontSendNotification);
@@ -787,6 +975,138 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     vibratoTwoRateLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&vibratoTwoRateLabel);
 
+    chorusThreeDepthLabel.setJustificationType(Justification::centred);
+    chorusThreeDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusThreeDepthLabel.setText("Depth", dontSendNotification);
+    chorusThreeDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusThreeDepthLabel);
+
+    chorusThreeVoicesLabel.setJustificationType(Justification::centred);
+    chorusThreeVoicesLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusThreeVoicesLabel.setText("Voices", dontSendNotification);
+    chorusThreeVoicesLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusThreeVoicesLabel);
+
+    chorusThreeMixLabel.setJustificationType(Justification::centred);
+    chorusThreeMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusThreeMixLabel.setText("Mix", dontSendNotification);
+    chorusThreeMixLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusThreeMixLabel);
+
+    delayThreeTimeLabel.setJustificationType(Justification::centred);
+    delayThreeTimeLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayThreeTimeLabel.setText("Time", dontSendNotification);
+    delayThreeTimeLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayThreeTimeLabel);
+
+    delayThreeFeedbackLabel.setJustificationType(Justification::centred);
+    delayThreeFeedbackLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayThreeFeedbackLabel.setText("Feedback", dontSendNotification);
+    delayThreeFeedbackLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayThreeFeedbackLabel);
+
+    delayThreeMixLabel.setJustificationType(Justification::centred);
+    delayThreeMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayThreeMixLabel.setText("Mix", dontSendNotification);
+    delayThreeMixLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayThreeMixLabel);
+
+    flangerThreeDepthLabel.setJustificationType(Justification::centred);
+    flangerThreeDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerThreeDepthLabel.setText("Depth", dontSendNotification);
+    flangerThreeDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerThreeDepthLabel);
+
+    flangerThreeRateLabel.setJustificationType(Justification::centred);
+    flangerThreeRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerThreeRateLabel.setText("Rate", dontSendNotification);
+    flangerThreeRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerThreeRateLabel);
+
+    flangerThreeMixLabel.setJustificationType(Justification::centred);
+    flangerThreeMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerThreeMixLabel.setText("Mix", dontSendNotification);
+    flangerThreeMixLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerThreeMixLabel);
+
+    vibratoThreeDepthLabel.setJustificationType(Justification::centred);
+    vibratoThreeDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoThreeDepthLabel.setText("Depth", dontSendNotification);
+    vibratoThreeDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoThreeDepthLabel);
+
+    vibratoThreeRateLabel.setJustificationType(Justification::centred);
+    vibratoThreeRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoThreeRateLabel.setText("Rate", dontSendNotification);
+    vibratoThreeRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoThreeRateLabel);
+
+    chorusFourDepthLabel.setJustificationType(Justification::centred);
+    chorusFourDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusFourDepthLabel.setText("Depth", dontSendNotification);
+    chorusFourDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusFourDepthLabel);
+
+    chorusFourVoicesLabel.setJustificationType(Justification::centred);
+    chorusFourVoicesLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusFourVoicesLabel.setText("Voices", dontSendNotification);
+    chorusFourVoicesLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusFourVoicesLabel);
+
+    chorusFourMixLabel.setJustificationType(Justification::centred);
+    chorusFourMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    chorusFourMixLabel.setText("Mix", dontSendNotification);
+    chorusFourMixLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&chorusFourMixLabel);
+
+    delayFourTimeLabel.setJustificationType(Justification::centred);
+    delayFourTimeLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayFourTimeLabel.setText("Time", dontSendNotification);
+    delayFourTimeLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayFourTimeLabel);
+
+    delayFourFeedbackLabel.setJustificationType(Justification::centred);
+    delayFourFeedbackLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayFourFeedbackLabel.setText("Feedback", dontSendNotification);
+    delayFourFeedbackLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayFourFeedbackLabel);
+
+    delayFourMixLabel.setJustificationType(Justification::centred);
+    delayFourMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    delayFourMixLabel.setText("Mix", dontSendNotification);
+    delayFourMixLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&delayFourMixLabel);
+
+    flangerFourDepthLabel.setJustificationType(Justification::centred);
+    flangerFourDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerFourDepthLabel.setText("Depth", dontSendNotification);
+    flangerFourDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerFourDepthLabel);
+
+    flangerFourRateLabel.setJustificationType(Justification::centred);
+    flangerFourRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerFourRateLabel.setText("Rate", dontSendNotification);
+    flangerFourRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerFourRateLabel);
+
+    flangerFourMixLabel.setJustificationType(Justification::centred);
+    flangerFourMixLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    flangerFourMixLabel.setText("Mix", dontSendNotification);
+    flangerFourMixLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&flangerFourMixLabel);
+
+    vibratoFourDepthLabel.setJustificationType(Justification::centred);
+    vibratoFourDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoFourDepthLabel.setText("Depth", dontSendNotification);
+    vibratoFourDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoFourDepthLabel);
+
+    vibratoFourRateLabel.setJustificationType(Justification::centred);
+    vibratoFourRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    vibratoFourRateLabel.setText("Rate", dontSendNotification);
+    vibratoFourRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&vibratoFourRateLabel);
+
     chorusOneDepthIndicator.setFont(Font(customFont).withHeight(20));
     chorusOneVoicesIndicator.setFont(Font(customFont).withHeight(20));
     chorusOneMixIndicator.setFont(Font(customFont).withHeight(28));
@@ -817,6 +1137,36 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     vibratoTwoDepthIndicator.setFont(Font(customFont).withHeight(20));
     vibratoTwoRateIndicator.setFont(Font(customFont).withHeight(20));
 
+    chorusThreeDepthIndicator.setFont(Font(customFont).withHeight(20));
+    chorusThreeVoicesIndicator.setFont(Font(customFont).withHeight(20));
+    chorusThreeMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    delayThreeTimeIndicator.setFont(Font(customFont).withHeight(20));
+    delayThreeFeedbackIndicator.setFont(Font(customFont).withHeight(20));
+    delayThreeMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    flangerThreeDepthIndicator.setFont(Font(customFont).withHeight(20));
+    flangerThreeRateIndicator.setFont(Font(customFont).withHeight(20));
+    flangerThreeMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    vibratoThreeDepthIndicator.setFont(Font(customFont).withHeight(20));
+    vibratoThreeRateIndicator.setFont(Font(customFont).withHeight(20));
+
+    chorusFourDepthIndicator.setFont(Font(customFont).withHeight(20));
+    chorusFourVoicesIndicator.setFont(Font(customFont).withHeight(20));
+    chorusFourMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    delayFourTimeIndicator.setFont(Font(customFont).withHeight(20));
+    delayFourFeedbackIndicator.setFont(Font(customFont).withHeight(20));
+    delayFourMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    flangerFourDepthIndicator.setFont(Font(customFont).withHeight(20));
+    flangerFourRateIndicator.setFont(Font(customFont).withHeight(20));
+    flangerFourMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    vibratoFourDepthIndicator.setFont(Font(customFont).withHeight(20));
+    vibratoFourRateIndicator.setFont(Font(customFont).withHeight(20));
+
     chorusOneDepthLabel.setFont(Font(customFont).withHeight(18));
     chorusOneVoicesLabel.setFont(Font(customFont).withHeight(18));
     chorusOneMixLabel.setFont(Font(customFont).withHeight(24));
@@ -846,6 +1196,36 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
 
     vibratoTwoDepthLabel.setFont(Font(customFont).withHeight(18));
     vibratoTwoRateLabel.setFont(Font(customFont).withHeight(18));
+
+    chorusThreeDepthLabel.setFont(Font(customFont).withHeight(18));
+    chorusThreeVoicesLabel.setFont(Font(customFont).withHeight(18));
+    chorusThreeMixLabel.setFont(Font(customFont).withHeight(24));
+
+    delayThreeTimeLabel.setFont(Font(customFont).withHeight(18));
+    delayThreeFeedbackLabel.setFont(Font(customFont).withHeight(19));
+    delayThreeMixLabel.setFont(Font(customFont).withHeight(24));
+
+    flangerThreeDepthLabel.setFont(Font(customFont).withHeight(18));
+    flangerThreeRateLabel.setFont(Font(customFont).withHeight(18));
+    flangerThreeMixLabel.setFont(Font(customFont).withHeight(24));
+
+    vibratoThreeDepthLabel.setFont(Font(customFont).withHeight(18));
+    vibratoThreeRateLabel.setFont(Font(customFont).withHeight(18));
+
+    chorusFourDepthLabel.setFont(Font(customFont).withHeight(18));
+    chorusFourVoicesLabel.setFont(Font(customFont).withHeight(18));
+    chorusFourMixLabel.setFont(Font(customFont).withHeight(24));
+
+    delayFourTimeLabel.setFont(Font(customFont).withHeight(18));
+    delayFourFeedbackLabel.setFont(Font(customFont).withHeight(19));
+    delayFourMixLabel.setFont(Font(customFont).withHeight(24));
+
+    flangerFourDepthLabel.setFont(Font(customFont).withHeight(18));
+    flangerFourRateLabel.setFont(Font(customFont).withHeight(18));
+    flangerFourMixLabel.setFont(Font(customFont).withHeight(24));
+
+    vibratoFourDepthLabel.setFont(Font(customFont).withHeight(18));
+    vibratoFourRateLabel.setFont(Font(customFont).withHeight(18));
 }
 
 PulpfictionAudioProcessorEditor::~PulpfictionAudioProcessorEditor()
@@ -1099,6 +1479,36 @@ void PulpfictionAudioProcessorEditor::resized()
     vibratoTwoDepthIndicator.setBounds(235, 125, 100, 20);
     vibratoTwoRateIndicator.setBounds(315, 225, 100, 20);
 
+    chorusThreeDepthIndicator.setBounds(435, 125, 100, 20);
+    chorusThreeVoicesIndicator.setBounds(515, 125, 100, 20);
+    chorusThreeMixIndicator.setBounds(450, 240, 100, 20);
+
+    delayThreeTimeIndicator.setBounds(435, 125, 100, 20);
+    delayThreeFeedbackIndicator.setBounds(515, 125, 100, 20);
+    delayThreeMixIndicator.setBounds(450, 240, 100, 20);
+
+    flangerThreeDepthIndicator.setBounds(435, 125, 100, 20);
+    flangerThreeRateIndicator.setBounds(515, 125, 100, 20);
+    flangerThreeMixIndicator.setBounds(450, 240, 100, 20);
+
+    vibratoThreeDepthIndicator.setBounds(435, 125, 100, 20);
+    vibratoThreeRateIndicator.setBounds(515, 225, 100, 20);
+
+    chorusFourDepthIndicator.setBounds(635, 125, 100, 20);
+    chorusFourVoicesIndicator.setBounds(715, 125, 100, 20);
+    chorusFourMixIndicator.setBounds(650, 240, 100, 20);
+
+    delayFourTimeIndicator.setBounds(635, 125, 100, 20);
+    delayFourFeedbackIndicator.setBounds(715, 125, 100, 20);
+    delayFourMixIndicator.setBounds(650, 240, 100, 20);
+
+    flangerFourDepthIndicator.setBounds(635, 125, 100, 20);
+    flangerFourRateIndicator.setBounds(715, 125, 100, 20);
+    flangerFourMixIndicator.setBounds(650, 240, 100, 20);
+
+    vibratoFourDepthIndicator.setBounds(635, 125, 100, 20);
+    vibratoFourRateIndicator.setBounds(715, 225, 100, 20);
+
     chorusOneDepthLabel.setBounds(35, 175, 100, 20);
     chorusOneVoicesLabel.setBounds(115, 175, 100, 20);
     chorusOneMixLabel.setBounds(50, 305, 100, 20);
@@ -1128,6 +1538,36 @@ void PulpfictionAudioProcessorEditor::resized()
 
     vibratoTwoDepthLabel.setBounds(235, 175, 100, 20);
     vibratoTwoRateLabel.setBounds(315, 275, 100, 20);
+
+    chorusThreeDepthLabel.setBounds(435, 175, 100, 20);
+    chorusThreeVoicesLabel.setBounds(515, 175, 100, 20);
+    chorusThreeMixLabel.setBounds(450, 305, 100, 20);
+
+    delayThreeTimeLabel.setBounds(435, 175, 100, 20);
+    delayThreeFeedbackLabel.setBounds(515, 175, 100, 20);
+    delayThreeMixLabel.setBounds(450, 305, 100, 20);
+
+    flangerThreeDepthLabel.setBounds(435, 175, 100, 20);
+    flangerThreeRateLabel.setBounds(515, 175, 100, 20);
+    flangerThreeMixLabel.setBounds(450, 305, 100, 20);
+
+    vibratoThreeDepthLabel.setBounds(435, 175, 100, 20);
+    vibratoThreeRateLabel.setBounds(515, 275, 100, 20);
+
+    chorusFourDepthLabel.setBounds(635, 175, 100, 20);
+    chorusFourVoicesLabel.setBounds(715, 175, 100, 20);
+    chorusFourMixLabel.setBounds(650, 305, 100, 20);
+
+    delayFourTimeLabel.setBounds(635, 175, 100, 20);
+    delayFourFeedbackLabel.setBounds(715, 175, 100, 20);
+    delayFourMixLabel.setBounds(650, 305, 100, 20);
+
+    flangerFourDepthLabel.setBounds(635, 175, 100, 20);
+    flangerFourRateLabel.setBounds(715, 175, 100, 20);
+    flangerFourMixLabel.setBounds(650, 305, 100, 20);
+
+    vibratoFourDepthLabel.setBounds(635, 175, 100, 20);
+    vibratoFourRateLabel.setBounds(715, 275, 100, 20);
 }
 
 void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
@@ -1773,6 +2213,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeMixSlider.setEnabled(false);
             flangerThreeMixSlider.setVisible(false);
 
+            chorusThreeDepthIndicator.setVisible(false);
+            chorusThreeVoicesIndicator.setVisible(false);
+            chorusThreeMixIndicator.setVisible(false);
+
+            delayThreeTimeIndicator.setVisible(false);
+            delayThreeFeedbackIndicator.setVisible(false);
+            delayThreeMixIndicator.setVisible(false);
+
+            flangerThreeDepthIndicator.setVisible(false);
+            flangerThreeRateIndicator.setVisible(false);
+            flangerThreeMixIndicator.setVisible(false);
+
+            vibratoThreeDepthIndicator.setVisible(false);
+            vibratoThreeRateIndicator.setVisible(false);
+
+            chorusThreeDepthLabel.setVisible(false);
+            chorusThreeVoicesLabel.setVisible(false);
+            chorusThreeMixLabel.setVisible(false);
+
+            delayThreeTimeLabel.setVisible(false);
+            delayThreeFeedbackLabel.setVisible(false);
+            delayThreeMixLabel.setVisible(false);
+
+            flangerThreeDepthLabel.setVisible(false);
+            flangerThreeRateLabel.setVisible(false);
+            flangerThreeMixLabel.setVisible(false);
+
+            vibratoThreeDepthLabel.setVisible(false);
+            vibratoThreeRateLabel.setVisible(false);
+
             break;
 
         case 2:
@@ -1802,6 +2272,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             delayThreeMixSlider.setVisible(false);
             flangerThreeMixSlider.setEnabled(false);
             flangerThreeMixSlider.setVisible(false);
+
+            chorusThreeDepthIndicator.setVisible(true);
+            chorusThreeVoicesIndicator.setVisible(true);
+            chorusThreeMixIndicator.setVisible(true);
+
+            delayThreeTimeIndicator.setVisible(false);
+            delayThreeFeedbackIndicator.setVisible(false);
+            delayThreeMixIndicator.setVisible(false);
+
+            flangerThreeDepthIndicator.setVisible(false);
+            flangerThreeRateIndicator.setVisible(false);
+            flangerThreeMixIndicator.setVisible(false);
+
+            vibratoThreeDepthIndicator.setVisible(false);
+            vibratoThreeRateIndicator.setVisible(false);
+
+            chorusThreeDepthLabel.setVisible(true);
+            chorusThreeVoicesLabel.setVisible(true);
+            chorusThreeMixLabel.setVisible(true);
+
+            delayThreeTimeLabel.setVisible(false);
+            delayThreeFeedbackLabel.setVisible(false);
+            delayThreeMixLabel.setVisible(false);
+
+            flangerThreeDepthLabel.setVisible(false);
+            flangerThreeRateLabel.setVisible(false);
+            flangerThreeMixLabel.setVisible(false);
+
+            vibratoThreeDepthLabel.setVisible(false);
+            vibratoThreeRateLabel.setVisible(false);
 
             break;
 
@@ -1833,6 +2333,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeMixSlider.setEnabled(false);
             flangerThreeMixSlider.setVisible(false);
 
+            chorusThreeDepthIndicator.setVisible(false);
+            chorusThreeVoicesIndicator.setVisible(false);
+            chorusThreeMixIndicator.setVisible(false);
+
+            delayThreeTimeIndicator.setVisible(true);
+            delayThreeFeedbackIndicator.setVisible(true);
+            delayThreeMixIndicator.setVisible(true);
+
+            flangerThreeDepthIndicator.setVisible(false);
+            flangerThreeRateIndicator.setVisible(false);
+            flangerThreeMixIndicator.setVisible(false);
+
+            vibratoThreeDepthIndicator.setVisible(false);
+            vibratoThreeRateIndicator.setVisible(false);
+
+            chorusThreeDepthLabel.setVisible(false);
+            chorusThreeVoicesLabel.setVisible(false);
+            chorusThreeMixLabel.setVisible(false);
+
+            delayThreeTimeLabel.setVisible(true);
+            delayThreeFeedbackLabel.setVisible(true);
+            delayThreeMixLabel.setVisible(true);
+
+            flangerThreeDepthLabel.setVisible(false);
+            flangerThreeRateLabel.setVisible(false);
+            flangerThreeMixLabel.setVisible(false);
+
+            vibratoThreeDepthLabel.setVisible(false);
+            vibratoThreeRateLabel.setVisible(false);
+
             break;
 
         case 4:
@@ -1863,6 +2393,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeMixSlider.setEnabled(true);
             flangerThreeMixSlider.setVisible(true);
 
+            chorusThreeDepthIndicator.setVisible(false);
+            chorusThreeVoicesIndicator.setVisible(false);
+            chorusThreeMixIndicator.setVisible(false);
+
+            delayThreeTimeIndicator.setVisible(false);
+            delayThreeFeedbackIndicator.setVisible(false);
+            delayThreeMixIndicator.setVisible(false);
+
+            flangerThreeDepthIndicator.setVisible(true);
+            flangerThreeRateIndicator.setVisible(true);
+            flangerThreeMixIndicator.setVisible(true);
+
+            vibratoThreeDepthIndicator.setVisible(false);
+            vibratoThreeRateIndicator.setVisible(false);
+
+            chorusThreeDepthLabel.setVisible(false);
+            chorusThreeVoicesLabel.setVisible(false);
+            chorusThreeMixLabel.setVisible(false);
+
+            delayThreeTimeLabel.setVisible(false);
+            delayThreeFeedbackLabel.setVisible(false);
+            delayThreeMixLabel.setVisible(false);
+
+            flangerThreeDepthLabel.setVisible(true);
+            flangerThreeRateLabel.setVisible(true);
+            flangerThreeMixLabel.setVisible(true);
+
+            vibratoThreeDepthLabel.setVisible(false);
+            vibratoThreeRateLabel.setVisible(false);
+
             break;
 
         case 5:
@@ -1892,6 +2452,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             delayThreeMixSlider.setVisible(false);
             flangerThreeMixSlider.setEnabled(false);
             flangerThreeMixSlider.setVisible(false);
+
+            chorusThreeDepthIndicator.setVisible(false);
+            chorusThreeVoicesIndicator.setVisible(false);
+            chorusThreeMixIndicator.setVisible(false);
+
+            delayThreeTimeIndicator.setVisible(false);
+            delayThreeFeedbackIndicator.setVisible(false);
+            delayThreeMixIndicator.setVisible(false);
+
+            flangerThreeDepthIndicator.setVisible(false);
+            flangerThreeRateIndicator.setVisible(false);
+            flangerThreeMixIndicator.setVisible(false);
+
+            vibratoThreeDepthIndicator.setVisible(true);
+            vibratoThreeRateIndicator.setVisible(true);
+
+            chorusThreeDepthLabel.setVisible(false);
+            chorusThreeVoicesLabel.setVisible(false);
+            chorusThreeMixLabel.setVisible(false);
+
+            delayThreeTimeLabel.setVisible(false);
+            delayThreeFeedbackLabel.setVisible(false);
+            delayThreeMixLabel.setVisible(false);
+
+            flangerThreeDepthLabel.setVisible(false);
+            flangerThreeRateLabel.setVisible(false);
+            flangerThreeMixLabel.setVisible(false);
+
+            vibratoThreeDepthLabel.setVisible(true);
+            vibratoThreeRateLabel.setVisible(true);
 
             break;
 
@@ -1929,6 +2519,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourMixSlider.setEnabled(false);
             flangerFourMixSlider.setVisible(false);
 
+            chorusFourDepthIndicator.setVisible(false);
+            chorusFourVoicesIndicator.setVisible(false);
+            chorusFourMixIndicator.setVisible(false);
+
+            delayFourTimeIndicator.setVisible(false);
+            delayFourFeedbackIndicator.setVisible(false);
+            delayFourMixIndicator.setVisible(false);
+
+            flangerFourDepthIndicator.setVisible(false);
+            flangerFourRateIndicator.setVisible(false);
+            flangerFourMixIndicator.setVisible(false);
+
+            vibratoFourDepthIndicator.setVisible(false);
+            vibratoFourRateIndicator.setVisible(false);
+
+            chorusFourDepthLabel.setVisible(false);
+            chorusFourVoicesLabel.setVisible(false);
+            chorusFourMixLabel.setVisible(false);
+
+            delayFourTimeLabel.setVisible(false);
+            delayFourFeedbackLabel.setVisible(false);
+            delayFourMixLabel.setVisible(false);
+
+            flangerFourDepthLabel.setVisible(false);
+            flangerFourRateLabel.setVisible(false);
+            flangerFourMixLabel.setVisible(false);
+
+            vibratoFourDepthLabel.setVisible(false);
+            vibratoFourRateLabel.setVisible(false);
+
             break;
 
         case 2:
@@ -1958,6 +2578,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             delayFourMixSlider.setVisible(false);
             flangerFourMixSlider.setEnabled(false);
             flangerFourMixSlider.setVisible(false);
+
+            chorusFourDepthIndicator.setVisible(true);
+            chorusFourVoicesIndicator.setVisible(true);
+            chorusFourMixIndicator.setVisible(true);
+
+            delayFourTimeIndicator.setVisible(false);
+            delayFourFeedbackIndicator.setVisible(false);
+            delayFourMixIndicator.setVisible(false);
+
+            flangerFourDepthIndicator.setVisible(false);
+            flangerFourRateIndicator.setVisible(false);
+            flangerFourMixIndicator.setVisible(false);
+
+            vibratoFourDepthIndicator.setVisible(false);
+            vibratoFourRateIndicator.setVisible(false);
+
+            chorusFourDepthLabel.setVisible(true);
+            chorusFourVoicesLabel.setVisible(true);
+            chorusFourMixLabel.setVisible(true);
+
+            delayFourTimeLabel.setVisible(false);
+            delayFourFeedbackLabel.setVisible(false);
+            delayFourMixLabel.setVisible(false);
+
+            flangerFourDepthLabel.setVisible(false);
+            flangerFourRateLabel.setVisible(false);
+            flangerFourMixLabel.setVisible(false);
+
+            vibratoFourDepthLabel.setVisible(false);
+            vibratoFourRateLabel.setVisible(false);
 
             break;
 
@@ -1989,6 +2639,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourMixSlider.setEnabled(false);
             flangerFourMixSlider.setVisible(false);
 
+            chorusFourDepthIndicator.setVisible(false);
+            chorusFourVoicesIndicator.setVisible(false);
+            chorusFourMixIndicator.setVisible(false);
+
+            delayFourTimeIndicator.setVisible(true);
+            delayFourFeedbackIndicator.setVisible(true);
+            delayFourMixIndicator.setVisible(true);
+
+            flangerFourDepthIndicator.setVisible(false);
+            flangerFourRateIndicator.setVisible(false);
+            flangerFourMixIndicator.setVisible(false);
+
+            vibratoFourDepthIndicator.setVisible(false);
+            vibratoFourRateIndicator.setVisible(false);
+
+            chorusFourDepthLabel.setVisible(false);
+            chorusFourVoicesLabel.setVisible(false);
+            chorusFourMixLabel.setVisible(false);
+
+            delayFourTimeLabel.setVisible(true);
+            delayFourFeedbackLabel.setVisible(true);
+            delayFourMixLabel.setVisible(true);
+
+            flangerFourDepthLabel.setVisible(false);
+            flangerFourRateLabel.setVisible(false);
+            flangerFourMixLabel.setVisible(false);
+
+            vibratoFourDepthLabel.setVisible(false);
+            vibratoFourRateLabel.setVisible(false);
+
             break;
 
         case 4:
@@ -2019,6 +2699,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourMixSlider.setEnabled(true);
             flangerFourMixSlider.setVisible(true);
 
+            chorusFourDepthIndicator.setVisible(false);
+            chorusFourVoicesIndicator.setVisible(false);
+            chorusFourMixIndicator.setVisible(false);
+
+            delayFourTimeIndicator.setVisible(false);
+            delayFourFeedbackIndicator.setVisible(false);
+            delayFourMixIndicator.setVisible(false);
+
+            flangerFourDepthIndicator.setVisible(true);
+            flangerFourRateIndicator.setVisible(true);
+            flangerFourMixIndicator.setVisible(true);
+
+            vibratoFourDepthIndicator.setVisible(false);
+            vibratoFourRateIndicator.setVisible(false);
+
+            chorusFourDepthLabel.setVisible(false);
+            chorusFourVoicesLabel.setVisible(false);
+            chorusFourMixLabel.setVisible(false);
+
+            delayFourTimeLabel.setVisible(false);
+            delayFourFeedbackLabel.setVisible(false);
+            delayFourMixLabel.setVisible(false);
+
+            flangerFourDepthLabel.setVisible(true);
+            flangerFourRateLabel.setVisible(true);
+            flangerFourMixLabel.setVisible(true);
+
+            vibratoFourDepthLabel.setVisible(false);
+            vibratoFourRateLabel.setVisible(false);
+
             break;
 
         case 5:
@@ -2048,6 +2758,36 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             delayFourMixSlider.setVisible(false);
             flangerFourMixSlider.setEnabled(false);
             flangerFourMixSlider.setVisible(false);
+
+            chorusFourDepthIndicator.setVisible(false);
+            chorusFourVoicesIndicator.setVisible(false);
+            chorusFourMixIndicator.setVisible(false);
+
+            delayFourTimeIndicator.setVisible(false);
+            delayFourFeedbackIndicator.setVisible(false);
+            delayFourMixIndicator.setVisible(false);
+
+            flangerFourDepthIndicator.setVisible(false);
+            flangerFourRateIndicator.setVisible(false);
+            flangerFourMixIndicator.setVisible(false);
+
+            vibratoFourDepthIndicator.setVisible(true);
+            vibratoFourRateIndicator.setVisible(true);
+
+            chorusFourDepthLabel.setVisible(false);
+            chorusFourVoicesLabel.setVisible(false);
+            chorusFourMixLabel.setVisible(false);
+
+            delayFourTimeLabel.setVisible(false);
+            delayFourFeedbackLabel.setVisible(false);
+            delayFourMixLabel.setVisible(false);
+
+            flangerFourDepthLabel.setVisible(false);
+            flangerFourRateLabel.setVisible(false);
+            flangerFourMixLabel.setVisible(false);
+
+            vibratoFourDepthLabel.setVisible(true);
+            vibratoFourRateLabel.setVisible(true);
 
             break;
 
@@ -2191,5 +2931,273 @@ void PulpfictionAudioProcessorEditor::sliderValueChanged(Slider* slider) {
     }
     else if (slider == &vibratoTwoRateSlider) {
         vibratoTwoRateIndicator.setText(String(vibratoTwoRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+
+    else if (slider == &chorusOneDepthSlider) {
+        chorusOneDepthIndicator.setText(String(chorusOneDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &chorusOneVoicesSlider) {
+        chorusOneVoicesIndicator.setText(String(chorusOneVoicesSlider.getValue()), dontSendNotification);
+    }
+    else if (slider == &chorusOneMixSlider) {
+        chorusOneMixIndicator.setText(String(chorusOneMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &delayOneTimeSlider) {
+        String timeinBars;
+
+        if (delayOneTimeSlider.getValue() == 0.0) {
+            timeinBars = "1/32";
+        }
+        else if (delayOneTimeSlider.getValue() == 12.5) {
+            timeinBars = "1/16";
+        }
+        else if (delayOneTimeSlider.getValue() == 25.0) {
+            timeinBars = "1/8";
+        }
+        else if (delayOneTimeSlider.getValue() == 37.5) {
+            timeinBars = "1/4";
+        }
+        else if (delayOneTimeSlider.getValue() == 50.0) {
+            timeinBars = "1/2";
+        }
+        else if (delayOneTimeSlider.getValue() == 62.5) {
+            timeinBars = "1";
+        }
+        else if (delayOneTimeSlider.getValue() == 75.0) {
+            timeinBars = "2";
+        }
+        else if (delayOneTimeSlider.getValue() == 87.5) {
+            timeinBars = "4";
+        }
+        else if (delayOneTimeSlider.getValue() == 100.0) {
+            timeinBars = "8";
+        }
+
+        delayOneTimeIndicator.setText(timeinBars, dontSendNotification);
+    }
+    else if (slider == &delayOneFeedbackSlider) {
+        delayOneFeedbackIndicator.setText(String(delayOneFeedbackSlider.getValue()) + " %", dontSendNotification);
+    }
+    else if (slider == &delayOneMixSlider) {
+        delayOneMixIndicator.setText(String(delayOneMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &flangerOneDepthSlider) {
+        flangerOneDepthIndicator.setText(String(flangerOneDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &flangerOneRateSlider) {
+        flangerOneRateIndicator.setText(String(flangerOneRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+    else if (slider == &flangerOneMixSlider) {
+        flangerOneMixIndicator.setText(String(flangerOneMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &vibratoOneDepthSlider) {
+        vibratoOneDepthIndicator.setText(String(vibratoOneDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &vibratoOneRateSlider) {
+        vibratoOneRateIndicator.setText(String(vibratoOneRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+
+    else if (slider == &chorusTwoDepthSlider) {
+        chorusTwoDepthIndicator.setText(String(chorusTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &chorusTwoVoicesSlider) {
+        chorusTwoVoicesIndicator.setText(String(chorusTwoVoicesSlider.getValue()), dontSendNotification);
+    }
+    else if (slider == &chorusTwoMixSlider) {
+        chorusTwoMixIndicator.setText(String(chorusTwoMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &delayTwoTimeSlider) {
+        String timeinBars;
+
+        if (delayTwoTimeSlider.getValue() == 0.0) {
+            timeinBars = "1/32";
+        }
+        else if (delayTwoTimeSlider.getValue() == 12.5) {
+            timeinBars = "1/16";
+        }
+        else if (delayTwoTimeSlider.getValue() == 25.0) {
+            timeinBars = "1/8";
+        }
+        else if (delayTwoTimeSlider.getValue() == 37.5) {
+            timeinBars = "1/4";
+        }
+        else if (delayTwoTimeSlider.getValue() == 50.0) {
+            timeinBars = "1/2";
+        }
+        else if (delayTwoTimeSlider.getValue() == 62.5) {
+            timeinBars = "1";
+        }
+        else if (delayTwoTimeSlider.getValue() == 75.0) {
+            timeinBars = "2";
+        }
+        else if (delayTwoTimeSlider.getValue() == 87.5) {
+            timeinBars = "4";
+        }
+        else if (delayTwoTimeSlider.getValue() == 100.0) {
+            timeinBars = "8";
+        }
+
+        delayTwoTimeIndicator.setText(timeinBars, dontSendNotification);
+    }
+    else if (slider == &delayTwoFeedbackSlider) {
+        delayTwoFeedbackIndicator.setText(String(delayTwoFeedbackSlider.getValue()) + " %", dontSendNotification);
+    }
+    else if (slider == &delayTwoMixSlider) {
+        delayTwoMixIndicator.setText(String(delayTwoMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &flangerTwoDepthSlider) {
+        flangerTwoDepthIndicator.setText(String(flangerTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &flangerTwoRateSlider) {
+        flangerTwoRateIndicator.setText(String(flangerTwoRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+    else if (slider == &flangerTwoMixSlider) {
+        flangerTwoMixIndicator.setText(String(flangerTwoMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &vibratoTwoDepthSlider) {
+        vibratoTwoDepthIndicator.setText(String(vibratoTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &vibratoTwoRateSlider) {
+        vibratoTwoRateIndicator.setText(String(vibratoTwoRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+
+    else if (slider == &chorusThreeDepthSlider) {
+        chorusThreeDepthIndicator.setText(String(chorusThreeDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &chorusThreeVoicesSlider) {
+        chorusThreeVoicesIndicator.setText(String(chorusThreeVoicesSlider.getValue()), dontSendNotification);
+    }
+    else if (slider == &chorusThreeMixSlider) {
+        chorusThreeMixIndicator.setText(String(chorusThreeMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &delayThreeTimeSlider) {
+        String timeinBars;
+
+        if (delayThreeTimeSlider.getValue() == 0.0) {
+            timeinBars = "1/32";
+        }
+        else if (delayThreeTimeSlider.getValue() == 12.5) {
+            timeinBars = "1/16";
+        }
+        else if (delayThreeTimeSlider.getValue() == 25.0) {
+            timeinBars = "1/8";
+        }
+        else if (delayThreeTimeSlider.getValue() == 37.5) {
+            timeinBars = "1/4";
+        }
+        else if (delayThreeTimeSlider.getValue() == 50.0) {
+            timeinBars = "1/2";
+        }
+        else if (delayThreeTimeSlider.getValue() == 62.5) {
+            timeinBars = "1";
+        }
+        else if (delayThreeTimeSlider.getValue() == 75.0) {
+            timeinBars = "2";
+        }
+        else if (delayThreeTimeSlider.getValue() == 87.5) {
+            timeinBars = "4";
+        }
+        else if (delayThreeTimeSlider.getValue() == 100.0) {
+            timeinBars = "8";
+        }
+
+        delayThreeTimeIndicator.setText(timeinBars, dontSendNotification);
+    }
+    else if (slider == &delayThreeFeedbackSlider) {
+        delayThreeFeedbackIndicator.setText(String(delayThreeFeedbackSlider.getValue()) + " %", dontSendNotification);
+    }
+    else if (slider == &delayThreeMixSlider) {
+        delayThreeMixIndicator.setText(String(delayThreeMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &flangerThreeDepthSlider) {
+        flangerThreeDepthIndicator.setText(String(flangerThreeDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &flangerThreeRateSlider) {
+        flangerThreeRateIndicator.setText(String(flangerThreeRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+    else if (slider == &flangerThreeMixSlider) {
+        flangerThreeMixIndicator.setText(String(flangerThreeMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &vibratoThreeDepthSlider) {
+        vibratoThreeDepthIndicator.setText(String(vibratoThreeDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &vibratoThreeRateSlider) {
+        vibratoThreeRateIndicator.setText(String(vibratoThreeRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+
+    else if (slider == &chorusFourDepthSlider) {
+        chorusFourDepthIndicator.setText(String(chorusFourDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &chorusFourVoicesSlider) {
+        chorusFourVoicesIndicator.setText(String(chorusFourVoicesSlider.getValue()), dontSendNotification);
+    }
+    else if (slider == &chorusFourMixSlider) {
+        chorusFourMixIndicator.setText(String(chorusFourMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &delayFourTimeSlider) {
+        String timeinBars;
+
+        if (delayFourTimeSlider.getValue() == 0.0) {
+            timeinBars = "1/32";
+        }
+        else if (delayFourTimeSlider.getValue() == 12.5) {
+            timeinBars = "1/16";
+        }
+        else if (delayFourTimeSlider.getValue() == 25.0) {
+            timeinBars = "1/8";
+        }
+        else if (delayFourTimeSlider.getValue() == 37.5) {
+            timeinBars = "1/4";
+        }
+        else if (delayFourTimeSlider.getValue() == 50.0) {
+            timeinBars = "1/2";
+        }
+        else if (delayFourTimeSlider.getValue() == 62.5) {
+            timeinBars = "1";
+        }
+        else if (delayFourTimeSlider.getValue() == 75.0) {
+            timeinBars = "2";
+        }
+        else if (delayFourTimeSlider.getValue() == 87.5) {
+            timeinBars = "4";
+        }
+        else if (delayFourTimeSlider.getValue() == 100.0) {
+            timeinBars = "8";
+        }
+
+        delayFourTimeIndicator.setText(timeinBars, dontSendNotification);
+    }
+    else if (slider == &delayFourFeedbackSlider) {
+        delayFourFeedbackIndicator.setText(String(delayFourFeedbackSlider.getValue()) + " %", dontSendNotification);
+    }
+    else if (slider == &delayFourMixSlider) {
+        delayFourMixIndicator.setText(String(delayFourMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &flangerFourDepthSlider) {
+        flangerFourDepthIndicator.setText(String(flangerFourDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &flangerFourRateSlider) {
+        flangerFourRateIndicator.setText(String(flangerFourRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+    else if (slider == &flangerFourMixSlider) {
+        flangerFourMixIndicator.setText(String(flangerFourMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &vibratoFourDepthSlider) {
+        vibratoFourDepthIndicator.setText(String(vibratoFourDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &vibratoFourRateSlider) {
+        vibratoFourRateIndicator.setText(String(vibratoFourRateSlider.getValue()) + " Hz", dontSendNotification);
     }
 }

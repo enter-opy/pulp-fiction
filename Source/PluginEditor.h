@@ -44,7 +44,7 @@ public:
 
         Rectangle<int> textBounds = comboBox.getLocalBounds().reduced(4);
 
-        g.setColour(Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+        g.setColour(Colour::fromFloatRGBA(1.0, 1.0, 1.0, 1.0));
         g.drawText(text, textBounds, Justification::centred, true);
     }
 
