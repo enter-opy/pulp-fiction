@@ -277,6 +277,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
 
     vibratoOneRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
     vibratoOneRateSlider.setRange(0.01, 10.0, 0.001);
+    vibratoOneRateSlider.setSkewFactorFromMidPoint(1.0);
     vibratoOneRateSlider.setValue(audioProcessor.getValue("V1R"));
     vibratoOneRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     vibratoOneRateSlider.setLookAndFeel(&vibratoOneRateSliderLookAndFeel);
@@ -293,6 +294,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
 
     vibratoTwoRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
     vibratoTwoRateSlider.setRange(0.01, 10.0, 0.001);
+    vibratoTwoRateSlider.setSkewFactorFromMidPoint(1.0);
     vibratoTwoRateSlider.setValue(audioProcessor.getValue("V2R"));
     vibratoTwoRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     vibratoTwoRateSlider.setLookAndFeel(&vibratoTwoRateSliderLookAndFeel);
@@ -309,6 +311,7 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
 
     vibratoThreeRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
     vibratoThreeRateSlider.setRange(0.01, 10.0, 0.001);
+    vibratoThreeRateSlider.setSkewFactorFromMidPoint(1.0);
     vibratoThreeRateSlider.setValue(audioProcessor.getValue("V3R"));
     vibratoThreeRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     vibratoThreeRateSlider.setLookAndFeel(&vibratoThreeDepthSliderLookAndFeel);
@@ -325,10 +328,11 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
 
     vibratoFourRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
     vibratoFourRateSlider.setRange(0.01, 10.0, 0.001);
+    vibratoFourRateSlider.setSkewFactorFromMidPoint(1.0);
     vibratoFourRateSlider.setValue(audioProcessor.getValue("V4R"));
     vibratoFourRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     vibratoFourRateSlider.setLookAndFeel(&vibratoFourRateSliderLookAndFeel);
-    vibratoFourDepthSlider.addListener(this);
+    vibratoFourRateSlider.addListener(this);
     addAndMakeVisible(&vibratoFourRateSlider);
 
     chorusOneMixSlider.setSliderStyle(Slider::RotaryVerticalDrag);

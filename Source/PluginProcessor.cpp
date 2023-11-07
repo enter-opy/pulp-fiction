@@ -236,33 +236,33 @@ void PulpfictionAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
     chorusBufferFourVoice3.setSize(2, 10 * sampleRate);
     chorusBufferFourVoice3.clear();
 
-    cpw1v1[0] = 500;
-    cpw1v1[1] = 500;
-    cpw1v2[0] = 500;
-    cpw1v2[1] = 500;
-    cpw1v3[0] = 500;
-    cpw1v3[1] = 500;
+    cpw1v1[0] = 1500;
+    cpw1v1[1] = 1500;
+    cpw1v2[0] = 1500;
+    cpw1v2[1] = 1500;
+    cpw1v3[0] = 1500;
+    cpw1v3[1] = 1500;
 
-    cpw2v1[0] = 500;
-    cpw2v1[1] = 500;
-    cpw2v2[0] = 500;
-    cpw2v2[1] = 500;
-    cpw2v3[0] = 500;
-    cpw2v3[1] = 500;
+    cpw2v1[0] = 1500;
+    cpw2v1[1] = 1500;
+    cpw2v2[0] = 1500;
+    cpw2v2[1] = 1500;
+    cpw2v3[0] = 1500;
+    cpw2v3[1] = 1500;
 
-    cpw3v1[0] = 500;
-    cpw3v1[1] = 500;
-    cpw3v2[0] = 500;
-    cpw3v2[1] = 500;
-    cpw3v3[0] = 500;
-    cpw3v3[1] = 500;
+    cpw3v1[0] = 1500;
+    cpw3v1[1] = 1500;
+    cpw3v2[0] = 1500;
+    cpw3v2[1] = 1500;
+    cpw3v3[0] = 1500;
+    cpw3v3[1] = 1500;
 
-    cpw4v1[0] = 500;
-    cpw4v1[1] = 500;
-    cpw4v2[0] = 500;
-    cpw4v2[1] = 500;
-    cpw4v3[0] = 500;
-    cpw4v3[1] = 500;
+    cpw4v1[0] = 1500;
+    cpw4v1[1] = 1500;
+    cpw4v2[0] = 1500;
+    cpw4v2[1] = 1500;
+    cpw4v3[0] = 1500;
+    cpw4v3[1] = 1500;
 
     cph1[0] = 0.0;
     cph1[1] = 0.25;
@@ -674,8 +674,8 @@ void PulpfictionAudioProcessor::chorusOne(juce::AudioBuffer<float>& buffer) {
             float interpolatedSample3 = 0.0;
 
             float phase1 = cph1[channel];
-            float phase2 = cph1[channel] + 0.18;
-            float phase3 = cph1[channel] + 0.33;
+            float phase2 = cph1[channel] + 0.083;
+            float phase3 = cph1[channel] + 0.166;
 
             if (phase2 >= 1.0) phase2 -= 1.0;
             if (phase3 >= 1.0) phase3 -= 1.0;
@@ -707,8 +707,8 @@ void PulpfictionAudioProcessor::chorusOne(juce::AudioBuffer<float>& buffer) {
             interpolatedSample3 = fraction * chorusVoice3Data[nextSample] + (1.0 - fraction) * chorusVoice3Data[previousSample];
 
             chorusVoice1Data[cpw1v1[channel]] = in;
-            chorusVoice1Data[cpw1v2[channel]] = in;
-            chorusVoice1Data[cpw1v3[channel]] = in;
+            chorusVoice2Data[cpw1v2[channel]] = in;
+            chorusVoice3Data[cpw1v3[channel]] = in;
 
             if (++cpw1v1[channel] >= chorusBufferLengthVoice1) cpw1v1[channel] = 0;
             if (++cpw1v2[channel] >= chorusBufferLengthVoice2) cpw1v2[channel] = 0;
@@ -771,8 +771,8 @@ void PulpfictionAudioProcessor::chorusTwo(juce::AudioBuffer<float>& buffer) {
             float interpolatedSample3 = 0.0;
 
             float phase1 = cph2[channel];
-            float phase2 = cph2[channel] + 0.18;
-            float phase3 = cph2[channel] + 0.33;
+            float phase2 = cph2[channel] + 0.083;
+            float phase3 = cph2[channel] + 0.166;
 
             if (phase2 >= 1.0) phase2 -= 1.0;
             if (phase3 >= 1.0) phase3 -= 1.0;
@@ -804,8 +804,8 @@ void PulpfictionAudioProcessor::chorusTwo(juce::AudioBuffer<float>& buffer) {
             interpolatedSample3 = fraction * chorusVoice3Data[nextSample] + (1.0 - fraction) * chorusVoice3Data[previousSample];
 
             chorusVoice1Data[cpw2v1[channel]] = in;
-            chorusVoice1Data[cpw2v2[channel]] = in;
-            chorusVoice1Data[cpw2v3[channel]] = in;
+            chorusVoice2Data[cpw2v2[channel]] = in;
+            chorusVoice3Data[cpw2v3[channel]] = in;
 
             if (++cpw2v1[channel] >= chorusBufferLengthVoice1) cpw2v1[channel] = 0;
             if (++cpw2v2[channel] >= chorusBufferLengthVoice2) cpw2v2[channel] = 0;
@@ -868,8 +868,8 @@ void PulpfictionAudioProcessor::chorusThree(juce::AudioBuffer<float>& buffer) {
             float interpolatedSample3 = 0.0;
 
             float phase1 = cph3[channel];
-            float phase2 = cph3[channel] + 0.18;
-            float phase3 = cph3[channel] + 0.33;
+            float phase2 = cph3[channel] + 0.083;
+            float phase3 = cph3[channel] + 0.166;
 
             if (phase2 >= 1.0) phase2 -= 1.0;
             if (phase3 >= 1.0) phase3 -= 1.0;
@@ -901,8 +901,8 @@ void PulpfictionAudioProcessor::chorusThree(juce::AudioBuffer<float>& buffer) {
             interpolatedSample3 = fraction * chorusVoice3Data[nextSample] + (1.0 - fraction) * chorusVoice3Data[previousSample];
 
             chorusVoice1Data[cpw3v1[channel]] = in;
-            chorusVoice1Data[cpw3v2[channel]] = in;
-            chorusVoice1Data[cpw3v3[channel]] = in;
+            chorusVoice2Data[cpw3v2[channel]] = in;
+            chorusVoice3Data[cpw3v3[channel]] = in;
 
             if (++cpw3v1[channel] >= chorusBufferLengthVoice1) cpw3v1[channel] = 0;
             if (++cpw3v2[channel] >= chorusBufferLengthVoice2) cpw3v2[channel] = 0;
@@ -965,8 +965,8 @@ void PulpfictionAudioProcessor::chorusFour(juce::AudioBuffer<float>& buffer) {
             float interpolatedSample3 = 0.0;
 
             float phase1 = cph4[channel];
-            float phase2 = cph4[channel] + 0.18;
-            float phase3 = cph4[channel] + 0.33;
+            float phase2 = cph4[channel] + 0.083;
+            float phase3 = cph4[channel] + 0.166;
 
             if (phase2 >= 1.0) phase2 -= 1.0;
             if (phase3 >= 1.0) phase3 -= 1.0;
@@ -998,8 +998,8 @@ void PulpfictionAudioProcessor::chorusFour(juce::AudioBuffer<float>& buffer) {
             interpolatedSample3 = fraction * chorusVoice3Data[nextSample] + (1.0 - fraction) * chorusVoice3Data[previousSample];
 
             chorusVoice1Data[cpw4v1[channel]] = in;
-            chorusVoice1Data[cpw4v2[channel]] = in;
-            chorusVoice1Data[cpw4v3[channel]] = in;
+            chorusVoice2Data[cpw4v2[channel]] = in;
+            chorusVoice3Data[cpw4v3[channel]] = in;
 
             if (++cpw4v1[channel] >= chorusBufferLengthVoice1) cpw4v1[channel] = 0;
             if (++cpw4v2[channel] >= chorusBufferLengthVoice2) cpw4v2[channel] = 0;
