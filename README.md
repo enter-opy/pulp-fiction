@@ -2,7 +2,7 @@
 
 <h3>Pulp fiction is a multi-FX rack plugin featuring various audio effects</h3>
 
-<img src="Screenshot.png" width="800">
+<img src="Screenshot.png" width="850">
 
 <br>
 
