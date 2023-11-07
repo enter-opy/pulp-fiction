@@ -48,15 +48,124 @@ public:
         g.drawText(text, textBounds, Justification::centred, true);
     }
 
-    void positionComboBoxText(ComboBox&, Label& labelToPosition) override {
+    void positionComboBoxText(ComboBox& comboBox, Label& labelToPosition) override {
 
     }
 
-    Font getComboBoxFont(juce::ComboBox& comboBox) override
+    Font getComboBoxFont(ComboBox& comboBox) override
     {
         Typeface::Ptr customFont = juce::Typeface::createSystemTypefaceFor(BinaryData::MuseoModernoSemiBold_ttf, BinaryData::MuseoModernoSemiBold_ttfSize);
         
         return Font(customFont).withHeight(16);
+    }
+
+    void drawPopupMenuBackground(Graphics& g, int width, int height) override {
+        g.setColour(Colour::fromFloatRGBA(0.95, 0.965, 0.98, 1.0));
+        g.fillAll();
+    }
+
+    Font getPopupMenuFont() override {
+        Typeface::Ptr customFont = juce::Typeface::createSystemTypefaceFor(BinaryData::MuseoModernoSemiBold_ttf, BinaryData::MuseoModernoSemiBold_ttfSize);
+
+        return Font(customFont).withHeight(18);
+    }
+
+    void drawPopupMenuItem(Graphics& g, const Rectangle< int >& area, bool isSeparator, bool isActive, bool isHighlighted, bool isTicked, bool hasSubMenu, const String& text, const String& shortcutKeyText, const Drawable* icon, const Colour* textColour) override {
+        g.setFont(getPopupMenuFont());
+        
+        if (text == "Empty") {
+            if (isHighlighted) {
+                g.setColour(Colour::fromFloatRGBA(0.0, 0.0, 0.0, 0.1));
+                g.fillRect(area);
+            }
+
+            if (isTicked) {
+                g.setColour(Colour::fromRGB(0x0C, 0x0C, 0x0C));
+                g.fillRect(area);
+
+                g.setColour(Colour::fromRGB(0xEE, 0xEE, 0xEE));
+                g.drawText(text, area, Justification::centred, false);
+            }
+            else {
+                g.setColour(Colour::fromRGB(0x50, 0x50, 0x50));
+                g.drawText(text, area, Justification::centred, false);
+            }
+        }
+        else if (text == "Chorus") {
+            if (isHighlighted) {
+                g.setColour(Colour::fromFloatRGBA(0.0, 0.0, 0.0, 0.1));
+                g.fillRect(area);
+            }
+
+            if (isTicked) {
+                g.setColour(Colour::fromRGB(0x30, 0xA0, 0xFF));
+                g.fillRect(area);
+
+                g.setColour(Colour::fromRGB(0xEE, 0xEE, 0xEE));
+                g.drawText(text, area, Justification::centred, false);
+            }
+            else {
+                g.setColour(Colour::fromRGB(0x50, 0x50, 0x50));
+                g.drawText(text, area, Justification::centred, false);
+            }
+        }
+
+        else if (text == "Delay") {
+            if (isHighlighted) {
+                g.setColour(Colour::fromFloatRGBA(0.0, 0.0, 0.0, 0.1));
+                g.fillRect(area);
+            }
+
+            if (isTicked) {
+                g.setColour(Colour::fromRGB(0x05, 0xD5, 0x10));
+                g.fillRect(area);
+
+                g.setColour(Colour::fromRGB(0xEE, 0xEE, 0xEE));
+                g.drawText(text, area, Justification::centred, false);
+            }
+            else {
+                g.setColour(Colour::fromRGB(0x50, 0x50, 0x50));
+                g.drawText(text, area, Justification::centred, false);
+            }
+        }
+
+        else if (text == "Flanger") {
+            if (isHighlighted) {
+                g.setColour(Colour::fromFloatRGBA(0.0, 0.0, 0.0, 0.1));
+                g.fillRect(area);
+            }
+
+            if (isTicked) {
+                g.setColour(Colour::fromRGB(0xFF, 0x00, 0xD5));
+                g.fillRect(area);
+
+                g.setColour(Colour::fromRGB(0xEE, 0xEE, 0xEE));
+                g.drawText(text, area, Justification::centred, false);
+            }
+            else {
+                g.setColour(Colour::fromRGB(0x50, 0x50, 0x50));
+                g.drawText(text, area, Justification::centred, false);
+            }
+        }
+
+        else if (text == "Vibrato") {
+            if (isHighlighted) {
+                g.setColour(Colour::fromFloatRGBA(0.0, 0.0, 0.0, 0.1));
+                g.fillRect(area);
+            }
+
+            if (isTicked) {
+                g.setColour(Colour::fromRGB(0x00, 0x40, 0x90));
+                g.fillRect(area);
+
+                g.setColour(Colour::fromRGB(0xEE, 0xEE, 0xEE));
+                g.drawText(text, area, Justification::centred, false);
+            }
+            else {
+                g.setColour(Colour::fromRGB(0x50, 0x50, 0x50));
+                g.drawText(text, area, Justification::centred, false);
+            }
+        }
     }
 };
 

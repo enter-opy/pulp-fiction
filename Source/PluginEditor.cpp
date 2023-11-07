@@ -1235,7 +1235,7 @@ PulpfictionAudioProcessorEditor::~PulpfictionAudioProcessorEditor()
 //==============================================================================
 void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
 {
-    ColourGradient fillGradient(Colour::fromRGB(0xE5, 0xF0, 0xF0), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0xE0, 0xE5, 0xE5), slotOneRectangle.getCentreX(), getBottom(), false);
+    ColourGradient fillGradient(Colour::fromFloatRGBA(0.95, 0.965, 0.98, 1.0), slotOneRectangle.getCentreX(), 0, Colour::fromFloatRGBA(0.96, 0.965, 0.97, 1.0), slotOneRectangle.getCentreX(), getBottom(), false);
     g.setGradientFill(fillGradient);
     g.fillAll();
 
