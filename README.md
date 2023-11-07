@@ -7,8 +7,8 @@
 <br>
 
 <p>
-<b>
     Pulp fiction is a multi-FX rack plugin with 4 slots. For each slot you can choose one of the audio effect from the drop-down menu.
+</p>
 <br>
 <ul type="none">
     <li>
