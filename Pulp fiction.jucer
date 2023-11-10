@@ -5,9 +5,9 @@
               companyName="vivek vijayan">
   <MAINGROUP id="rTgqiK" name="Pulp fiction">
     <GROUP id="{1D34FC37-650E-8EA9-277C-B9982D955DB3}" name="Source">
-      <GROUP id="{3D59C722-5A74-247E-8FC8-65F9E5239113}" name="Fonts">
-        <FILE id="eQ6Hz5" name="MuseoModerno-SemiBold.ttf" compile="0" resource="1"
-              file="Source/Fonts/MuseoModerno-SemiBold.ttf"/>
+      <GROUP id="{687FB4DF-E27D-B693-AE6C-964710CCF2BB}" name="Res">
+        <FILE id="BvJjO3" name="MuseoModerno-SemiBold.ttf" compile="0" resource="1"
+              file="Source/Res/MuseoModerno-SemiBold.ttf"/>
       </GROUP>
       <FILE id="ZbxRgu" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
