@@ -10,5 +10,5 @@
 <br>
 <h2><u>References</u></h2>
 <ul type="none">
-    Reiss, J., & McPherson, A. (2014). Audio Effects: Theory, Implementation and Application.
+    <a href="https://www.amazon.in/Audio-Effects-Theory-Implementation-Application/dp/1466560282">Reiss, J., & McPherson, A. (2014). Audio Effects: Theory, Implementation and Application.</a>
 </ul>
