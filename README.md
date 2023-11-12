@@ -10,16 +10,5 @@
 <br>
 <h2><u>References</u></h2>
 <ul type="none">
-    <li>
-        <a href="https://www.izotope.com/en/learn/understanding-chorus-flangers-and-phasers-in-audio-production.html">Chorus</a>
-    </li>
-    <li>
-        <a href="https://blog.native-instruments.com/how-to-use-delay-and-echo/">Delay</a>
-    </li>
-    <li>
-        <a href="https://www.izotope.com/en/learn/understanding-chorus-flangers-and-phasers-in-audio-production.html">Flanger</a>
-    </li>
-    <li>
-        <a href="https://en.wikipedia.org/wiki/Vibrato">Vibrato</a>
-    </li>
+    Reiss, J., & McPherson, A. (2014). Audio Effects: Theory, Implementation and Application.
 </ul>
