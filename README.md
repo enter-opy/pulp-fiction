@@ -1,6 +1,6 @@
 <h1>Pulp Fiction</h2>
 
-<img src="iScreenshot.png" width="850">
+<img src="res/Screenshot.png" width="850">
 
 <br>
 
