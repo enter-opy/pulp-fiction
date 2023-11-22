@@ -1239,7 +1239,7 @@ PulpfictionAudioProcessorEditor::~PulpfictionAudioProcessorEditor()
 //==============================================================================
 void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
 {
-    ColourGradient fillGradient(Colour::fromFloatRGBA(0.95, 0.965, 0.98, 1.0), slotOneRectangle.getCentreX(), 0, Colour::fromFloatRGBA(0.96, 0.965, 0.97, 1.0), slotOneRectangle.getCentreX(), getBottom(), false);
+    ColourGradient fillGradient(Colour::fromFloatRGBA(0.1, 0.1, 0.1, 1.0), getWidth() / 2, 0, Colour::fromFloatRGBA(0.1, 0.1, 0.2, 1.0), getWidth() / 2, getBottom(), false);
     g.setGradientFill(fillGradient);
     g.fillAll();
 
@@ -1285,7 +1285,7 @@ void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
     }
     
     if (slotOneComboBox.getSelectedId() == 2) {
-        ColourGradient slotOneGradient(Colour::fromRGB(0x30, 0xA0, 0xFF), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0xFF, 0x30, 0x70), slotOneRectangle.getCentreX(), getBottom(), false);
+        ColourGradient slotOneGradient(Colour::fromRGBA(0x30, 0xA0, 0xFF, 0xFF), slotOneRectangle.getCentreX(), 0, Colour::fromRGBA(0xFF, 0x30, 0x70, 0xFF), slotOneRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotOneGradient);
         g.fillRoundedRectangle(slotOneRectangle, 5);
         g.fillRoundedRectangle(comboBoxOneRectangle, 2);
