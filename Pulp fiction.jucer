@@ -6,10 +6,6 @@
   <MAINGROUP id="rTgqiK" name="Pulp fiction">
     <GROUP id="{1D34FC37-650E-8EA9-277C-B9982D955DB3}" name="Source">
       <GROUP id="{1221D22C-D1C4-FF27-7712-44CA1A727528}" name="Assets">
-        <FILE id="Jiqohj" name="chinese-village.png" compile="0" resource="1"
-              file="Source/Assets/chinese-village.png"/>
-        <FILE id="Fcf7dy" name="russian-winter.png" compile="0" resource="1"
-              file="Source/Assets/russian-winter.png"/>
         <FILE id="RvTIOs" name="MuseoModerno-SemiBold.ttf" compile="0" resource="1"
               file="Source/Assets/MuseoModerno-SemiBold.ttf"/>
       </GROUP>

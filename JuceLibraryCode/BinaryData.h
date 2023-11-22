@@ -8,17 +8,11 @@
 
 namespace BinaryData
 {
-    extern const char*   chinesevillage_png;
-    const int            chinesevillage_pngSize = 83739;
-
-    extern const char*   russianwinter_png;
-    const int            russianwinter_pngSize = 87094;
-
     extern const char*   MuseoModernoSemiBold_ttf;
     const int            MuseoModernoSemiBold_ttfSize = 89536;
 
     // Number of elements in the namedResourceList and originalFileNames arrays.
-    const int namedResourceListSize = 3;
+    const int namedResourceListSize = 1;
 
     // Points to the start of a list of resource names.
     extern const char* namedResourceList[];
