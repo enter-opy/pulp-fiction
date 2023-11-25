@@ -241,62 +241,6 @@ private:
     Slider flangerThreeMixSlider;
     Slider flangerFourMixSlider;
 
-    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotOneValue;
-    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotTwoValue;
-    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotThreeValue;
-    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotFourValue;
-
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusOneDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusOneVoicesValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusTwoDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusTwoVoicesValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusThreeDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusThreeVoicesValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusFourDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusFourVoicesValue;
-
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayOneTimeValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayOneFeedbackValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayTwoTimeValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayTwoFeedbackValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayThreeTimeValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayThreeFeedbackValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayFourTimeValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayFourFeedbackValue;
-
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerOneDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerOneRateValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerTwoDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerTwoRateValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerThreeDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerThreeRateValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerFourDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerFourRateValue;
-
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoOneDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoOneRateValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoTwoDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoTwoRateValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoThreeDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoThreeRateValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoFourDepthValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoFourRateValue;
-
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusOneMixValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusTwoMixValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusThreeMixValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusFourMixValue;
-
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayOneMixValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayTwoMixValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayThreeMixValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayFourMixValue;
-
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerOneMixValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerTwoMixValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerThreeMixValue;
-    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerFourMixValue;
-
     Rectangle<float> slotOneRectangle;
     Rectangle<float> slotTwoRectangle;
     Rectangle<float> slotThreeRectangle;
@@ -486,6 +430,63 @@ private:
     String timeinBars;
 
     Typeface::Ptr customFont = juce::Typeface::createSystemTypefaceFor(BinaryData::MuseoModernoSemiBold_ttf, BinaryData::MuseoModernoSemiBold_ttfSize);
+
+public:
+    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotOneValue;
+    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotTwoValue;
+    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotThreeValue;
+    std::unique_ptr <AudioProcessorValueTreeState::ComboBoxAttachment> slotFourValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusOneDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusOneVoicesValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusTwoDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusTwoVoicesValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusThreeDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusThreeVoicesValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusFourDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusFourVoicesValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayOneTimeValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayOneFeedbackValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayTwoTimeValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayTwoFeedbackValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayThreeTimeValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayThreeFeedbackValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayFourTimeValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayFourFeedbackValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerOneDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerOneRateValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerTwoDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerTwoRateValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerThreeDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerThreeRateValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerFourDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerFourRateValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoOneDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoOneRateValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoTwoDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoTwoRateValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoThreeDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoThreeRateValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoFourDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoFourRateValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusOneMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusTwoMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusThreeMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> chorusFourMixValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayOneMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayTwoMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayThreeMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> delayFourMixValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerOneMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerTwoMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerThreeMixValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerFourMixValue;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (PulpfictionAudioProcessorEditor)
 };
