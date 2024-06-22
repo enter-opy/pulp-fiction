@@ -65,7 +65,7 @@ To build Sound of music from source:
 
 ## Contributing
 Contributions to Pulp fiction are welcome! If you'd like to contribute, follow these steps:
-1. **Fork the Repository:** Start by forking the [Sound of music repository](https://github.com/enter-opy/sound-of-music).
+1. **Fork the Repository:** Start by forking the [Pulp fiction repository](https://github.com/enter-opy/pulp-fiction).
 2. **Make Changes:** Create a new branch, make your changes, and commit them to your branch.
 3. **Create a Pull Request:** Push your changes to your fork and submit a pull request to the original repository.
 
