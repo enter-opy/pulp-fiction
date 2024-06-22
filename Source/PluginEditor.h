@@ -166,6 +166,25 @@ public:
                 g.drawText(text, area, Justification::centred, false);
             }
         }
+
+        else if (text == "Tremolo") {
+            if (isHighlighted) {
+                g.setColour(Colour::fromFloatRGBA(0.0, 0.0, 0.0, 0.1));
+                g.fillRect(area);
+            }
+
+            if (isTicked) {
+                g.setColour(Colour::fromRGB(0x87, 0x4C, 0xCC));
+                g.fillRect(area);
+
+                g.setColour(Colour::fromRGB(0xEE, 0xEE, 0xEE));
+                g.drawText(text, area, Justification::centred, false);
+            }
+            else {
+                g.setColour(Colour::fromRGB(0x50, 0x50, 0x50));
+                g.drawText(text, area, Justification::centred, false);
+            }
+        }
     }
 };
 
@@ -216,6 +235,15 @@ private:
     Slider flangerThreeRateSlider;
     Slider flangerFourDepthSlider;
     Slider flangerFourRateSlider;
+
+    Slider tremoloOneDepthSlider;
+    Slider tremoloOneRateSlider;
+    Slider tremoloTwoDepthSlider;
+    Slider tremoloTwoRateSlider;
+    Slider tremoloThreeDepthSlider;
+    Slider tremoloThreeRateSlider;
+    Slider tremoloFourDepthSlider;
+    Slider tremoloFourRateSlider;
 
     Slider vibratoOneDepthSlider;
     Slider vibratoOneRateSlider;
@@ -273,6 +301,15 @@ private:
     SliderLookAndFeel flangerThreeRateSliderLookAndFeel;
     SliderLookAndFeel flangerFourRateSliderLookAndFeel;
 
+    SliderLookAndFeel tremoloOneDepthSliderLookAndFeel;
+    SliderLookAndFeel tremoloTwoDepthSliderLookAndFeel;
+    SliderLookAndFeel tremoloThreeDepthSliderLookAndFeel;
+    SliderLookAndFeel tremoloFourDepthSliderLookAndFeel;
+    SliderLookAndFeel tremoloOneRateSliderLookAndFeel;
+    SliderLookAndFeel tremoloTwoRateSliderLookAndFeel;
+    SliderLookAndFeel tremoloThreeRateSliderLookAndFeel;
+    SliderLookAndFeel tremoloFourRateSliderLookAndFeel;
+
     SliderLookAndFeel vibratoOneDepthSliderLookAndFeel;
     SliderLookAndFeel vibratoTwoDepthSliderLookAndFeel;
     SliderLookAndFeel vibratoThreeDepthSliderLookAndFeel;
@@ -319,6 +356,9 @@ private:
     Label flangerOneRateIndicator;
     Label flangerOneMixIndicator;
 
+    Label tremoloOneDepthIndicator;
+    Label tremoloOneRateIndicator;
+
     Label vibratoOneDepthIndicator;
     Label vibratoOneRateIndicator;
 
@@ -333,6 +373,9 @@ private:
     Label flangerOneDepthLabel;
     Label flangerOneRateLabel;
     Label flangerOneMixLabel;
+
+    Label tremoloOneDepthLabel;
+    Label tremoloOneRateLabel;
 
     Label vibratoOneDepthLabel;
     Label vibratoOneRateLabel;
@@ -349,6 +392,9 @@ private:
     Label flangerTwoRateIndicator;
     Label flangerTwoMixIndicator;
 
+    Label tremoloTwoDepthIndicator;
+    Label tremoloTwoRateIndicator;
+
     Label vibratoTwoDepthIndicator;
     Label vibratoTwoRateIndicator;
 
@@ -363,6 +409,9 @@ private:
     Label flangerTwoDepthLabel;
     Label flangerTwoRateLabel;
     Label flangerTwoMixLabel;
+
+    Label tremoloTwoDepthLabel;
+    Label tremoloTwoRateLabel;
 
     Label vibratoTwoDepthLabel;
     Label vibratoTwoRateLabel;
@@ -379,6 +428,9 @@ private:
     Label flangerThreeRateIndicator;
     Label flangerThreeMixIndicator;
 
+    Label tremoloThreeDepthIndicator;
+    Label tremoloThreeRateIndicator;
+
     Label vibratoThreeDepthIndicator;
     Label vibratoThreeRateIndicator;
 
@@ -393,6 +445,9 @@ private:
     Label flangerThreeDepthLabel;
     Label flangerThreeRateLabel;
     Label flangerThreeMixLabel;
+
+    Label tremoloThreeDepthLabel;
+    Label tremoloThreeRateLabel;
 
     Label vibratoThreeDepthLabel;
     Label vibratoThreeRateLabel;
@@ -409,6 +464,9 @@ private:
     Label flangerFourRateIndicator;
     Label flangerFourMixIndicator;
 
+    Label tremoloFourDepthIndicator;
+    Label tremoloFourRateIndicator;
+
     Label vibratoFourDepthIndicator;
     Label vibratoFourRateIndicator;
 
@@ -423,6 +481,9 @@ private:
     Label flangerFourDepthLabel;
     Label flangerFourRateLabel;
     Label flangerFourMixLabel;
+
+    Label tremoloFourDepthLabel;
+    Label tremoloFourRateLabel;
 
     Label vibratoFourDepthLabel;
     Label vibratoFourRateLabel;
@@ -463,6 +524,15 @@ public:
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerThreeRateValue;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerFourDepthValue;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> flangerFourRateValue;
+
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> tremoloOneDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> tremoloOneRateValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> tremoloTwoDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> tremoloTwoRateValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> tremoloThreeDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> tremoloThreeRateValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> tremoloFourDepthValue;
+    std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> tremoloFourRateValue;
 
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoOneDepthValue;
     std::unique_ptr <AudioProcessorValueTreeState::SliderAttachment> vibratoOneRateValue;

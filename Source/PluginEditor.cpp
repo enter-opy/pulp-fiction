@@ -47,6 +47,15 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerFourDepthValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, FDEPTH4_ID, flangerFourDepthSlider);
     flangerFourRateValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, FRATE4_ID, flangerFourRateSlider);
 
+    tremoloOneDepthValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, TDEPTH1_ID, tremoloOneDepthSlider);
+    tremoloOneRateValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, TRATE1_ID, tremoloOneRateSlider);
+    tremoloTwoDepthValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, TDEPTH2_ID, tremoloTwoDepthSlider);
+    tremoloTwoRateValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, TRATE2_ID, tremoloTwoRateSlider);
+    tremoloThreeDepthValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, TDEPTH3_ID, tremoloThreeDepthSlider);
+    tremoloThreeRateValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, TRATE3_ID, tremoloThreeRateSlider);
+    tremoloFourDepthValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, TDEPTH4_ID, tremoloFourDepthSlider);
+    tremoloFourRateValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, TRATE4_ID, tremoloFourRateSlider);
+
     vibratoOneDepthValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, VDEPTH1_ID, vibratoOneDepthSlider);
     vibratoOneRateValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, VRATE1_ID, vibratoOneRateSlider);
     vibratoTwoDepthValue = std::make_unique<AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.treeState, VDEPTH2_ID, vibratoTwoDepthSlider);
@@ -267,6 +276,74 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerFourDepthSlider.addListener(this);
     addAndMakeVisible(&flangerFourRateSlider);
 
+    tremoloOneDepthSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    tremoloOneDepthSlider.setRange(0.0, 100.0, 1.0);
+    tremoloOneDepthSlider.setValue(audioProcessor.getValue("T1D"));
+    tremoloOneDepthSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    tremoloOneDepthSlider.setLookAndFeel(&tremoloOneDepthSliderLookAndFeel);
+    tremoloOneDepthSlider.addListener(this);
+    addAndMakeVisible(&tremoloOneDepthSlider);
+
+    tremoloOneRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    tremoloOneRateSlider.setRange(0.5, 20.0, 0.001);
+    tremoloOneRateSlider.setSkewFactorFromMidPoint(10.0);
+    tremoloOneRateSlider.setValue(audioProcessor.getValue("T1R"));
+    tremoloOneRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    tremoloOneRateSlider.setLookAndFeel(&tremoloOneRateSliderLookAndFeel);
+    tremoloOneRateSlider.addListener(this);
+    addAndMakeVisible(&tremoloOneRateSlider);
+
+    tremoloTwoDepthSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    tremoloTwoDepthSlider.setRange(0.0, 100.0, 1.0);
+    tremoloTwoDepthSlider.setValue(audioProcessor.getValue("T2D"));
+    tremoloTwoDepthSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    tremoloTwoDepthSlider.setLookAndFeel(&tremoloTwoDepthSliderLookAndFeel);
+    tremoloTwoDepthSlider.addListener(this);
+    addAndMakeVisible(&tremoloTwoDepthSlider);
+
+    tremoloTwoRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    tremoloTwoRateSlider.setRange(0.5, 20.0, 0.001);
+    tremoloTwoRateSlider.setSkewFactorFromMidPoint(10.0);
+    tremoloTwoRateSlider.setValue(audioProcessor.getValue("T2R"));
+    tremoloTwoRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    tremoloTwoRateSlider.setLookAndFeel(&tremoloTwoRateSliderLookAndFeel);
+    tremoloTwoRateSlider.addListener(this);
+    addAndMakeVisible(&tremoloTwoRateSlider);
+
+    tremoloThreeDepthSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    tremoloThreeDepthSlider.setRange(0.0, 100.0, 1.0);
+    tremoloThreeDepthSlider.setValue(audioProcessor.getValue("T3D"));
+    tremoloThreeDepthSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    tremoloThreeDepthSlider.setLookAndFeel(&tremoloThreeDepthSliderLookAndFeel);
+    tremoloThreeDepthSlider.addListener(this);
+    addAndMakeVisible(&tremoloThreeDepthSlider);
+
+    tremoloThreeRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    tremoloThreeRateSlider.setRange(0.5, 20.0, 0.001);
+    tremoloThreeRateSlider.setSkewFactorFromMidPoint(10.0);
+    tremoloThreeRateSlider.setValue(audioProcessor.getValue("T3R"));
+    tremoloThreeRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    tremoloThreeRateSlider.setLookAndFeel(&tremoloThreeDepthSliderLookAndFeel);
+    tremoloThreeRateSlider.addListener(this);
+    addAndMakeVisible(&tremoloThreeRateSlider);
+
+    tremoloFourDepthSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    tremoloFourDepthSlider.setRange(0.0, 100.0, 1.0);
+    tremoloFourDepthSlider.setValue(audioProcessor.getValue("T4D"));
+    tremoloFourDepthSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    tremoloFourDepthSlider.setLookAndFeel(&tremoloFourDepthSliderLookAndFeel);
+    tremoloFourDepthSlider.addListener(this);
+    addAndMakeVisible(&tremoloFourDepthSlider);
+
+    tremoloFourRateSlider.setSliderStyle(Slider::RotaryVerticalDrag);
+    tremoloFourRateSlider.setRange(0.5, 20.0, 0.001);
+    tremoloFourRateSlider.setSkewFactorFromMidPoint(10.0);
+    tremoloFourRateSlider.setValue(audioProcessor.getValue("T4R"));
+    tremoloFourRateSlider.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    tremoloFourRateSlider.setLookAndFeel(&tremoloFourRateSliderLookAndFeel);
+    tremoloFourRateSlider.addListener(this);
+    addAndMakeVisible(&tremoloFourRateSlider);
+
     vibratoOneDepthSlider.setSliderStyle(Slider::RotaryVerticalDrag);
     vibratoOneDepthSlider.setRange(0.0, 10.0, 0.01);
     vibratoOneDepthSlider.setValue(audioProcessor.getValue("V1D"));
@@ -435,7 +512,8 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     slotOneComboBox.addItem("Chorus", 2);
     slotOneComboBox.addItem("Delay", 3);
     slotOneComboBox.addItem("Flanger", 4);
-    slotOneComboBox.addItem("Vibrato", 5);
+    slotOneComboBox.addItem("Tremolo", 5);
+    slotOneComboBox.addItem("Vibrato", 6);
     slotOneComboBox.setSelectedId(audioProcessor.getValue("S1"));
     slotOneComboBox.setLookAndFeel(&slotOneComboBoxLookAndFeel);
     slotOneComboBox.addListener(this);
@@ -445,7 +523,8 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     slotTwoComboBox.addItem("Chorus", 2);
     slotTwoComboBox.addItem("Delay", 3);
     slotTwoComboBox.addItem("Flanger", 4);
-    slotTwoComboBox.addItem("Vibrato", 5);
+    slotTwoComboBox.addItem("Tremolo", 5);
+    slotTwoComboBox.addItem("Vibrato", 6);
     slotTwoComboBox.setSelectedId(audioProcessor.getValue("S2"));
     slotTwoComboBox.setLookAndFeel(&slotTwoComboBoxLookAndFeel);
     slotTwoComboBox.addListener(this);
@@ -455,7 +534,8 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     slotThreeComboBox.addItem("Chorus", 2);
     slotThreeComboBox.addItem("Delay", 3);
     slotThreeComboBox.addItem("Flanger", 4);
-    slotThreeComboBox.addItem("Vibrato", 5);
+    slotThreeComboBox.addItem("Tremolo", 5);
+    slotThreeComboBox.addItem("Vibrato", 6);
     slotThreeComboBox.setSelectedId(audioProcessor.getValue("S3"));
     slotThreeComboBox.setLookAndFeel(&slotThreeComboBoxLookAndFeel);
     slotThreeComboBox.addListener(this);
@@ -465,7 +545,8 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     slotFourComboBox.addItem("Chorus", 2);
     slotFourComboBox.addItem("Delay", 3);
     slotFourComboBox.addItem("Flanger", 4);
-    slotFourComboBox.addItem("Vibrato", 5);
+    slotFourComboBox.addItem("Tremolo", 5);
+    slotFourComboBox.addItem("Vibrato", 6);
     slotFourComboBox.setSelectedId(audioProcessor.getValue("S4"));
     slotFourComboBox.setLookAndFeel(&slotFourComboBoxLookAndFeel);
     slotFourComboBox.addListener(this);
@@ -552,6 +633,18 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerOneMixIndicator.setText(String(flangerOneMixSlider.getValue()) + " %", dontSendNotification);
     flangerOneMixIndicator.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerOneMixIndicator);
+
+    tremoloOneDepthIndicator.setJustificationType(Justification::centred);
+    tremoloOneDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloOneDepthIndicator.setText(String(tremoloOneDepthSlider.getValue()) + " %", dontSendNotification);
+    tremoloOneDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloOneDepthIndicator);
+
+    tremoloOneRateIndicator.setJustificationType(Justification::centred);
+    tremoloOneRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloOneRateIndicator.setText(String(tremoloOneRateSlider.getValue()) + " Hz", dontSendNotification);
+    tremoloOneRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloOneRateIndicator);
 
     vibratoOneDepthIndicator.setJustificationType(Justification::centred);
     vibratoOneDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
@@ -647,6 +740,18 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerTwoMixIndicator.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerTwoMixIndicator);
 
+    tremoloTwoDepthIndicator.setJustificationType(Justification::centred);
+    tremoloTwoDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloTwoDepthIndicator.setText(String(tremoloTwoDepthSlider.getValue()) + " %", dontSendNotification);
+    tremoloTwoDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloTwoDepthIndicator);
+
+    tremoloTwoRateIndicator.setJustificationType(Justification::centred);
+    tremoloTwoRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloTwoRateIndicator.setText(String(tremoloTwoRateSlider.getValue()) + " Hz", dontSendNotification);
+    tremoloTwoRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloTwoRateIndicator);
+
     vibratoTwoDepthIndicator.setJustificationType(Justification::centred);
     vibratoTwoDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
     vibratoTwoDepthIndicator.setText(String(vibratoTwoDepthSlider.getValue()) + " ms", dontSendNotification);
@@ -740,6 +845,18 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerThreeMixIndicator.setText(String(flangerThreeMixSlider.getValue()) + " %", dontSendNotification);
     flangerThreeMixIndicator.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerThreeMixIndicator);
+
+    tremoloThreeDepthIndicator.setJustificationType(Justification::centred);
+    tremoloThreeDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloThreeDepthIndicator.setText(String(tremoloThreeDepthSlider.getValue()) + " %", dontSendNotification);
+    tremoloThreeDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloThreeDepthIndicator);
+
+    tremoloThreeRateIndicator.setJustificationType(Justification::centred);
+    tremoloThreeRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloThreeRateIndicator.setText(String(tremoloThreeRateSlider.getValue()) + " Hz", dontSendNotification);
+    tremoloThreeRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloThreeRateIndicator);
 
     vibratoThreeDepthIndicator.setJustificationType(Justification::centred);
     vibratoThreeDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
@@ -835,6 +952,18 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerFourMixIndicator.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerFourMixIndicator);
 
+    tremoloFourDepthIndicator.setJustificationType(Justification::centred);
+    tremoloFourDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloFourDepthIndicator.setText(String(tremoloFourDepthSlider.getValue()) + " %", dontSendNotification);
+    tremoloFourDepthIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloFourDepthIndicator);
+
+    tremoloFourRateIndicator.setJustificationType(Justification::centred);
+    tremoloFourRateIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloFourRateIndicator.setText(String(tremoloFourRateSlider.getValue()) + " Hz", dontSendNotification);
+    tremoloFourRateIndicator.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloFourRateIndicator);
+
     vibratoFourDepthIndicator.setJustificationType(Justification::centred);
     vibratoFourDepthIndicator.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
     vibratoFourDepthIndicator.setText(String(vibratoFourDepthSlider.getValue()) + " ms", dontSendNotification);
@@ -900,6 +1029,18 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerOneMixLabel.setText("Mix", dontSendNotification);
     flangerOneMixLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerOneMixLabel);
+
+    tremoloOneDepthLabel.setJustificationType(Justification::centred);
+    tremoloOneDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloOneDepthLabel.setText("Depth", dontSendNotification);
+    tremoloOneDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloOneDepthLabel);
+
+    tremoloOneRateLabel.setJustificationType(Justification::centred);
+    tremoloOneRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloOneRateLabel.setText("Rate", dontSendNotification);
+    tremoloOneRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloOneRateLabel);
 
     vibratoOneDepthLabel.setJustificationType(Justification::centred);
     vibratoOneDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
@@ -967,6 +1108,18 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerTwoMixLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerTwoMixLabel);
 
+    tremoloTwoDepthLabel.setJustificationType(Justification::centred);
+    tremoloTwoDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloTwoDepthLabel.setText("Depth", dontSendNotification);
+    tremoloTwoDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloTwoDepthLabel);
+
+    tremoloTwoRateLabel.setJustificationType(Justification::centred);
+    tremoloTwoRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloTwoRateLabel.setText("Rate", dontSendNotification);
+    tremoloTwoRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloTwoRateLabel);
+
     vibratoTwoDepthLabel.setJustificationType(Justification::centred);
     vibratoTwoDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
     vibratoTwoDepthLabel.setText("Depth", dontSendNotification);
@@ -1032,6 +1185,18 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerThreeMixLabel.setText("Mix", dontSendNotification);
     flangerThreeMixLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerThreeMixLabel);
+
+    tremoloThreeDepthLabel.setJustificationType(Justification::centred);
+    tremoloThreeDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloThreeDepthLabel.setText("Depth", dontSendNotification);
+    tremoloThreeDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloThreeDepthLabel);
+
+    tremoloThreeRateLabel.setJustificationType(Justification::centred);
+    tremoloThreeRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloThreeRateLabel.setText("Rate", dontSendNotification);
+    tremoloThreeRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloThreeRateLabel);
 
     vibratoThreeDepthLabel.setJustificationType(Justification::centred);
     vibratoThreeDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
@@ -1099,6 +1264,18 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerFourMixLabel.setInterceptsMouseClicks(false, false);
     addAndMakeVisible(&flangerFourMixLabel);
 
+    tremoloFourDepthLabel.setJustificationType(Justification::centred);
+    tremoloFourDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloFourDepthLabel.setText("Depth", dontSendNotification);
+    tremoloFourDepthLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloFourDepthLabel);
+
+    tremoloFourRateLabel.setJustificationType(Justification::centred);
+    tremoloFourRateLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
+    tremoloFourRateLabel.setText("Rate", dontSendNotification);
+    tremoloFourRateLabel.setInterceptsMouseClicks(false, false);
+    addAndMakeVisible(&tremoloFourRateLabel);
+
     vibratoFourDepthLabel.setJustificationType(Justification::centred);
     vibratoFourDepthLabel.setColour(Label::textColourId, Colour::fromFloatRGBA(1.0, 1.0, 1.0, 0.8));
     vibratoFourDepthLabel.setText("Depth", dontSendNotification);
@@ -1123,6 +1300,9 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerOneRateIndicator.setFont(Font(customFont).withHeight(20));
     flangerOneMixIndicator.setFont(Font(customFont).withHeight(28));
 
+    tremoloOneDepthIndicator.setFont(Font(customFont).withHeight(20));
+    tremoloOneRateIndicator.setFont(Font(customFont).withHeight(20));
+
     vibratoOneDepthIndicator.setFont(Font(customFont).withHeight(20));
     vibratoOneRateIndicator.setFont(Font(customFont).withHeight(20));
 
@@ -1137,6 +1317,9 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerTwoDepthIndicator.setFont(Font(customFont).withHeight(20));
     flangerTwoRateIndicator.setFont(Font(customFont).withHeight(20));
     flangerTwoMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    tremoloTwoDepthIndicator.setFont(Font(customFont).withHeight(20));
+    tremoloTwoRateIndicator.setFont(Font(customFont).withHeight(20));
 
     vibratoTwoDepthIndicator.setFont(Font(customFont).withHeight(20));
     vibratoTwoRateIndicator.setFont(Font(customFont).withHeight(20));
@@ -1153,6 +1336,9 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerThreeRateIndicator.setFont(Font(customFont).withHeight(20));
     flangerThreeMixIndicator.setFont(Font(customFont).withHeight(28));
 
+    tremoloThreeDepthIndicator.setFont(Font(customFont).withHeight(20));
+    tremoloThreeRateIndicator.setFont(Font(customFont).withHeight(20));
+
     vibratoThreeDepthIndicator.setFont(Font(customFont).withHeight(20));
     vibratoThreeRateIndicator.setFont(Font(customFont).withHeight(20));
 
@@ -1167,6 +1353,9 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerFourDepthIndicator.setFont(Font(customFont).withHeight(20));
     flangerFourRateIndicator.setFont(Font(customFont).withHeight(20));
     flangerFourMixIndicator.setFont(Font(customFont).withHeight(28));
+
+    tremoloFourDepthIndicator.setFont(Font(customFont).withHeight(20));
+    tremoloFourRateIndicator.setFont(Font(customFont).withHeight(20));
 
     vibratoFourDepthIndicator.setFont(Font(customFont).withHeight(20));
     vibratoFourRateIndicator.setFont(Font(customFont).withHeight(20));
@@ -1183,6 +1372,9 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerOneRateLabel.setFont(Font(customFont).withHeight(18));
     flangerOneMixLabel.setFont(Font(customFont).withHeight(24));
 
+    tremoloOneDepthLabel.setFont(Font(customFont).withHeight(18));
+    tremoloOneRateLabel.setFont(Font(customFont).withHeight(18));
+
     vibratoOneDepthLabel.setFont(Font(customFont).withHeight(18));
     vibratoOneRateLabel.setFont(Font(customFont).withHeight(18));
 
@@ -1197,6 +1389,9 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerTwoDepthLabel.setFont(Font(customFont).withHeight(18));
     flangerTwoRateLabel.setFont(Font(customFont).withHeight(18));
     flangerTwoMixLabel.setFont(Font(customFont).withHeight(24));
+
+    tremoloTwoDepthLabel.setFont(Font(customFont).withHeight(18));
+    tremoloTwoRateLabel.setFont(Font(customFont).withHeight(18));
 
     vibratoTwoDepthLabel.setFont(Font(customFont).withHeight(18));
     vibratoTwoRateLabel.setFont(Font(customFont).withHeight(18));
@@ -1213,6 +1408,9 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerThreeRateLabel.setFont(Font(customFont).withHeight(18));
     flangerThreeMixLabel.setFont(Font(customFont).withHeight(24));
 
+    tremoloThreeDepthLabel.setFont(Font(customFont).withHeight(18));
+    tremoloThreeRateLabel.setFont(Font(customFont).withHeight(18));
+
     vibratoThreeDepthLabel.setFont(Font(customFont).withHeight(18));
     vibratoThreeRateLabel.setFont(Font(customFont).withHeight(18));
 
@@ -1227,6 +1425,9 @@ PulpfictionAudioProcessorEditor::PulpfictionAudioProcessorEditor (PulpfictionAud
     flangerFourDepthLabel.setFont(Font(customFont).withHeight(18));
     flangerFourRateLabel.setFont(Font(customFont).withHeight(18));
     flangerFourMixLabel.setFont(Font(customFont).withHeight(24));
+
+    tremoloFourDepthLabel.setFont(Font(customFont).withHeight(18));
+    tremoloFourRateLabel.setFont(Font(customFont).withHeight(18));
 
     vibratoFourDepthLabel.setFont(Font(customFont).withHeight(18));
     vibratoFourRateLabel.setFont(Font(customFont).withHeight(18));
@@ -1303,6 +1504,12 @@ void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
         g.fillRoundedRectangle(comboBoxOneRectangle, 2);
     }
     else if (slotOneComboBox.getSelectedId() == 5) {
+        ColourGradient slotOneGradient(Colour::fromRGB(0x87, 0x4C, 0xCC), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0x03, 0x03, 0x37), slotOneRectangle.getCentreX(), getBottom(), false);
+        g.setGradientFill(slotOneGradient);
+        g.fillRoundedRectangle(slotOneRectangle, 5);
+        g.fillRoundedRectangle(comboBoxOneRectangle, 2);
+    }
+    else if (slotOneComboBox.getSelectedId() == 6) {
         ColourGradient slotOneGradient(Colour::fromRGB(0x00, 0x40, 0x90), slotOneRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xFF, 0xFF), slotOneRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotOneGradient);
         g.fillRoundedRectangle(slotOneRectangle, 5);
@@ -1328,6 +1535,12 @@ void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
         g.fillRoundedRectangle(comboBoxTwoRectangle, 2);
     }
     else if (slotTwoComboBox.getSelectedId() == 5) {
+        ColourGradient slotTwoGradient(Colour::fromRGB(0x87, 0x4C, 0xCC), slotTwoRectangle.getCentreX(), 0, Colour::fromRGB(0x03, 0x03, 0x37), slotTwoRectangle.getCentreX(), getBottom(), false);
+        g.setGradientFill(slotTwoGradient);
+        g.fillRoundedRectangle(slotTwoRectangle, 5);
+        g.fillRoundedRectangle(comboBoxTwoRectangle, 2);
+    }
+    else if (slotTwoComboBox.getSelectedId() == 6) {
         ColourGradient slotTwoGradient(Colour::fromRGB(0x00, 0x40, 0x90), slotTwoRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xFF, 0xFF), slotTwoRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotTwoGradient);
         g.fillRoundedRectangle(slotTwoRectangle, 5);
@@ -1353,6 +1566,12 @@ void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
         g.fillRoundedRectangle(comboBoxThreeRectangle, 2);
     }
     else if (slotThreeComboBox.getSelectedId() == 5) {
+        ColourGradient slotThreeGradient(Colour::fromRGB(0x87, 0x4C, 0xCC), slotThreeRectangle.getCentreX(), 0, Colour::fromRGB(0x03, 0x03, 0x37), slotThreeRectangle.getCentreX(), getBottom(), false);
+        g.setGradientFill(slotThreeGradient);
+        g.fillRoundedRectangle(slotThreeRectangle, 5);
+        g.fillRoundedRectangle(comboBoxThreeRectangle, 2);
+    }
+    else if (slotThreeComboBox.getSelectedId() == 6) {
         ColourGradient slotThreeGradient(Colour::fromRGB(0x00, 0x40, 0x90), slotThreeRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xFF, 0xFF), slotThreeRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotThreeGradient);
         g.fillRoundedRectangle(slotThreeRectangle, 5);
@@ -1378,6 +1597,12 @@ void PulpfictionAudioProcessorEditor::paint(juce::Graphics& g)
         g.fillRoundedRectangle(comboBoxFourRectangle, 2);
     }
     else if (slotFourComboBox.getSelectedId() == 5) {
+        ColourGradient slotFourGradient(Colour::fromRGB(0x87, 0x4C, 0xCC), slotFourRectangle.getCentreX(), 0, Colour::fromRGB(0x03, 0x03, 0x37), slotFourRectangle.getCentreX(), getBottom(), false);
+        g.setGradientFill(slotFourGradient);
+        g.fillRoundedRectangle(slotFourRectangle, 5);
+        g.fillRoundedRectangle(comboBoxFourRectangle, 2);
+    }
+    else if (slotFourComboBox.getSelectedId() == 6) {
         ColourGradient slotFourGradient(Colour::fromRGB(0x00, 0x40, 0x90), slotFourRectangle.getCentreX(), 0, Colour::fromRGB(0x80, 0xFF, 0xFF), slotFourRectangle.getCentreX(), getBottom(), false);
         g.setGradientFill(slotFourGradient);
         g.fillRoundedRectangle(slotFourRectangle, 5);
@@ -1424,6 +1649,15 @@ void PulpfictionAudioProcessorEditor::resized()
     flangerFourDepthSlider.setBounds(650, 100, 70, 70);
     flangerFourRateSlider.setBounds(730, 100, 70, 70);
 
+    tremoloOneDepthSlider.setBounds(50, 100, 70, 70);
+    tremoloOneRateSlider.setBounds(130, 200, 70, 70);
+    tremoloTwoDepthSlider.setBounds(250, 100, 70, 70);
+    tremoloTwoRateSlider.setBounds(330, 200, 70, 70);
+    tremoloThreeDepthSlider.setBounds(450, 100, 70, 70);
+    tremoloThreeRateSlider.setBounds(530, 200, 70, 70);
+    tremoloFourDepthSlider.setBounds(650, 100, 70, 70);
+    tremoloFourRateSlider.setBounds(730, 200, 70, 70);
+
     vibratoOneDepthSlider.setBounds(50, 100, 70, 70);
     vibratoOneRateSlider.setBounds(130, 200, 70, 70);
     vibratoTwoDepthSlider.setBounds(250, 100, 70, 70);
@@ -1465,6 +1699,9 @@ void PulpfictionAudioProcessorEditor::resized()
     flangerOneRateIndicator.setBounds(115, 125, 100, 20);
     flangerOneMixIndicator.setBounds(50, 240, 100, 20);
 
+    tremoloOneDepthIndicator.setBounds(35, 125, 100, 20);
+    tremoloOneRateIndicator.setBounds(115, 225, 100, 20);
+
     vibratoOneDepthIndicator.setBounds(35, 125, 100, 20);
     vibratoOneRateIndicator.setBounds(115, 225, 100, 20);
 
@@ -1479,6 +1716,9 @@ void PulpfictionAudioProcessorEditor::resized()
     flangerTwoDepthIndicator.setBounds(235, 125, 100, 20);
     flangerTwoRateIndicator.setBounds(315, 125, 100, 20);
     flangerTwoMixIndicator.setBounds(250, 240, 100, 20);
+
+    tremoloTwoDepthIndicator.setBounds(235, 125, 100, 20);
+    tremoloTwoRateIndicator.setBounds(315, 225, 100, 20);
 
     vibratoTwoDepthIndicator.setBounds(235, 125, 100, 20);
     vibratoTwoRateIndicator.setBounds(315, 225, 100, 20);
@@ -1495,6 +1735,9 @@ void PulpfictionAudioProcessorEditor::resized()
     flangerThreeRateIndicator.setBounds(515, 125, 100, 20);
     flangerThreeMixIndicator.setBounds(450, 240, 100, 20);
 
+    tremoloThreeDepthIndicator.setBounds(435, 125, 100, 20);
+    tremoloThreeRateIndicator.setBounds(515, 225, 100, 20);
+
     vibratoThreeDepthIndicator.setBounds(435, 125, 100, 20);
     vibratoThreeRateIndicator.setBounds(515, 225, 100, 20);
 
@@ -1509,6 +1752,9 @@ void PulpfictionAudioProcessorEditor::resized()
     flangerFourDepthIndicator.setBounds(635, 125, 100, 20);
     flangerFourRateIndicator.setBounds(715, 125, 100, 20);
     flangerFourMixIndicator.setBounds(650, 240, 100, 20);
+
+    tremoloFourDepthIndicator.setBounds(635, 125, 100, 20);
+    tremoloFourRateIndicator.setBounds(715, 225, 100, 20);
 
     vibratoFourDepthIndicator.setBounds(635, 125, 100, 20);
     vibratoFourRateIndicator.setBounds(715, 225, 100, 20);
@@ -1525,6 +1771,9 @@ void PulpfictionAudioProcessorEditor::resized()
     flangerOneRateLabel.setBounds(115, 175, 100, 20);
     flangerOneMixLabel.setBounds(50, 305, 100, 20);
 
+    tremoloOneDepthLabel.setBounds(35, 175, 100, 20);
+    tremoloOneRateLabel.setBounds(115, 275, 100, 20);
+
     vibratoOneDepthLabel.setBounds(35, 175, 100, 20);
     vibratoOneRateLabel.setBounds(115, 275, 100, 20);
 
@@ -1539,6 +1788,9 @@ void PulpfictionAudioProcessorEditor::resized()
     flangerTwoDepthLabel.setBounds(235, 175, 100, 20);
     flangerTwoRateLabel.setBounds(315, 175, 100, 20);
     flangerTwoMixLabel.setBounds(250, 305, 100, 20);
+
+    tremoloTwoDepthLabel.setBounds(235, 175, 100, 20);
+    tremoloTwoRateLabel.setBounds(315, 275, 100, 20);
 
     vibratoTwoDepthLabel.setBounds(235, 175, 100, 20);
     vibratoTwoRateLabel.setBounds(315, 275, 100, 20);
@@ -1555,6 +1807,9 @@ void PulpfictionAudioProcessorEditor::resized()
     flangerThreeRateLabel.setBounds(515, 175, 100, 20);
     flangerThreeMixLabel.setBounds(450, 305, 100, 20);
 
+    tremoloThreeDepthLabel.setBounds(435, 175, 100, 20);
+    tremoloThreeRateLabel.setBounds(515, 275, 100, 20);
+
     vibratoThreeDepthLabel.setBounds(435, 175, 100, 20);
     vibratoThreeRateLabel.setBounds(515, 275, 100, 20);
 
@@ -1569,6 +1824,9 @@ void PulpfictionAudioProcessorEditor::resized()
     flangerFourDepthLabel.setBounds(635, 175, 100, 20);
     flangerFourRateLabel.setBounds(715, 175, 100, 20);
     flangerFourMixLabel.setBounds(650, 305, 100, 20);
+
+    tremoloFourDepthLabel.setBounds(635, 175, 100, 20);
+    tremoloFourRateLabel.setBounds(715, 275, 100, 20);
 
     vibratoFourDepthLabel.setBounds(635, 175, 100, 20);
     vibratoFourRateLabel.setBounds(715, 275, 100, 20);
@@ -1592,6 +1850,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthSlider.setVisible(false);
             flangerOneRateSlider.setEnabled(false);
             flangerOneRateSlider.setVisible(false);
+
+            tremoloOneDepthSlider.setEnabled(false);
+            tremoloOneDepthSlider.setVisible(false);
+            tremoloOneRateSlider.setEnabled(false);
+            tremoloOneRateSlider.setVisible(false);
 
             vibratoOneDepthSlider.setEnabled(false);
             vibratoOneDepthSlider.setVisible(false);
@@ -1617,6 +1880,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneRateIndicator.setVisible(false);
             flangerOneMixIndicator.setVisible(false);
 
+            tremoloOneDepthIndicator.setVisible(false);
+            tremoloOneRateIndicator.setVisible(false);
+
             vibratoOneDepthIndicator.setVisible(false);
             vibratoOneRateIndicator.setVisible(false);
 
@@ -1631,6 +1897,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthLabel.setVisible(false);
             flangerOneRateLabel.setVisible(false);
             flangerOneMixLabel.setVisible(false);
+
+            tremoloOneDepthLabel.setVisible(false);
+            tremoloOneRateLabel.setVisible(false);
 
             vibratoOneDepthLabel.setVisible(false);
             vibratoOneRateLabel.setVisible(false);
@@ -1652,6 +1921,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthSlider.setVisible(false);
             flangerOneRateSlider.setEnabled(false);
             flangerOneRateSlider.setVisible(false);
+
+            tremoloOneDepthSlider.setEnabled(false);
+            tremoloOneDepthSlider.setVisible(false);
+            tremoloOneRateSlider.setEnabled(false);
+            tremoloOneRateSlider.setVisible(false);
 
             vibratoOneDepthSlider.setEnabled(false);
             vibratoOneDepthSlider.setVisible(false);
@@ -1677,6 +1951,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneRateIndicator.setVisible(false);
             flangerOneMixIndicator.setVisible(false);
 
+            tremoloOneDepthIndicator.setVisible(false);
+            tremoloOneRateIndicator.setVisible(false);
+
             vibratoOneDepthIndicator.setVisible(false);
             vibratoOneRateIndicator.setVisible(false);
 
@@ -1691,6 +1968,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthLabel.setVisible(false);
             flangerOneRateLabel.setVisible(false);
             flangerOneMixLabel.setVisible(false);
+
+            tremoloOneDepthLabel.setVisible(false);
+            tremoloOneRateLabel.setVisible(false);
 
             vibratoOneDepthLabel.setVisible(false);
             vibratoOneRateLabel.setVisible(false);
@@ -1712,6 +1992,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthSlider.setVisible(false);
             flangerOneRateSlider.setEnabled(false);
             flangerOneRateSlider.setVisible(false);
+
+            tremoloOneDepthSlider.setEnabled(false);
+            tremoloOneDepthSlider.setVisible(false);
+            tremoloOneRateSlider.setEnabled(false);
+            tremoloOneRateSlider.setVisible(false);
 
             vibratoOneDepthSlider.setEnabled(false);
             vibratoOneDepthSlider.setVisible(false);
@@ -1737,6 +2022,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneRateIndicator.setVisible(false);
             flangerOneMixIndicator.setVisible(false);
 
+            tremoloOneDepthIndicator.setVisible(false);
+            tremoloOneRateIndicator.setVisible(false);
+
             vibratoOneDepthIndicator.setVisible(false);
             vibratoOneRateIndicator.setVisible(false);
 
@@ -1751,6 +2039,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthLabel.setVisible(false);
             flangerOneRateLabel.setVisible(false);
             flangerOneMixLabel.setVisible(false);
+
+            tremoloOneDepthLabel.setVisible(false);
+            tremoloOneRateLabel.setVisible(false);
 
             vibratoOneDepthLabel.setVisible(false);
             vibratoOneRateLabel.setVisible(false);
@@ -1772,6 +2063,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthSlider.setVisible(true);
             flangerOneRateSlider.setEnabled(true);
             flangerOneRateSlider.setVisible(true);
+
+            tremoloOneDepthSlider.setEnabled(false);
+            tremoloOneDepthSlider.setVisible(false);
+            tremoloOneRateSlider.setEnabled(false);
+            tremoloOneRateSlider.setVisible(false);
 
             vibratoOneDepthSlider.setEnabled(false);
             vibratoOneDepthSlider.setVisible(false);
@@ -1797,6 +2093,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneRateIndicator.setVisible(true);
             flangerOneMixIndicator.setVisible(true);
 
+            tremoloOneDepthIndicator.setVisible(false);
+            tremoloOneRateIndicator.setVisible(false);
+
             vibratoOneDepthIndicator.setVisible(false);
             vibratoOneRateIndicator.setVisible(false);
 
@@ -1811,6 +2110,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthLabel.setVisible(true);
             flangerOneRateLabel.setVisible(true);
             flangerOneMixLabel.setVisible(true);
+
+            tremoloOneDepthLabel.setVisible(false);
+            tremoloOneRateLabel.setVisible(false);
 
             vibratoOneDepthLabel.setVisible(false);
             vibratoOneRateLabel.setVisible(false);
@@ -1832,6 +2134,82 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthSlider.setVisible(false);
             flangerOneRateSlider.setEnabled(false);
             flangerOneRateSlider.setVisible(false);
+
+            tremoloOneDepthSlider.setEnabled(true);
+            tremoloOneDepthSlider.setVisible(true);
+            tremoloOneRateSlider.setEnabled(true);
+            tremoloOneRateSlider.setVisible(true);
+
+            vibratoOneDepthSlider.setEnabled(false);
+            vibratoOneDepthSlider.setVisible(false);
+            vibratoOneRateSlider.setEnabled(false);
+            vibratoOneRateSlider.setVisible(false);
+
+            chorusOneMixSlider.setEnabled(false);
+            chorusOneMixSlider.setVisible(false);
+            delayOneMixSlider.setEnabled(false);
+            delayOneMixSlider.setVisible(false);
+            flangerOneMixSlider.setEnabled(false);
+            flangerOneMixSlider.setVisible(false);
+
+            chorusOneDepthIndicator.setVisible(false);
+            chorusOneVoicesIndicator.setVisible(false);
+            chorusOneMixIndicator.setVisible(false);
+
+            delayOneTimeIndicator.setVisible(false);
+            delayOneFeedbackIndicator.setVisible(false);
+            delayOneMixIndicator.setVisible(false);
+
+            flangerOneDepthIndicator.setVisible(false);
+            flangerOneRateIndicator.setVisible(false);
+            flangerOneMixIndicator.setVisible(false);
+
+            tremoloOneDepthIndicator.setVisible(true);
+            tremoloOneRateIndicator.setVisible(true);
+
+            vibratoOneDepthIndicator.setVisible(false);
+            vibratoOneRateIndicator.setVisible(false);
+
+            chorusOneDepthLabel.setVisible(false);
+            chorusOneVoicesLabel.setVisible(false);
+            chorusOneMixLabel.setVisible(false);
+
+            delayOneTimeLabel.setVisible(false);
+            delayOneFeedbackLabel.setVisible(false);
+            delayOneMixLabel.setVisible(false);
+
+            flangerOneDepthLabel.setVisible(false);
+            flangerOneRateLabel.setVisible(false);
+            flangerOneMixLabel.setVisible(false);
+
+            tremoloOneDepthLabel.setVisible(true);
+            tremoloOneRateLabel.setVisible(true);
+
+            vibratoOneDepthLabel.setVisible(false);
+            vibratoOneRateLabel.setVisible(false);
+
+            break;
+
+        case 6:
+            chorusOneDepthSlider.setEnabled(false);
+            chorusOneDepthSlider.setVisible(false);
+            chorusOneVoicesSlider.setEnabled(false);
+            chorusOneVoicesSlider.setVisible(false);
+
+            delayOneTimeSlider.setEnabled(false);
+            delayOneTimeSlider.setVisible(false);
+            delayOneFeedbackSlider.setEnabled(false);
+            delayOneFeedbackSlider.setVisible(false);
+
+            flangerOneDepthSlider.setEnabled(false);
+            flangerOneDepthSlider.setVisible(false);
+            flangerOneRateSlider.setEnabled(false);
+            flangerOneRateSlider.setVisible(false);
+
+            tremoloOneDepthSlider.setEnabled(false);
+            tremoloOneDepthSlider.setVisible(false);
+            tremoloOneRateSlider.setEnabled(false);
+            tremoloOneRateSlider.setVisible(false);
 
             vibratoOneDepthSlider.setEnabled(true);
             vibratoOneDepthSlider.setVisible(true);
@@ -1857,6 +2235,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneRateIndicator.setVisible(false);
             flangerOneMixIndicator.setVisible(false);
 
+            vibratoOneDepthIndicator.setVisible(false);
+            vibratoOneRateIndicator.setVisible(false);
+
             vibratoOneDepthIndicator.setVisible(true);
             vibratoOneRateIndicator.setVisible(true);
 
@@ -1871,6 +2252,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerOneDepthLabel.setVisible(false);
             flangerOneRateLabel.setVisible(false);
             flangerOneMixLabel.setVisible(false);
+
+            vibratoOneDepthLabel.setVisible(false);
+            vibratoOneRateLabel.setVisible(false);
 
             vibratoOneDepthLabel.setVisible(true);
             vibratoOneRateLabel.setVisible(true);
@@ -1899,6 +2283,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoRateSlider.setEnabled(false);
             flangerTwoRateSlider.setVisible(false);
 
+            tremoloTwoDepthSlider.setEnabled(false);
+            tremoloTwoDepthSlider.setVisible(false);
+            tremoloTwoRateSlider.setEnabled(false);
+            tremoloTwoRateSlider.setVisible(false);
+
             vibratoTwoDepthSlider.setEnabled(false);
             vibratoTwoDepthSlider.setVisible(false);
             vibratoTwoRateSlider.setEnabled(false);
@@ -1923,6 +2312,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoRateIndicator.setVisible(false);
             flangerTwoMixIndicator.setVisible(false);
 
+            tremoloTwoDepthIndicator.setVisible(false);
+            tremoloTwoRateIndicator.setVisible(false);
+
             vibratoTwoDepthIndicator.setVisible(false);
             vibratoTwoRateIndicator.setVisible(false);
 
@@ -1937,6 +2329,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoDepthLabel.setVisible(false);
             flangerTwoRateLabel.setVisible(false);
             flangerTwoMixLabel.setVisible(false);
+
+            tremoloTwoDepthLabel.setVisible(false);
+            tremoloTwoRateLabel.setVisible(false);
 
             vibratoTwoDepthLabel.setVisible(false);
             vibratoTwoRateLabel.setVisible(false);
@@ -1958,6 +2353,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoDepthSlider.setVisible(false);
             flangerTwoRateSlider.setEnabled(false);
             flangerTwoRateSlider.setVisible(false);
+
+            tremoloTwoDepthSlider.setEnabled(false);
+            tremoloTwoDepthSlider.setVisible(false);
+            tremoloTwoRateSlider.setEnabled(false);
+            tremoloTwoRateSlider.setVisible(false);
 
             vibratoTwoDepthSlider.setEnabled(false);
             vibratoTwoDepthSlider.setVisible(false);
@@ -1983,6 +2383,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoRateIndicator.setVisible(false);
             flangerTwoMixIndicator.setVisible(false);
 
+            tremoloTwoDepthIndicator.setVisible(false);
+            tremoloTwoRateIndicator.setVisible(false);
+
             vibratoTwoDepthIndicator.setVisible(false);
             vibratoTwoRateIndicator.setVisible(false);
 
@@ -1997,6 +2400,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoDepthLabel.setVisible(false);
             flangerTwoRateLabel.setVisible(false);
             flangerTwoMixLabel.setVisible(false);
+
+            tremoloTwoDepthLabel.setVisible(false);
+            tremoloTwoRateLabel.setVisible(false);
 
             vibratoTwoDepthLabel.setVisible(false);
             vibratoTwoRateLabel.setVisible(false);
@@ -2018,6 +2424,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoDepthSlider.setVisible(false);
             flangerTwoRateSlider.setEnabled(false);
             flangerTwoRateSlider.setVisible(false);
+
+            tremoloTwoDepthSlider.setEnabled(false);
+            tremoloTwoDepthSlider.setVisible(false);
+            tremoloTwoRateSlider.setEnabled(false);
+            tremoloTwoRateSlider.setVisible(false);
 
             vibratoTwoDepthSlider.setEnabled(false);
             vibratoTwoDepthSlider.setVisible(false);
@@ -2043,6 +2454,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoRateIndicator.setVisible(false);
             flangerTwoMixIndicator.setVisible(false);
 
+            tremoloTwoDepthIndicator.setVisible(false);
+            tremoloTwoRateIndicator.setVisible(false);
+
             vibratoTwoDepthIndicator.setVisible(false);
             vibratoTwoRateIndicator.setVisible(false);
 
@@ -2057,6 +2471,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoDepthLabel.setVisible(false);
             flangerTwoRateLabel.setVisible(false);
             flangerTwoMixLabel.setVisible(false);
+
+            tremoloTwoDepthLabel.setVisible(false);
+            tremoloTwoRateLabel.setVisible(false);
 
             vibratoTwoDepthLabel.setVisible(false);
             vibratoTwoRateLabel.setVisible(false);
@@ -2078,6 +2495,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoDepthSlider.setVisible(true);
             flangerTwoRateSlider.setEnabled(true);
             flangerTwoRateSlider.setVisible(true);
+
+            tremoloTwoDepthSlider.setEnabled(false);
+            tremoloTwoDepthSlider.setVisible(false);
+            tremoloTwoRateSlider.setEnabled(false);
+            tremoloTwoRateSlider.setVisible(false);
 
             vibratoTwoDepthSlider.setEnabled(false);
             vibratoTwoDepthSlider.setVisible(false);
@@ -2103,6 +2525,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoRateIndicator.setVisible(true);
             flangerTwoMixIndicator.setVisible(true);
 
+            tremoloTwoDepthIndicator.setVisible(false);
+            tremoloTwoRateIndicator.setVisible(false);
+
             vibratoTwoDepthIndicator.setVisible(false);
             vibratoTwoRateIndicator.setVisible(false);
 
@@ -2118,12 +2543,86 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoRateLabel.setVisible(true);
             flangerTwoMixLabel.setVisible(true);
 
+            tremoloTwoDepthLabel.setVisible(false);
+            tremoloTwoRateLabel.setVisible(false);
+
             vibratoTwoDepthLabel.setVisible(false);
             vibratoTwoRateLabel.setVisible(false);
 
             break;
 
         case 5:
+            chorusTwoDepthSlider.setVisible(false);
+            chorusTwoDepthSlider.setEnabled(false);
+            chorusTwoVoicesSlider.setEnabled(false);
+            chorusTwoVoicesSlider.setVisible(false);
+
+            delayTwoTimeSlider.setEnabled(false);
+            delayTwoTimeSlider.setVisible(false);
+            delayTwoFeedbackSlider.setEnabled(false);
+            delayTwoFeedbackSlider.setVisible(false);
+
+            flangerTwoDepthSlider.setEnabled(false);
+            flangerTwoDepthSlider.setVisible(false);
+            flangerTwoRateSlider.setEnabled(false);
+            flangerTwoRateSlider.setVisible(false);
+
+            tremoloTwoDepthSlider.setEnabled(true);
+            tremoloTwoDepthSlider.setVisible(true);
+            tremoloTwoRateSlider.setEnabled(true);
+            tremoloTwoRateSlider.setVisible(true);
+
+            vibratoTwoDepthSlider.setEnabled(false);
+            vibratoTwoDepthSlider.setVisible(false);
+            vibratoTwoRateSlider.setEnabled(false);
+            vibratoTwoRateSlider.setVisible(false);
+
+            chorusTwoMixSlider.setEnabled(false);
+            chorusTwoMixSlider.setVisible(false);
+            delayTwoMixSlider.setEnabled(false);
+            delayTwoMixSlider.setVisible(false);
+            flangerTwoMixSlider.setEnabled(false);
+            flangerTwoMixSlider.setVisible(false);
+
+            chorusTwoDepthIndicator.setVisible(false);
+            chorusTwoVoicesIndicator.setVisible(false);
+            chorusTwoMixIndicator.setVisible(false);
+
+            delayTwoTimeIndicator.setVisible(false);
+            delayTwoFeedbackIndicator.setVisible(false);
+            delayTwoMixIndicator.setVisible(false);
+
+            flangerTwoDepthIndicator.setVisible(false);
+            flangerTwoRateIndicator.setVisible(false);
+            flangerTwoMixIndicator.setVisible(false);
+
+            tremoloTwoDepthIndicator.setVisible(true);
+            tremoloTwoRateIndicator.setVisible(true);
+
+            vibratoTwoDepthIndicator.setVisible(false);
+            vibratoTwoRateIndicator.setVisible(false);
+
+            chorusTwoDepthLabel.setVisible(false);
+            chorusTwoVoicesLabel.setVisible(false);
+            chorusTwoMixLabel.setVisible(false);
+
+            delayTwoTimeLabel.setVisible(false);
+            delayTwoFeedbackLabel.setVisible(false);
+            delayTwoMixLabel.setVisible(false);
+
+            flangerTwoDepthLabel.setVisible(false);
+            flangerTwoRateLabel.setVisible(false);
+            flangerTwoMixLabel.setVisible(false);
+
+            tremoloTwoDepthLabel.setVisible(true);
+            tremoloTwoRateLabel.setVisible(true);
+
+            vibratoTwoDepthLabel.setVisible(false);
+            vibratoTwoRateLabel.setVisible(false);
+
+            break;
+
+        case 6:
             chorusTwoDepthSlider.setEnabled(false);
             chorusTwoDepthSlider.setVisible(false);
             chorusTwoVoicesSlider.setEnabled(false);
@@ -2138,6 +2637,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoDepthSlider.setVisible(false);
             flangerTwoRateSlider.setEnabled(false);
             flangerTwoRateSlider.setVisible(false);
+
+            tremoloTwoDepthSlider.setEnabled(false);
+            tremoloTwoDepthSlider.setVisible(false);
+            tremoloTwoRateSlider.setEnabled(false);
+            tremoloTwoRateSlider.setVisible(false);
 
             vibratoTwoDepthSlider.setEnabled(true);
             vibratoTwoDepthSlider.setVisible(true);
@@ -2163,6 +2667,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoRateIndicator.setVisible(false);
             flangerTwoMixIndicator.setVisible(false);
 
+            tremoloTwoDepthIndicator.setVisible(false);
+            tremoloTwoRateIndicator.setVisible(false);
+
             vibratoTwoDepthIndicator.setVisible(true);
             vibratoTwoRateIndicator.setVisible(true);
 
@@ -2177,6 +2684,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerTwoDepthLabel.setVisible(false);
             flangerTwoRateLabel.setVisible(false);
             flangerTwoMixLabel.setVisible(false);
+
+            tremoloTwoDepthLabel.setVisible(false);
+            tremoloTwoRateLabel.setVisible(false);
 
             vibratoTwoDepthLabel.setVisible(true);
             vibratoTwoRateLabel.setVisible(true);
@@ -2205,6 +2715,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeRateSlider.setEnabled(false);
             flangerThreeRateSlider.setVisible(false);
 
+            tremoloThreeDepthSlider.setEnabled(false);
+            tremoloThreeDepthSlider.setVisible(false);
+            tremoloThreeRateSlider.setEnabled(false);
+            tremoloThreeRateSlider.setVisible(false);
+
             vibratoThreeDepthSlider.setEnabled(false);
             vibratoThreeDepthSlider.setVisible(false);
             vibratoThreeRateSlider.setEnabled(false);
@@ -2229,6 +2744,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeRateIndicator.setVisible(false);
             flangerThreeMixIndicator.setVisible(false);
 
+            tremoloThreeDepthIndicator.setVisible(false);
+            tremoloThreeRateIndicator.setVisible(false);
+
             vibratoThreeDepthIndicator.setVisible(false);
             vibratoThreeRateIndicator.setVisible(false);
 
@@ -2243,6 +2761,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeDepthLabel.setVisible(false);
             flangerThreeRateLabel.setVisible(false);
             flangerThreeMixLabel.setVisible(false);
+
+            tremoloThreeDepthLabel.setVisible(false);
+            tremoloThreeRateLabel.setVisible(false);
 
             vibratoThreeDepthLabel.setVisible(false);
             vibratoThreeRateLabel.setVisible(false);
@@ -2264,6 +2785,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeDepthSlider.setVisible(false);
             flangerThreeRateSlider.setEnabled(false);
             flangerThreeRateSlider.setVisible(false);
+
+            tremoloThreeDepthSlider.setEnabled(false);
+            tremoloThreeDepthSlider.setVisible(false);
+            tremoloThreeRateSlider.setEnabled(false);
+            tremoloThreeRateSlider.setVisible(false);
 
             vibratoThreeDepthSlider.setEnabled(false);
             vibratoThreeDepthSlider.setVisible(false);
@@ -2289,6 +2815,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeRateIndicator.setVisible(false);
             flangerThreeMixIndicator.setVisible(false);
 
+            tremoloThreeDepthIndicator.setVisible(false);
+            tremoloThreeRateIndicator.setVisible(false);
+
             vibratoThreeDepthIndicator.setVisible(false);
             vibratoThreeRateIndicator.setVisible(false);
 
@@ -2303,6 +2832,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeDepthLabel.setVisible(false);
             flangerThreeRateLabel.setVisible(false);
             flangerThreeMixLabel.setVisible(false);
+
+            tremoloThreeDepthLabel.setVisible(false);
+            tremoloThreeRateLabel.setVisible(false);
 
             vibratoThreeDepthLabel.setVisible(false);
             vibratoThreeRateLabel.setVisible(false);
@@ -2324,6 +2856,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeDepthSlider.setVisible(false);
             flangerThreeRateSlider.setEnabled(false);
             flangerThreeRateSlider.setVisible(false);
+
+            tremoloThreeDepthSlider.setEnabled(false);
+            tremoloThreeDepthSlider.setVisible(false);
+            tremoloThreeRateSlider.setEnabled(false);
+            tremoloThreeRateSlider.setVisible(false);
 
             vibratoThreeDepthSlider.setEnabled(false);
             vibratoThreeDepthSlider.setVisible(false);
@@ -2349,6 +2886,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeRateIndicator.setVisible(false);
             flangerThreeMixIndicator.setVisible(false);
 
+            tremoloThreeDepthIndicator.setVisible(false);
+            tremoloThreeRateIndicator.setVisible(false);
+
             vibratoThreeDepthIndicator.setVisible(false);
             vibratoThreeRateIndicator.setVisible(false);
 
@@ -2363,6 +2903,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeDepthLabel.setVisible(false);
             flangerThreeRateLabel.setVisible(false);
             flangerThreeMixLabel.setVisible(false);
+
+            tremoloThreeDepthLabel.setVisible(false);
+            tremoloThreeRateLabel.setVisible(false);
 
             vibratoThreeDepthLabel.setVisible(false);
             vibratoThreeRateLabel.setVisible(false);
@@ -2384,6 +2927,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeDepthSlider.setVisible(true);
             flangerThreeRateSlider.setEnabled(true);
             flangerThreeRateSlider.setVisible(true);
+
+            tremoloThreeDepthSlider.setEnabled(false);
+            tremoloThreeDepthSlider.setVisible(false);
+            tremoloThreeRateSlider.setEnabled(false);
+            tremoloThreeRateSlider.setVisible(false);
 
             vibratoThreeDepthSlider.setEnabled(false);
             vibratoThreeDepthSlider.setVisible(false);
@@ -2409,6 +2957,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeRateIndicator.setVisible(true);
             flangerThreeMixIndicator.setVisible(true);
 
+            tremoloThreeDepthIndicator.setVisible(false);
+            tremoloThreeRateIndicator.setVisible(false);
+
             vibratoThreeDepthIndicator.setVisible(false);
             vibratoThreeRateIndicator.setVisible(false);
 
@@ -2423,6 +2974,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeDepthLabel.setVisible(true);
             flangerThreeRateLabel.setVisible(true);
             flangerThreeMixLabel.setVisible(true);
+
+            tremoloThreeDepthLabel.setVisible(false);
+            tremoloThreeRateLabel.setVisible(false);
 
             vibratoThreeDepthLabel.setVisible(false);
             vibratoThreeRateLabel.setVisible(false);
@@ -2444,6 +2998,82 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeDepthSlider.setVisible(false);
             flangerThreeRateSlider.setEnabled(false);
             flangerThreeRateSlider.setVisible(false);
+
+            tremoloThreeDepthSlider.setEnabled(true);
+            tremoloThreeDepthSlider.setVisible(true);
+            tremoloThreeRateSlider.setEnabled(true);
+            tremoloThreeRateSlider.setVisible(true);
+
+            vibratoThreeDepthSlider.setEnabled(false);
+            vibratoThreeDepthSlider.setVisible(false);
+            vibratoThreeRateSlider.setEnabled(false);
+            vibratoThreeRateSlider.setVisible(false);
+
+            chorusThreeMixSlider.setEnabled(false);
+            chorusThreeMixSlider.setVisible(false);
+            delayThreeMixSlider.setEnabled(false);
+            delayThreeMixSlider.setVisible(false);
+            flangerThreeMixSlider.setEnabled(false);
+            flangerThreeMixSlider.setVisible(false);
+
+            chorusThreeDepthIndicator.setVisible(false);
+            chorusThreeVoicesIndicator.setVisible(false);
+            chorusThreeMixIndicator.setVisible(false);
+
+            delayThreeTimeIndicator.setVisible(false);
+            delayThreeFeedbackIndicator.setVisible(false);
+            delayThreeMixIndicator.setVisible(false);
+
+            flangerThreeDepthIndicator.setVisible(false);
+            flangerThreeRateIndicator.setVisible(false);
+            flangerThreeMixIndicator.setVisible(false);
+
+            tremoloThreeDepthIndicator.setVisible(true);
+            tremoloThreeRateIndicator.setVisible(true);
+
+            vibratoThreeDepthIndicator.setVisible(false);
+            vibratoThreeRateIndicator.setVisible(false);
+
+            chorusThreeDepthLabel.setVisible(false);
+            chorusThreeVoicesLabel.setVisible(false);
+            chorusThreeMixLabel.setVisible(false);
+
+            delayThreeTimeLabel.setVisible(false);
+            delayThreeFeedbackLabel.setVisible(false);
+            delayThreeMixLabel.setVisible(false);
+
+            flangerThreeDepthLabel.setVisible(false);
+            flangerThreeRateLabel.setVisible(false);
+            flangerThreeMixLabel.setVisible(false);
+
+            tremoloThreeDepthLabel.setVisible(true);
+            tremoloThreeRateLabel.setVisible(true);
+
+            vibratoThreeDepthLabel.setVisible(false);
+            vibratoThreeRateLabel.setVisible(false);
+
+            break;
+
+        case 6:
+            chorusThreeDepthSlider.setEnabled(false);
+            chorusThreeDepthSlider.setVisible(false);
+            chorusThreeVoicesSlider.setEnabled(false);
+            chorusThreeVoicesSlider.setVisible(false);
+
+            delayThreeTimeSlider.setEnabled(false);
+            delayThreeTimeSlider.setVisible(false);
+            delayThreeFeedbackSlider.setEnabled(false);
+            delayThreeFeedbackSlider.setVisible(false);
+
+            flangerThreeDepthSlider.setEnabled(false);
+            flangerThreeDepthSlider.setVisible(false);
+            flangerThreeRateSlider.setEnabled(false);
+            flangerThreeRateSlider.setVisible(false);
+
+            tremoloThreeDepthSlider.setEnabled(false);
+            tremoloThreeDepthSlider.setVisible(false);
+            tremoloThreeRateSlider.setEnabled(false);
+            tremoloThreeRateSlider.setVisible(false);
 
             vibratoThreeDepthSlider.setEnabled(true);
             vibratoThreeDepthSlider.setVisible(true);
@@ -2469,6 +3099,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeRateIndicator.setVisible(false);
             flangerThreeMixIndicator.setVisible(false);
 
+            tremoloThreeDepthIndicator.setVisible(false);
+            tremoloThreeRateIndicator.setVisible(false);
+
             vibratoThreeDepthIndicator.setVisible(true);
             vibratoThreeRateIndicator.setVisible(true);
 
@@ -2483,6 +3116,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerThreeDepthLabel.setVisible(false);
             flangerThreeRateLabel.setVisible(false);
             flangerThreeMixLabel.setVisible(false);
+
+            tremoloThreeDepthLabel.setVisible(false);
+            tremoloThreeRateLabel.setVisible(false);
 
             vibratoThreeDepthLabel.setVisible(true);
             vibratoThreeRateLabel.setVisible(true);
@@ -2511,6 +3147,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourRateSlider.setEnabled(false);
             flangerFourRateSlider.setVisible(false);
 
+            tremoloFourDepthSlider.setEnabled(false);
+            tremoloFourDepthSlider.setVisible(false);
+            tremoloFourRateSlider.setEnabled(false);
+            tremoloFourRateSlider.setVisible(false);
+
             vibratoFourDepthSlider.setEnabled(false);
             vibratoFourDepthSlider.setVisible(false);
             vibratoFourRateSlider.setEnabled(false);
@@ -2535,6 +3176,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourRateIndicator.setVisible(false);
             flangerFourMixIndicator.setVisible(false);
 
+            tremoloFourDepthIndicator.setVisible(false);
+            tremoloFourRateIndicator.setVisible(false);
+
             vibratoFourDepthIndicator.setVisible(false);
             vibratoFourRateIndicator.setVisible(false);
 
@@ -2549,6 +3193,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourDepthLabel.setVisible(false);
             flangerFourRateLabel.setVisible(false);
             flangerFourMixLabel.setVisible(false);
+
+            tremoloFourDepthLabel.setVisible(false);
+            tremoloFourRateLabel.setVisible(false);
 
             vibratoFourDepthLabel.setVisible(false);
             vibratoFourRateLabel.setVisible(false);
@@ -2570,6 +3217,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourDepthSlider.setVisible(false);
             flangerFourRateSlider.setEnabled(false);
             flangerFourRateSlider.setVisible(false);
+
+            tremoloFourDepthSlider.setEnabled(false);
+            tremoloFourDepthSlider.setVisible(false);
+            tremoloFourRateSlider.setEnabled(false);
+            tremoloFourRateSlider.setVisible(false);
 
             vibratoFourDepthSlider.setEnabled(false);
             vibratoFourDepthSlider.setVisible(false);
@@ -2595,6 +3247,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourRateIndicator.setVisible(false);
             flangerFourMixIndicator.setVisible(false);
 
+            tremoloFourDepthIndicator.setVisible(false);
+            tremoloFourRateIndicator.setVisible(false);
+
             vibratoFourDepthIndicator.setVisible(false);
             vibratoFourRateIndicator.setVisible(false);
 
@@ -2609,6 +3264,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourDepthLabel.setVisible(false);
             flangerFourRateLabel.setVisible(false);
             flangerFourMixLabel.setVisible(false);
+
+            tremoloFourDepthLabel.setVisible(false);
+            tremoloFourRateLabel.setVisible(false);
 
             vibratoFourDepthLabel.setVisible(false);
             vibratoFourRateLabel.setVisible(false);
@@ -2630,6 +3288,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourDepthSlider.setVisible(false);
             flangerFourRateSlider.setEnabled(false);
             flangerFourRateSlider.setVisible(false);
+
+            tremoloFourDepthSlider.setEnabled(false);
+            tremoloFourDepthSlider.setVisible(false);
+            tremoloFourRateSlider.setEnabled(false);
+            tremoloFourRateSlider.setVisible(false);
 
             vibratoFourDepthSlider.setEnabled(false);
             vibratoFourDepthSlider.setVisible(false);
@@ -2655,6 +3318,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourRateIndicator.setVisible(false);
             flangerFourMixIndicator.setVisible(false);
 
+            tremoloFourDepthIndicator.setVisible(false);
+            tremoloFourRateIndicator.setVisible(false);
+
             vibratoFourDepthIndicator.setVisible(false);
             vibratoFourRateIndicator.setVisible(false);
 
@@ -2669,6 +3335,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourDepthLabel.setVisible(false);
             flangerFourRateLabel.setVisible(false);
             flangerFourMixLabel.setVisible(false);
+
+            tremoloFourDepthLabel.setVisible(false);
+            tremoloFourRateLabel.setVisible(false);
 
             vibratoFourDepthLabel.setVisible(false);
             vibratoFourRateLabel.setVisible(false);
@@ -2690,6 +3359,11 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourDepthSlider.setVisible(true);
             flangerFourRateSlider.setEnabled(true);
             flangerFourRateSlider.setVisible(true);
+
+            tremoloFourDepthSlider.setEnabled(false);
+            tremoloFourDepthSlider.setVisible(false);
+            tremoloFourRateSlider.setEnabled(false);
+            tremoloFourRateSlider.setVisible(false);
 
             vibratoFourDepthSlider.setEnabled(false);
             vibratoFourDepthSlider.setVisible(false);
@@ -2715,6 +3389,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourRateIndicator.setVisible(true);
             flangerFourMixIndicator.setVisible(true);
 
+            tremoloFourDepthIndicator.setVisible(false);
+            tremoloFourRateIndicator.setVisible(false);
+
             vibratoFourDepthIndicator.setVisible(false);
             vibratoFourRateIndicator.setVisible(false);
 
@@ -2729,6 +3406,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourDepthLabel.setVisible(true);
             flangerFourRateLabel.setVisible(true);
             flangerFourMixLabel.setVisible(true);
+
+            tremoloFourDepthLabel.setVisible(false);
+            tremoloFourRateLabel.setVisible(false);
 
             vibratoFourDepthLabel.setVisible(false);
             vibratoFourRateLabel.setVisible(false);
@@ -2750,6 +3430,82 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourDepthSlider.setVisible(false);
             flangerFourRateSlider.setEnabled(false);
             flangerFourRateSlider.setVisible(false);
+
+            tremoloFourDepthSlider.setEnabled(true);
+            tremoloFourDepthSlider.setVisible(true);
+            tremoloFourRateSlider.setEnabled(true);
+            tremoloFourRateSlider.setVisible(true);
+
+            vibratoFourDepthSlider.setEnabled(false);
+            vibratoFourDepthSlider.setVisible(false);
+            vibratoFourRateSlider.setEnabled(false);
+            vibratoFourRateSlider.setVisible(false);
+
+            chorusFourMixSlider.setEnabled(false);
+            chorusFourMixSlider.setVisible(false);
+            delayFourMixSlider.setEnabled(false);
+            delayFourMixSlider.setVisible(false);
+            flangerFourMixSlider.setEnabled(false);
+            flangerFourMixSlider.setVisible(false);
+
+            chorusFourDepthIndicator.setVisible(false);
+            chorusFourVoicesIndicator.setVisible(false);
+            chorusFourMixIndicator.setVisible(false);
+
+            delayFourTimeIndicator.setVisible(false);
+            delayFourFeedbackIndicator.setVisible(false);
+            delayFourMixIndicator.setVisible(false);
+
+            flangerFourDepthIndicator.setVisible(false);
+            flangerFourRateIndicator.setVisible(false);
+            flangerFourMixIndicator.setVisible(false);
+
+            tremoloFourDepthIndicator.setVisible(true);
+            tremoloFourRateIndicator.setVisible(true);
+
+            vibratoFourDepthIndicator.setVisible(false);
+            vibratoFourRateIndicator.setVisible(false);
+
+            chorusFourDepthLabel.setVisible(false);
+            chorusFourVoicesLabel.setVisible(false);
+            chorusFourMixLabel.setVisible(false);
+
+            delayFourTimeLabel.setVisible(false);
+            delayFourFeedbackLabel.setVisible(false);
+            delayFourMixLabel.setVisible(false);
+
+            flangerFourDepthLabel.setVisible(false);
+            flangerFourRateLabel.setVisible(false);
+            flangerFourMixLabel.setVisible(false);
+
+            tremoloFourDepthLabel.setVisible(true);
+            tremoloFourRateLabel.setVisible(true);
+
+            vibratoFourDepthLabel.setVisible(false);
+            vibratoFourRateLabel.setVisible(false);
+
+            break;
+
+        case 6:
+            chorusFourDepthSlider.setEnabled(false);
+            chorusFourDepthSlider.setVisible(false);
+            chorusFourVoicesSlider.setEnabled(false);
+            chorusFourVoicesSlider.setVisible(false);
+
+            delayFourTimeSlider.setEnabled(false);
+            delayFourTimeSlider.setVisible(false);
+            delayFourFeedbackSlider.setEnabled(false);
+            delayFourFeedbackSlider.setVisible(false);
+
+            flangerFourDepthSlider.setEnabled(false);
+            flangerFourDepthSlider.setVisible(false);
+            flangerFourRateSlider.setEnabled(false);
+            flangerFourRateSlider.setVisible(false);
+
+            tremoloFourDepthSlider.setEnabled(false);
+            tremoloFourDepthSlider.setVisible(false);
+            tremoloFourRateSlider.setEnabled(false);
+            tremoloFourRateSlider.setVisible(false);
 
             vibratoFourDepthSlider.setEnabled(true);
             vibratoFourDepthSlider.setVisible(true);
@@ -2775,6 +3531,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourRateIndicator.setVisible(false);
             flangerFourMixIndicator.setVisible(false);
 
+            tremoloFourDepthIndicator.setVisible(false);
+            tremoloFourRateIndicator.setVisible(false);
+
             vibratoFourDepthIndicator.setVisible(true);
             vibratoFourRateIndicator.setVisible(true);
 
@@ -2789,6 +3548,9 @@ void PulpfictionAudioProcessorEditor::comboBoxChanged(ComboBox* comboBox) {
             flangerFourDepthLabel.setVisible(false);
             flangerFourRateLabel.setVisible(false);
             flangerFourMixLabel.setVisible(false);
+
+            tremoloFourDepthLabel.setVisible(false);
+            tremoloFourRateLabel.setVisible(false);
 
             vibratoFourDepthLabel.setVisible(true);
             vibratoFourRateLabel.setVisible(true);
@@ -2863,12 +3625,20 @@ void PulpfictionAudioProcessorEditor::sliderValueChanged(Slider* slider) {
         flangerOneMixIndicator.setText(String(flangerOneMixSlider.getValue()) + " %", dontSendNotification);
     }
 
+    else if (slider == &tremoloOneDepthSlider) {
+        tremoloOneDepthIndicator.setText(String(tremoloOneDepthSlider.getValue()) + " %", dontSendNotification);
+    }
+    else if (slider == &tremoloOneRateSlider) {
+        tremoloOneRateIndicator.setText(String(tremoloOneRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+
     else if (slider == &vibratoOneDepthSlider) {
         vibratoOneDepthIndicator.setText(String(vibratoOneDepthSlider.getValue()) + " ms", dontSendNotification);
     }
     else if (slider == &vibratoOneRateSlider) {
         vibratoOneRateIndicator.setText(String(vibratoOneRateSlider.getValue()) + " Hz", dontSendNotification);
     }
+
 
     else if (slider == &chorusTwoDepthSlider) {
         chorusTwoDepthIndicator.setText(String(chorusTwoDepthSlider.getValue()) + " ms", dontSendNotification);
@@ -2930,138 +3700,11 @@ void PulpfictionAudioProcessorEditor::sliderValueChanged(Slider* slider) {
         flangerTwoMixIndicator.setText(String(flangerTwoMixSlider.getValue()) + " %", dontSendNotification);
     }
 
-    else if (slider == &vibratoTwoDepthSlider) {
-        vibratoTwoDepthIndicator.setText(String(vibratoTwoDepthSlider.getValue()) + " ms", dontSendNotification);
+    else if (slider == &tremoloTwoDepthSlider) {
+        tremoloTwoDepthIndicator.setText(String(tremoloTwoDepthSlider.getValue()) + " %", dontSendNotification);
     }
-    else if (slider == &vibratoTwoRateSlider) {
-        vibratoTwoRateIndicator.setText(String(vibratoTwoRateSlider.getValue()) + " Hz", dontSendNotification);
-    }
-
-    else if (slider == &chorusOneDepthSlider) {
-        chorusOneDepthIndicator.setText(String(chorusOneDepthSlider.getValue()) + " ms", dontSendNotification);
-    }
-    else if (slider == &chorusOneVoicesSlider) {
-        chorusOneVoicesIndicator.setText(String(chorusOneVoicesSlider.getValue()), dontSendNotification);
-    }
-    else if (slider == &chorusOneMixSlider) {
-        chorusOneMixIndicator.setText(String(chorusOneMixSlider.getValue()) + " %", dontSendNotification);
-    }
-
-    else if (slider == &delayOneTimeSlider) {
-        String timeinBars;
-
-        if (delayOneTimeSlider.getValue() == 0.0) {
-            timeinBars = "1/32";
-        }
-        else if (delayOneTimeSlider.getValue() == 12.5) {
-            timeinBars = "1/16";
-        }
-        else if (delayOneTimeSlider.getValue() == 25.0) {
-            timeinBars = "1/8";
-        }
-        else if (delayOneTimeSlider.getValue() == 37.5) {
-            timeinBars = "1/4";
-        }
-        else if (delayOneTimeSlider.getValue() == 50.0) {
-            timeinBars = "1/2";
-        }
-        else if (delayOneTimeSlider.getValue() == 62.5) {
-            timeinBars = "1";
-        }
-        else if (delayOneTimeSlider.getValue() == 75.0) {
-            timeinBars = "2";
-        }
-        else if (delayOneTimeSlider.getValue() == 87.5) {
-            timeinBars = "4";
-        }
-        else if (delayOneTimeSlider.getValue() == 100.0) {
-            timeinBars = "8";
-        }
-
-        delayOneTimeIndicator.setText(timeinBars, dontSendNotification);
-    }
-    else if (slider == &delayOneFeedbackSlider) {
-        delayOneFeedbackIndicator.setText(String(delayOneFeedbackSlider.getValue()) + " %", dontSendNotification);
-    }
-    else if (slider == &delayOneMixSlider) {
-        delayOneMixIndicator.setText(String(delayOneMixSlider.getValue()) + " %", dontSendNotification);
-    }
-
-    else if (slider == &flangerOneDepthSlider) {
-        flangerOneDepthIndicator.setText(String(flangerOneDepthSlider.getValue()) + " ms", dontSendNotification);
-    }
-    else if (slider == &flangerOneRateSlider) {
-        flangerOneRateIndicator.setText(String(flangerOneRateSlider.getValue()) + " Hz", dontSendNotification);
-    }
-    else if (slider == &flangerOneMixSlider) {
-        flangerOneMixIndicator.setText(String(flangerOneMixSlider.getValue()) + " %", dontSendNotification);
-    }
-
-    else if (slider == &vibratoOneDepthSlider) {
-        vibratoOneDepthIndicator.setText(String(vibratoOneDepthSlider.getValue()) + " ms", dontSendNotification);
-    }
-    else if (slider == &vibratoOneRateSlider) {
-        vibratoOneRateIndicator.setText(String(vibratoOneRateSlider.getValue()) + " Hz", dontSendNotification);
-    }
-
-    else if (slider == &chorusTwoDepthSlider) {
-        chorusTwoDepthIndicator.setText(String(chorusTwoDepthSlider.getValue()) + " ms", dontSendNotification);
-    }
-    else if (slider == &chorusTwoVoicesSlider) {
-        chorusTwoVoicesIndicator.setText(String(chorusTwoVoicesSlider.getValue()), dontSendNotification);
-    }
-    else if (slider == &chorusTwoMixSlider) {
-        chorusTwoMixIndicator.setText(String(chorusTwoMixSlider.getValue()) + " %", dontSendNotification);
-    }
-
-    else if (slider == &delayTwoTimeSlider) {
-        String timeinBars;
-
-        if (delayTwoTimeSlider.getValue() == 0.0) {
-            timeinBars = "1/32";
-        }
-        else if (delayTwoTimeSlider.getValue() == 12.5) {
-            timeinBars = "1/16";
-        }
-        else if (delayTwoTimeSlider.getValue() == 25.0) {
-            timeinBars = "1/8";
-        }
-        else if (delayTwoTimeSlider.getValue() == 37.5) {
-            timeinBars = "1/4";
-        }
-        else if (delayTwoTimeSlider.getValue() == 50.0) {
-            timeinBars = "1/2";
-        }
-        else if (delayTwoTimeSlider.getValue() == 62.5) {
-            timeinBars = "1";
-        }
-        else if (delayTwoTimeSlider.getValue() == 75.0) {
-            timeinBars = "2";
-        }
-        else if (delayTwoTimeSlider.getValue() == 87.5) {
-            timeinBars = "4";
-        }
-        else if (delayTwoTimeSlider.getValue() == 100.0) {
-            timeinBars = "8";
-        }
-
-        delayTwoTimeIndicator.setText(timeinBars, dontSendNotification);
-    }
-    else if (slider == &delayTwoFeedbackSlider) {
-        delayTwoFeedbackIndicator.setText(String(delayTwoFeedbackSlider.getValue()) + " %", dontSendNotification);
-    }
-    else if (slider == &delayTwoMixSlider) {
-        delayTwoMixIndicator.setText(String(delayTwoMixSlider.getValue()) + " %", dontSendNotification);
-    }
-
-    else if (slider == &flangerTwoDepthSlider) {
-        flangerTwoDepthIndicator.setText(String(flangerTwoDepthSlider.getValue()) + " ms", dontSendNotification);
-    }
-    else if (slider == &flangerTwoRateSlider) {
-        flangerTwoRateIndicator.setText(String(flangerTwoRateSlider.getValue()) + " Hz", dontSendNotification);
-    }
-    else if (slider == &flangerTwoMixSlider) {
-        flangerTwoMixIndicator.setText(String(flangerTwoMixSlider.getValue()) + " %", dontSendNotification);
+    else if (slider == &tremoloTwoRateSlider) {
+        tremoloTwoRateIndicator.setText(String(tremoloTwoRateSlider.getValue()) + " Hz", dontSendNotification);
     }
 
     else if (slider == &vibratoTwoDepthSlider) {
@@ -3131,6 +3774,13 @@ void PulpfictionAudioProcessorEditor::sliderValueChanged(Slider* slider) {
         flangerThreeMixIndicator.setText(String(flangerThreeMixSlider.getValue()) + " %", dontSendNotification);
     }
 
+    else if (slider == &tremoloThreeDepthSlider) {
+        tremoloThreeDepthIndicator.setText(String(tremoloThreeDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &tremoloThreeRateSlider) {
+        tremoloThreeRateIndicator.setText(String(tremoloThreeRateSlider.getValue()) + " Hz", dontSendNotification);
+    }
+
     else if (slider == &vibratoThreeDepthSlider) {
         vibratoThreeDepthIndicator.setText(String(vibratoThreeDepthSlider.getValue()) + " ms", dontSendNotification);
     }
@@ -3196,6 +3846,13 @@ void PulpfictionAudioProcessorEditor::sliderValueChanged(Slider* slider) {
     }
     else if (slider == &flangerFourMixSlider) {
         flangerFourMixIndicator.setText(String(flangerFourMixSlider.getValue()) + " %", dontSendNotification);
+    }
+
+    else if (slider == &tremoloFourDepthSlider) {
+        tremoloFourDepthIndicator.setText(String(tremoloFourDepthSlider.getValue()) + " ms", dontSendNotification);
+    }
+    else if (slider == &tremoloFourRateSlider) {
+        tremoloFourRateIndicator.setText(String(tremoloFourRateSlider.getValue()) + " Hz", dontSendNotification);
     }
 
     else if (slider == &vibratoFourDepthSlider) {

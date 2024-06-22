@@ -94,6 +94,30 @@
 #define FRATE4_ID "flangerrate4"
 #define FRATE4_NAME "Rate"
 
+#define TDEPTH1_ID "tremolodepth1"
+#define TDEPTH1_NAME "Depth"
+
+#define TRATE1_ID "tremolorate1"
+#define TRATE1_NAME "Rate"
+
+#define TDEPTH2_ID "tremolodepth2"
+#define TDEPTH2_NAME "Depth"
+
+#define TRATE2_ID "tremolorate2"
+#define TRATE2_NAME "Rate"
+
+#define TDEPTH3_ID "tremolodepth3"
+#define TDEPTH3_NAME "Depth"
+
+#define TRATE3_ID "tremolorate3"
+#define TRATE3_NAME "Rate"
+
+#define TDEPTH4_ID "tremolodepth4"
+#define TDEPTH4_NAME "Depth"
+
+#define TRATE4_ID "tremolorate4"
+#define TRATE4_NAME "Rate"
+
 #define VDEPTH1_ID "vibratodepth1"
 #define VDEPTH1_NAME "Depth"
 
@@ -217,6 +241,11 @@ public:
     void flangerThree(juce::AudioBuffer<float>&);
     void flangerFour(juce::AudioBuffer<float>&);
 
+    void tremoloOne(juce::AudioBuffer<float>&);
+    void tremoloTwo(juce::AudioBuffer<float>&);
+    void tremoloThree(juce::AudioBuffer<float>&);
+    void tremoloFour(juce::AudioBuffer<float>&);
+
     void vibratoOne(juce::AudioBuffer<float>&);
     void vibratoTwo(juce::AudioBuffer<float>&);
     void vibratoThree(juce::AudioBuffer<float>&);
@@ -296,6 +325,11 @@ private:
     int fpw4[2];
     float fph4[2];
 
+    float tph1[2];
+    float tph2[2];
+    float tph3[2];
+    float tph4[2];
+
     int vpw1[2];
     float vph1[2];
     int vpw2[2];
@@ -331,6 +365,15 @@ private:
     float flangerThreeRate;
     float flangerFourDepth;
     float flangerFourRate;
+
+    float tremoloOneDepth;
+    float tremoloOneRate;
+    float tremoloTwoDepth;
+    float tremoloTwoRate;
+    float tremoloThreeDepth;
+    float tremoloThreeRate;
+    float tremoloFourDepth;
+    float tremoloFourRate;
 
     float vibratoOneDepth;
     float vibratoOneRate;

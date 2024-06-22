@@ -22,10 +22,10 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
                        ),
     treeState(*this, nullptr, "PARAMETER",
         {
-            std::make_unique<AudioParameterInt>(SLOTONE_ID, SLOTONE_NAME, 1, 5, 1),
-            std::make_unique<AudioParameterInt>(SLOTTWO_ID, SLOTTWO_NAME, 1, 5, 1),
-            std::make_unique<AudioParameterInt>(SLOTTHREE_ID, SLOTTHREE_NAME, 1, 5, 1),
-            std::make_unique<AudioParameterInt>(SLOTFOUR_ID, SLOTFOUR_NAME, 1, 5, 1),
+            std::make_unique<AudioParameterInt>(SLOTONE_ID, SLOTONE_NAME, 1, 6, 1),
+            std::make_unique<AudioParameterInt>(SLOTTWO_ID, SLOTTWO_NAME, 1, 6, 1),
+            std::make_unique<AudioParameterInt>(SLOTTHREE_ID, SLOTTHREE_NAME, 1, 6, 1),
+            std::make_unique<AudioParameterInt>(SLOTFOUR_ID, SLOTFOUR_NAME, 1, 6, 1),
 
             std::make_unique<AudioParameterFloat>(CDEPTH1_ID, CDEPTH1_NAME, 20.0, 30.0, 25.0),
             std::make_unique<AudioParameterInt>(CVOICES1_ID, CVOICES1_NAME, 1, 3, 1),
@@ -53,6 +53,15 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
             std::make_unique<AudioParameterFloat>(FRATE3_ID, FRATE3_NAME, 1.0, 10.0, 1.0),
             std::make_unique<AudioParameterFloat>(FDEPTH4_ID, FDEPTH4_NAME, 0.0, 10.0, 1.0),
             std::make_unique<AudioParameterFloat>(FRATE4_ID, FRATE4_NAME, 1.0, 10.0, 1.0),
+
+            std::make_unique<AudioParameterFloat>(TDEPTH1_ID, TDEPTH1_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(TRATE1_ID, TRATE1_NAME, 0.5, 20.0, 0.5),
+            std::make_unique<AudioParameterFloat>(TDEPTH2_ID, TDEPTH2_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(TRATE2_ID, TRATE2_NAME, 0.5, 20.0, 0.5),
+            std::make_unique<AudioParameterFloat>(TDEPTH3_ID, TDEPTH3_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(TRATE3_ID, TRATE3_NAME, 0.5, 20.0, 0.5),
+            std::make_unique<AudioParameterFloat>(TDEPTH4_ID, TDEPTH4_NAME, 0.0, 100.0, 100.0),
+            std::make_unique<AudioParameterFloat>(TRATE4_ID, TRATE4_NAME, 0.5, 20.0, 0.5),
 
             std::make_unique<AudioParameterFloat>(VDEPTH1_ID, VDEPTH1_NAME, 0.0, 10.0, 1.0),
             std::make_unique<AudioParameterFloat>(VRATE1_ID, VRATE1_NAME, 0.1, 10.0, 0.1),
@@ -110,6 +119,15 @@ PulpfictionAudioProcessor::PulpfictionAudioProcessor()
     flangerThreeRate(1.0),
     flangerFourDepth(1.0),
     flangerFourRate(1.0),
+
+    tremoloOneDepth(100.0),
+    tremoloOneRate(0.5),
+    tremoloTwoDepth(100.0),
+    tremoloTwoRate(0.5),
+    tremoloThreeDepth(100.0),
+    tremoloThreeRate(0.5),
+    tremoloFourDepth(100.0),
+    tremoloFourRate(0.5),
 
     vibratoOneDepth(1.0),
     vibratoOneRate(0.1),
@@ -321,6 +339,15 @@ void PulpfictionAudioProcessor::prepareToPlay (double sampleRate, int samplesPer
     fph4[0] = 0.0;
     fph4[1] = 0.0;
 
+    tph1[0] = 0.0;
+    tph1[1] = 0.0;
+    tph2[0] = 0.0;
+    tph2[1] = 0.0;
+    tph3[0] = 0.0;
+    tph3[1] = 0.0;
+    tph4[0] = 0.0;
+    tph4[1] = 0.0;
+
     vibratoBufferOne.setSize(2, sampleRate);
     vibratoBufferOne.clear();
     vibratoBufferTwo.setSize(2, sampleRate);
@@ -466,6 +493,34 @@ float PulpfictionAudioProcessor::getValue(char* token) {
         return flangerFourRate;
     }
 
+    else if (!strcmp(token, "T1D")) {
+        return tremoloOneDepth;
+    }
+    else if (!strcmp(token, "T1R")) {
+        return tremoloOneRate;
+    }
+
+    else if (!strcmp(token, "T2D")) {
+        return tremoloTwoDepth;
+    }
+    else if (!strcmp(token, "T2R")) {
+        return tremoloOneRate;
+    }
+
+    else if (!strcmp(token, "T3D")) {
+        return tremoloThreeDepth;
+    }
+    else if (!strcmp(token, "T3R")) {
+        return tremoloThreeRate;
+    }
+
+    else if (!strcmp(token, "T4D")) {
+        return tremoloFourDepth;
+    }
+    else if (!strcmp(token, "T4R")) {
+        return tremoloFourRate;
+    }
+
     else if (!strcmp(token, "V1D")) {
         return vibratoOneDepth;
     }
@@ -577,6 +632,9 @@ void PulpfictionAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
         flangerOne(buffer);
         break;
     case 5:
+        tremoloOne(buffer);
+        break;
+    case 6:
         vibratoOne(buffer);
         break;
     }
@@ -594,6 +652,9 @@ void PulpfictionAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
         flangerTwo(buffer);
         break;
     case 5:
+        tremoloTwo(buffer);
+        break;
+    case 6:
         vibratoTwo(buffer);
         break;
     }
@@ -611,6 +672,9 @@ void PulpfictionAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
         flangerThree(buffer);
         break;
     case 5:
+        tremoloThree(buffer);
+        break;
+    case 6:
         vibratoThree(buffer);
         break;
     }
@@ -628,6 +692,9 @@ void PulpfictionAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
         flangerFour(buffer);
         break;
     case 5:
+        tremoloFour(buffer);
+        break;
+    case 6:
         vibratoFour(buffer);
         break;
     }
@@ -1447,6 +1514,126 @@ void PulpfictionAudioProcessor::flangerFour(juce::AudioBuffer<float>& buffer) {
             fph4[channel] += rate / sampleRate;
 
             if (fph4[channel] >= 1.0) fph4[channel] -= 1.0;
+        }
+    }
+}
+
+void PulpfictionAudioProcessor::tremoloOne(juce::AudioBuffer<float>& buffer) {
+    auto totalNumInputChannels = getTotalNumInputChannels();
+    auto totalNumOutputChannels = getTotalNumOutputChannels();
+    const int totalNumSamples = buffer.getNumSamples();
+
+    float sampleRate = getSampleRate();
+
+    float depth = *treeState.getRawParameterValue(TDEPTH1_ID);
+    float rate = *treeState.getRawParameterValue(TRATE1_ID);
+
+    tremoloOneDepth = depth;
+    tremoloOneRate = rate;
+
+    depth /= 100.0;
+
+    for (int channel = 0; channel < totalNumInputChannels; ++channel) {
+        float* channelData = buffer.getWritePointer(channel);
+
+        for (int sample = 0; sample < totalNumSamples; ++sample) {
+            const float in = channelData[sample];
+
+            channelData[sample] = in * (1.0f - depth * 0.5f * sinf(2.0 * double_Pi * tph1[channel]));
+
+            tph1[channel] += rate / sampleRate;
+
+            if (tph1[channel] >= 1.0) tph1[channel] -= 1.0;
+        }
+    }
+}
+
+void PulpfictionAudioProcessor::tremoloTwo(juce::AudioBuffer<float>& buffer) {
+    auto totalNumInputChannels = getTotalNumInputChannels();
+    auto totalNumOutputChannels = getTotalNumOutputChannels();
+    const int totalNumSamples = buffer.getNumSamples();
+
+    float sampleRate = getSampleRate();
+
+    float depth = *treeState.getRawParameterValue(TDEPTH2_ID);
+    float rate = *treeState.getRawParameterValue(TRATE2_ID);
+
+    tremoloTwoDepth = depth;
+    tremoloTwoRate = rate;
+
+    depth /= 100.0;
+
+    for (int channel = 0; channel < totalNumInputChannels; ++channel) {
+        float* channelData = buffer.getWritePointer(channel);
+
+        for (int sample = 0; sample < totalNumSamples; ++sample) {
+            const float in = channelData[sample];
+
+            channelData[sample] = in * (1.0f - depth * 0.5f * sinf(2.0 * double_Pi * tph2[channel]));
+
+            tph2[channel] += rate / sampleRate;
+
+            if (tph2[channel] >= 1.0) tph2[channel] -= 1.0;
+        }
+    }
+}
+
+void PulpfictionAudioProcessor::tremoloThree(juce::AudioBuffer<float>& buffer) {
+    auto totalNumInputChannels = getTotalNumInputChannels();
+    auto totalNumOutputChannels = getTotalNumOutputChannels();
+    const int totalNumSamples = buffer.getNumSamples();
+
+    float sampleRate = getSampleRate();
+
+    float depth = *treeState.getRawParameterValue(TDEPTH3_ID);
+    float rate = *treeState.getRawParameterValue(TRATE3_ID);
+
+    tremoloThreeDepth = depth;
+    tremoloThreeRate = rate;
+
+    depth /= 100.0;
+
+    for (int channel = 0; channel < totalNumInputChannels; ++channel) {
+        float* channelData = buffer.getWritePointer(channel);
+
+        for (int sample = 0; sample < totalNumSamples; ++sample) {
+            const float in = channelData[sample];
+
+            channelData[sample] = in * (1.0f - depth * 0.5f * sinf(2.0 * double_Pi * tph3[channel]));
+
+            tph3[channel] += rate / sampleRate;
+
+            if (tph3[channel] >= 1.0) tph3[channel] -= 1.0;
+        }
+    }
+}
+
+void PulpfictionAudioProcessor::tremoloFour(juce::AudioBuffer<float>& buffer) {
+    auto totalNumInputChannels = getTotalNumInputChannels();
+    auto totalNumOutputChannels = getTotalNumOutputChannels();
+    const int totalNumSamples = buffer.getNumSamples();
+
+    float sampleRate = getSampleRate();
+
+    float depth = *treeState.getRawParameterValue(TDEPTH4_ID);
+    float rate = *treeState.getRawParameterValue(TRATE4_ID);
+
+    tremoloFourDepth = depth;
+    tremoloFourRate = rate;
+
+    depth /= 100.0;
+
+    for (int channel = 0; channel < totalNumInputChannels; ++channel) {
+        float* channelData = buffer.getWritePointer(channel);
+
+        for (int sample = 0; sample < totalNumSamples; ++sample) {
+            const float in = channelData[sample];
+
+            channelData[sample] = in * (1.0f - depth * 0.5f * sinf(2.0 * double_Pi * tph4[channel]));
+
+            tph4[channel] += rate / sampleRate;
+
+            if (tph4[channel] >= 1.0) tph4[channel] -= 1.0;
         }
     }
 }
