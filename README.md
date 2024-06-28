@@ -16,7 +16,7 @@
    - **Rescan Plugins:** Follow your DAW's instructions to rescan plugins or manually add the plugin if necessary.
 
 ### Build from Source
-To build Sound of music from source:
+To build Pulp fiction from source:
 
 1. **Clone the Repository:**
    ```bash
