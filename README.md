@@ -1,6 +1,6 @@
 <h1>Pulp Fiction</h2>
 
-<img src="res/Screenshot.png" width="850">
+<p align="center"><img src="res/Screenshot.png" width="650"></p>
 
 <p>
     Pulp Fiction is a multi-FX rack plugin with four slots, allowing users to choose audio effects for each slot from a drop-down menu.
